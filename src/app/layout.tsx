@@ -24,9 +24,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <div>
           <Header />
-          <div className="mt-4 grid grid-cols-[auto_1fr] gap-4 md:mt-0 md:block">
-            <aside className="p-2 pl-4 md:hidden">
-              <h2 className="mb-4 text-lg font-bold text-boldColor">
+          <div className="mt-4 flex gap-4 md:mt-0 md:flex-col">
+            <aside className="p-2 pl-4 sm:hidden">
+              <h2 className="mb-4 text-lg font-bold text-boldColor md:text-center">
                 Categories
               </h2>
               <Navbar />

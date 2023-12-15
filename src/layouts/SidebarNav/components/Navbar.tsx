@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <ul className="grid gap-4 text-xl text-lightColor ">
+      <ul className="flex flex-col gap-4 text-xl text-lightColor md:flex-row md:flex-wrap md:justify-center ">
         {NavbarCategories.map(category => (
           <li
             key={category.name}

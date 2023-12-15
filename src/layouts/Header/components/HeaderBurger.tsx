@@ -10,7 +10,7 @@ export default function HeaderBurger() {
     <>
       <div
         onClick={() => setIsOpen(prev => !prev)}
-        className="right-10 z-40 hidden h-[14px] cursor-pointer md:absolute md:block [&>span]:absolute [&>span]:h-[2px] [&>span]:w-[20px] [&>span]:bg-boldColor"
+        className="right-10 z-40 hidden h-[14px] cursor-pointer sm:absolute sm:block [&>span]:absolute [&>span]:h-[2px] [&>span]:w-[20px] [&>span]:bg-boldColor"
       >
         <span className="top-0" />
         <span className="top-1/2 -translate-y-1/2" />
