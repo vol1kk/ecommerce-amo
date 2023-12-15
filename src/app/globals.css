@@ -2,26 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.card__cozy {
+    @apply scale-150 object-[100px_50px] sm:object-[40px_15px];
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.card__summer {
+    @apply -scale-x-150 scale-y-150 object-[-100px_50px] sm:object-[-40px_15px];
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.card__hawaii__image {
+    @apply -scale-x-100 object-[0];
+}
+
+.card__content--black {
+    @apply text-black [&>button]:border-black [&>svg>path]:stroke-black;
+}
+
+.card__content--right {
+    @apply right-0;
 }
