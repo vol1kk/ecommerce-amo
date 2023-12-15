@@ -1,17 +1,14 @@
 import { Slider } from "@/features/Slider";
-import { HomeSlides } from "@/app/(homepage)/Slides";
-import { SectionDiscount } from "@/app/(homepage)/SectionDiscount";
-import { NewArrivals, SectionArrivals } from "@/app/(homepage)/SectionArrivals";
-
 import {
   FeaturedCategories,
+  HomeSlides,
+  NewArrivals,
+  SectionArrivals,
+  SectionDiscount,
   SectionFeatured,
-} from "@/app/(homepage)/SectionFeatured";
-
-import {
   SectionTestimonials,
   Testimonials,
-} from "@/app/(homepage)/SectionTestimonials";
+} from "@/components/Homepage";
 
 export default function Home() {
   return (

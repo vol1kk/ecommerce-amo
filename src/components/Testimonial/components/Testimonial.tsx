@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 import cn from "@/utils/cn";
-import TestimonialRating from "@/components/Testimonial/TestimonialRating";
-import TestimonialContent from "@/components/Testimonial/TestimonialContent";
+import TestimonialRating from "@/components/Testimonial/components/TestimonialRating";
+import TestimonialContent from "@/components/Testimonial/components/TestimonialContent";
 
 type TestimonialProps = {
   index?: number;

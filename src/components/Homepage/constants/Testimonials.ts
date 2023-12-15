@@ -1,6 +1,6 @@
-import { Testimonial } from "@/app/(homepage)/SectionTestimonials";
+import { TTestimonial } from "@/components/Testimonial";
 
-const Testimonials: Testimonial[] = [
+const Testimonials: TTestimonial[] = [
   {
     name: "Floyd Miles",
     description:

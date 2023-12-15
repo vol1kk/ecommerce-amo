@@ -3,7 +3,7 @@ import Link from "next/link";
 import cn from "@/utils/cn";
 import { Section } from "@/components/Section";
 import { AbsoluteCard } from "@/components/AbsoluteCard";
-import { FeaturedCategory } from "@/app/(homepage)/SectionFeatured";
+import { FeaturedCategory } from "@/components/Homepage/types";
 
 type SectionFeaturedProps = {
   featured: FeaturedCategory[];
