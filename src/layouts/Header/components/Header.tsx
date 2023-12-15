@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Button } from "@/components/Button";
+import Button from "@/components/Button";
 import { HeaderBurger } from "@/layouts/Header";
 import {
   CartIcon,
