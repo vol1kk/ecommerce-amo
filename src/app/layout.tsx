@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 
 import { Header } from "@/layouts/Header";
 import { Footer } from "@/layouts/Footer";
-import { Navbar } from "@/layouts/SidebarNav";
+import { Navbar } from "@/layouts/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {

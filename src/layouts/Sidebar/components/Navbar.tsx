@@ -5,14 +5,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import cn from "@/utils/cn";
-import { getNavbarIcon, NavbarCategories } from "@/layouts/SidebarNav";
+import { getNavbarIcon, NavbarCategories } from "@/layouts/Sidebar";
 
-export default function Navbar() {
+type NavbarProps = {
+  className?: string;
+};
+
+export default function Navbar({ className }: NavbarProps) {
   const pathname = usePathname();
 
   return (
     <nav>
-      <ul className="flex flex-col gap-4 text-xl text-lightColor md:flex-row md:flex-wrap md:justify-center ">
+      <ul
+        className={cn(
+          "flex flex-col gap-4 text-xl text-lightColor md:flex-row md:flex-wrap md:justify-center",
+          className,
+        )}
+      >
         {NavbarCategories.map(category => (
           <li
             key={category.name}

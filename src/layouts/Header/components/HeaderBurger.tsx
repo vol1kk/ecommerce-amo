@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+
+import { Navbar } from "@/layouts/Sidebar";
 import OverlayPortal from "@/components/Overlay";
+import { HeaderActions, HeaderSearch } from "@/layouts/Header";
 
 export default function HeaderBurger() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +20,13 @@ export default function HeaderBurger() {
         <span className="bottom-0" />
       </div>
       <OverlayPortal isOpen={isOpen}>
-        <div className="h-full w-full bg-black">Test</div>
+        <div className="h-full w-full bg-white">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/3 -translate-y-1/2">
+            <Navbar className="mb-4 !flex-col" />
+            <HeaderSearch />
+            <HeaderActions className="flex justify-center gap-2 [&>button]:w-fit" />
+          </div>
+        </div>
       </OverlayPortal>
     </>
   );
