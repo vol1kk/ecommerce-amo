@@ -1,4 +1,4 @@
-import { DiscountedItem } from "@/components/Homepage/types";
+import { DiscountedItem } from "@/components/Homepage";
 
 export const DiscountedUpper: DiscountedItem[] = [
   {

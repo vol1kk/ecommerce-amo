@@ -1,4 +1,4 @@
-import { FeaturedCategory } from "@/components/Homepage/types";
+import { FeaturedCategory } from "@/components/Homepage";
 
 const FeaturedCategories: FeaturedCategory[] = [
   {
