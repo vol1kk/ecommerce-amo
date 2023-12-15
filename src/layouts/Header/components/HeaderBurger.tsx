@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import OverlayPortal from "@/components/Overlay/Overlay";
+import OverlayPortal from "@/components/Overlay";
 
 export default function HeaderBurger() {
   const [isOpen, setIsOpen] = useState(false);

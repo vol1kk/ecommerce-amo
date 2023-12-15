@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import cn from "@/utils/cn";
-import { Section } from "@/components/Section";
+import Section from "@/components/Section";
 import groupByThree from "@/components/Homepage/utils/groupByThree";
 import { Testimonial, TTestimonial } from "@/components/Testimonial";
 

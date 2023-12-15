@@ -1,5 +1,5 @@
 import cn from "@/utils/cn";
-import { Section } from "@/components/Section";
+import Section from "@/components/Section";
 import { ArrowIcon } from "@/components/Icons";
 import { AbsoluteCard } from "@/components/AbsoluteCard";
 import { DiscountedBottom, DiscountedUpper } from "@/components/Homepage";

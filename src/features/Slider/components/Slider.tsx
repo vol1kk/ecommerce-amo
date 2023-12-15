@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 import cn from "@/utils/cn";
-import { Button } from "@/components/Button";
+import Button from "@/components/Button";
+import { Slide } from "@/features/Slider";
 import { ChevronIcon } from "@/components/Icons";
-import { Slide } from "@/features/Slider/types/types";
 
 type SliderProps = {
   slides: Slide[];

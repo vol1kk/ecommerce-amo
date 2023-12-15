@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 import { Card } from "@/components/Card";
-import { Section } from "@/components/Section";
 
-import type { NewArrival } from "@/components/Homepage/types";
+import Section from "@/components/Section";
+import { NewArrival } from "@/components/Homepage";
 
 type SectionArrivalsProps = {
   arrivals: NewArrival[];
