@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 
 import { Header } from "@/layouts/Header";
 import { Footer } from "@/layouts/Footer";
+import { Navbar } from "@/layouts/SidebarNav";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -21,9 +22,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
+        <div>
+          <Header />
+          <div className="mt-4 grid grid-cols-[auto_1fr] gap-4 md:mt-0 md:block">
+            <aside className="p-2 pl-4 md:hidden">
+              <h2 className="mb-4 text-lg font-bold text-boldColor">
+                Categories
+              </h2>
+              <Navbar />
+            </aside>
+            {children}
+          </div>
+          <Footer />
+        </div>
+        <div id="overlay" />
       </body>
     </html>
   );
