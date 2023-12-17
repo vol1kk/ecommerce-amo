@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>
+        <div className="flex h-full flex-col">
           <Header />
-          <div className="mt-4 flex gap-4 md:mt-0 md:flex-col">
+          <div className="mt-4 flex flex-1 gap-4 md:mt-0 md:flex-col">
             <aside className="p-2 pl-4 sm:hidden">
               <h2 className="mb-4 text-lg font-bold text-boldColor md:text-center">
                 Categories
