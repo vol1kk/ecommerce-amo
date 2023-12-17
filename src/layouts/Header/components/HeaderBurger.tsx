@@ -23,7 +23,7 @@ export default function HeaderBurger() {
         <div className="h-full w-full bg-white">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/3 -translate-y-1/2">
             <Navbar className="mb-4 !flex-col" />
-            <HeaderSearch />
+            <HeaderSearch className="mb-4" />
             <HeaderActions className="flex justify-center gap-2 [&>button]:w-fit" />
           </div>
         </div>

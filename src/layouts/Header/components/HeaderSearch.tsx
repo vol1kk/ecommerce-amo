@@ -8,7 +8,7 @@ type HeaderSearchProps = {
 
 export default function HeaderSearch({ className }: HeaderSearchProps) {
   return (
-    <search className={cn("relative mb-4 w-full", className)}>
+    <search className={cn("relative w-full", className)}>
       <label className="w-full">
         <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2" />
         <input
