@@ -25,7 +25,7 @@ export default function RootLayout({
         <div className="flex h-full flex-col">
           <Header />
           <div className="mt-4 flex flex-1 gap-4 md:mt-0 md:flex-col">
-            <aside className="p-2 pl-4 sm:hidden">
+            <aside className="p-2 pb-4 pl-4 sm:hidden">
               <h2 className="mb-4 text-lg font-bold text-boldColor md:text-center">
                 Categories
               </h2>
