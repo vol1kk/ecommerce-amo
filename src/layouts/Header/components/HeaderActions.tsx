@@ -1,7 +1,9 @@
-import Button from "@/components/Button";
-import { CartIcon, HeartIcon, UserIcon } from "@/components/Icons";
 import React from "react";
+
 import cn from "@/utils/cn";
+import Button from "@/components/Button";
+import { CartIcon, HeartIcon } from "@/components/Icons";
+import HeaderAuthBtn from "@/layouts/Header/components/HeaderAuthBtn";
 
 type HeaderActionsProps = {
   className?: string;
@@ -13,9 +15,7 @@ export default function HeaderActions({ className }: HeaderActionsProps) {
       <Button className="group">
         <HeartIcon className="fill-transparent transition-[fill] group-hover:fill-red-500 [&>path]:transition-[stroke] group-hover:[&>path]:stroke-red-500" />
       </Button>
-      <Button>
-        <UserIcon />
-      </Button>
+      <HeaderAuthBtn />
       <Button>
         <CartIcon />
       </Button>
