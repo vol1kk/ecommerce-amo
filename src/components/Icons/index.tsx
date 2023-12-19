@@ -8,4 +8,5 @@ export { default as HeartIcon } from "@/components/Icons/HeartIcon";
 export { default as ArrowIcon } from "@/components/Icons/ArrowIcon";
 export { default as UnisexIcon } from "@/components/Icons/UnisexIcon";
 export { default as SearchIcon } from "@/components/Icons/SearchIcon";
+import { default as GitHubIcon } from "@/components/Icons/GitHubIcon";
 export { default as ChevronIcon } from "@/components/Icons/ChevronIcon";
