@@ -1,0 +1,24 @@
+"use client";
+
+import { signIn } from "next-auth/react";
+
+import Button from "@/components/Button";
+import { getOAuthIcon, TAvailableProviders } from "@/components/SignIn";
+
+type OAUthLoginProps = {
+  name: TAvailableProviders;
+};
+
+export default function OAuthLogin({ name }: OAUthLoginProps) {
+  return (
+    <Button
+      onClick={() => signIn(name, { redirect: true, callbackUrl: "/" })}
+      className="relative w-full gap-2 px-8 py-3"
+    >
+      <span className="flex items-center justify-center gap-4">
+        {getOAuthIcon(name.toLowerCase() as Lowercase<TAvailableProviders>)}
+        <span className="text-lg font-bold">Continue with {name}</span>
+      </span>
+    </Button>
+  );
+}

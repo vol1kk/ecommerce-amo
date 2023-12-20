@@ -1,4 +1,5 @@
 export { ManIcon } from "@/components/Icons/ManIcon";
+export { HideIcon } from "@/components/Icons/HideIcon";
 export { StarIcon } from "@/components/Icons/StarIcon";
 export { UserIcon } from "@/components/Icons/UserIcon";
 export { CartIcon } from "@/components/Icons/CartIcon";
@@ -7,6 +8,7 @@ export { WomanIcon } from "@/components/Icons/WomanIcon";
 export { HeartIcon } from "@/components/Icons/HeartIcon";
 export { ArrowIcon } from "@/components/Icons/ArrowIcon";
 export { UnisexIcon } from "@/components/Icons/UnisexIcon";
+export { LogoutIcon } from "@/components/Icons/LogoutIcon";
 export { SearchIcon } from "@/components/Icons/SearchIcon";
 export { GitHubIcon } from "@/components/Icons/GitHubIcon";
 export { ChevronIcon } from "@/components/Icons/ChevronIcon";

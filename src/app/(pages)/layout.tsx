@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/globals.css";
 
 import React from "react";
 import type { Metadata } from "next";
@@ -28,7 +28,7 @@ export default function RootLayout({
             <Header />
             <div className="flex flex-1 flex-col">
               <aside className="p-2 pb-4 pl-4 sm:hidden">
-                <h2 className="mb-4 text-center text-lg font-bold text-boldColor">
+                <h2 className="mb-2  text-center text-lg font-bold text-boldColor">
                   Categories
                 </h2>
                 <Navbar />
