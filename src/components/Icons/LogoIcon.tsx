@@ -1,4 +1,4 @@
-export default function LogoIcon() {
+export function LogoIcon() {
   return (
     <svg
       width="93"

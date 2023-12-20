@@ -1,6 +1,6 @@
 import { SVGProps } from "@/types/SVGProps";
 
-export default function HeartIcon(props: SVGProps) {
+export function HeartIcon(props: SVGProps) {
   return (
     <svg
       width="20"
