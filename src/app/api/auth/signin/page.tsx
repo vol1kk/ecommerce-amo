@@ -1,10 +1,11 @@
 "use client";
 
-import Section from "@/components/Section";
-import Button from "@/components/Button";
 import { signIn } from "next-auth/react";
 import { FormEvent } from "react";
-import GitHubIcon from "@/components/Icons/GitHubIcon";
+
+import Button from "@/components/Button";
+import Section from "@/components/Section";
+import { GitHubIcon } from "@/components/Icons";
 
 export default function Page() {
   function credentialsLogin(e: FormEvent<HTMLFormElement>) {

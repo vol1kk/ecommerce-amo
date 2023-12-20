@@ -4,10 +4,7 @@ type StarIconProps = {
   fillStyle?: "empty" | "half" | "full";
 } & SVGProps;
 
-export default function StarIcon({
-  fillStyle = "empty",
-  ...props
-}: StarIconProps) {
+export function StarIcon({ fillStyle = "empty", ...props }: StarIconProps) {
   if (fillStyle === "empty") {
     return (
       <svg

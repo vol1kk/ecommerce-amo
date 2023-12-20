@@ -1,6 +1,6 @@
 import { SVGProps } from "@/types/SVGProps";
 
-export default function WomanIcon(props: SVGProps) {
+export function WomanIcon(props: SVGProps) {
   return (
     <svg
       fill="#807D7E"

@@ -1,6 +1,6 @@
 import { SVGProps } from "@/types/SVGProps";
 
-export default function SearchIcon(props: SVGProps) {
+export function SearchIcon(props: SVGProps) {
   return (
     <svg
       width="20"

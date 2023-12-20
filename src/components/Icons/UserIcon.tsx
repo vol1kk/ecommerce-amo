@@ -1,4 +1,4 @@
-export default function UserIcon() {
+export function UserIcon() {
   return (
     <svg
       width="20"
