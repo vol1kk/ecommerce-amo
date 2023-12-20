@@ -1,6 +1,11 @@
 import assertNever from "@/utils/assertNever";
 import { NavbarIcons } from "@/layouts/Sidebar/constants/NavbarCategories";
-import { CartIcon, ManIcon, UnisexIcon, WomanIcon } from "@/components/Icons";
+import {
+  CartIcon,
+  ManIcon,
+  UnisexIcon,
+  WomanIcon,
+} from "@/components/common/Icons";
 
 const genderClasses = "group-hover:fill-boldColor";
 

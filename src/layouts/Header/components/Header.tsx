@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import { LogoIcon } from "@/components/Icons";
 import { HOME_PAGE } from "@/constants/routes";
+import { LogoIcon } from "@/components/common/Icons";
 import { HeaderActions, HeaderBurger, HeaderSearch } from "@/layouts/Header";
 
 export default function Header() {

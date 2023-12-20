@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 import cn from "@/utils/cn";
-import { CardImage } from "@/components/Card/CardImage";
-import { CardFavorite } from "@/components/Card/CardFavorite";
+import { CardImage } from "@/components/common/Card/CardImage";
+import { CardFavorite } from "@/components/common/Card/CardFavorite";
 
 export type CardProps = {
   className?: string;

@@ -3,8 +3,8 @@
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import Button from "@/components/Button";
-import { LogoutIcon, UserIcon } from "@/components/Icons";
+import Button from "@/components/common/Button";
+import { LogoutIcon, UserIcon } from "@/components/common/Icons";
 
 export function HeaderAuthBtn() {
   const { data } = useSession();

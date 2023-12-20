@@ -1,4 +1,4 @@
-import { StarIcon } from "@/components/Icons";
+import { StarIcon } from "@/components/common/Icons";
 
 type TestimonialRatingProps = {
   rating: number;

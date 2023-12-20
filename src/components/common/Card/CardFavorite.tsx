@@ -1,6 +1,6 @@
 "use client";
 
-import { HeartIcon } from "@/components/Icons";
+import { HeartIcon } from "@/components/common/Icons";
 
 export function CardFavorite() {
   return (

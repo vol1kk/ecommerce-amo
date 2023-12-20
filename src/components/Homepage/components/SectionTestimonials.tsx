@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 import cn from "@/utils/cn";
-import Section from "@/components/Section";
+import Section from "@/components/common/Section";
 import groupByThree from "@/components/Homepage/utils/groupByThree";
-import { Testimonial, TTestimonial } from "@/components/Testimonial";
+import { Testimonial, TTestimonial } from "@/components/common/Testimonial";
 
 type SectionTestimonialsProps = {
   testimonials: TTestimonial[];

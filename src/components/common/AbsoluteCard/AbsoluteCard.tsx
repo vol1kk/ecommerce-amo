@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 import cn from "@/utils/cn";
-import { AbsoluteCardImage } from "@/components/AbsoluteCard/AbsoluteCardImage";
-import { AbsoluteCardContent } from "@/components/AbsoluteCard/AbsoluteCardContent";
+import { AbsoluteCardImage } from "@/components/common/AbsoluteCard/AbsoluteCardImage";
+import { AbsoluteCardContent } from "@/components/common/AbsoluteCard/AbsoluteCardContent";
 
 type AbsoluteCardProps = {
   className?: string;

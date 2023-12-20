@@ -1,7 +1,7 @@
 import React from "react";
 
 import cn from "@/utils/cn";
-import { SearchIcon } from "@/components/Icons";
+import { SearchIcon } from "@/components/common/Icons";
 
 type HeaderSearchProps = {
   className?: string;

@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 import cn from "@/utils/cn";
-import Button from "@/components/Button";
 import { Slide } from "@/components/Homepage";
-import { ChevronIcon } from "@/components/Icons";
+import Button from "@/components/common/Button";
+import { ChevronIcon } from "@/components/common/Icons/ChevronIcon";
 
 type SliderProps = {
   slides: Slide[];

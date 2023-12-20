@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import Section from "@/components/Section";
-import { Card } from "@/components/Card";
-import Button from "@/components/Button";
-import { Clothing } from "@/constants/clothing";
 import { SHOP_PAGE } from "@/constants/routes";
+import { Clothing } from "@/constants/clothing";
+import { Card } from "@/components/common/Card";
+import Button from "@/components/common/Button";
+import Section from "@/components/common/Section";
 
 type PageProps = {
   params: {

@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+
 import { SIGN_IN_PAGE } from "@/constants/routes";
 
 const authOptions: NextAuthOptions = {

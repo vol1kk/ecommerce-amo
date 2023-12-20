@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import { Navbar } from "@/layouts/Sidebar";
-import OverlayPortal from "@/components/Overlay";
+import OverlayPortal from "@/components/common/Overlay";
 import { HeaderActions, HeaderSearch } from "@/layouts/Header";
 
 export function HeaderBurger() {
