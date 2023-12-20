@@ -13,6 +13,7 @@ type NavbarProps = {
 
 export default function Navbar({ className }: NavbarProps) {
   const pathname = usePathname();
+
   const isPathShop = pathname === "/shop";
   const pathCategory = isPathShop ? "shop" : pathname.slice(6).toLowerCase();
 

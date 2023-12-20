@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { SIGN_IN_PAGE } from "@/constants/routes";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -38,7 +39,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: SIGN_IN_PAGE,
   },
   secret: process.env.NEXTAUTH_SECRET as string,
 };
