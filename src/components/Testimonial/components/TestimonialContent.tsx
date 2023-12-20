@@ -3,10 +3,7 @@ type TestimonialContent = {
   description: string;
 };
 
-export function TestimonialContent({
-  name,
-  description,
-}: TestimonialContent) {
+export function TestimonialContent({ name, description }: TestimonialContent) {
   return (
     <div>
       <h2 className="mb-4 text-2xl font-bold text-boldColor">{name}</h2>

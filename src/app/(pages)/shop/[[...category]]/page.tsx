@@ -23,7 +23,7 @@ export default function Page({ params }: PageProps) {
     return (
       <main className="flex flex-1 flex-col place-content-center font-bold">
         <h2 className="mb-4 text-center text-3xl"> No items found</h2>
-        <Button className="self-center bg-[#8A33FD] text-white">
+        <Button className="self-center bg-purpleAccent text-white">
           <Link href={SHOP_PAGE}>Continue Shopping</Link>
         </Button>
       </main>
