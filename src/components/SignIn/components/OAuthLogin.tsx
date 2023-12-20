@@ -12,7 +12,7 @@ type OAUthLoginProps = {
 export default function OAuthLogin({ name }: OAUthLoginProps) {
   return (
     <Button
-      onClick={() => signIn(name, { redirect: true, callbackUrl: "/" })}
+      onClick={() => signIn(name, { callbackUrl: "/" })}
       className="relative w-full gap-2 px-8 py-3"
     >
       <span className="flex items-center justify-center gap-4">

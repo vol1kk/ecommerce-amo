@@ -1,5 +1,5 @@
 import {
-  AvailableProviders,
+  AvailableOAuthProviders,
   CredentialsLogin,
   OAuthLogin,
 } from "@/components/SignIn";
@@ -14,8 +14,8 @@ export default function Page() {
         className="aspect-square w-full object-cover"
       />
       <section className="grid flex-1 place-content-center  p-4">
-        <div>
-          {AvailableProviders.slice(1).map(provider => (
+        <div className="grid gap-3">
+          {AvailableOAuthProviders.map(provider => (
             <OAuthLogin key={provider} name={provider} />
           ))}
         </div>

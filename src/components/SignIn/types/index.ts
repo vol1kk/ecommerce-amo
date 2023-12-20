@@ -1,3 +1,3 @@
-import { AvailableProviders } from "@/components/SignIn/constants/AvailableProviders";
+import { AvailableOAuthProviders } from "@/components/SignIn/constants/AvailableOAuthProviders";
 
-export type AvailableProviders = (typeof AvailableProviders)[number];
+export type AvailableProviders = (typeof AvailableOAuthProviders)[number];

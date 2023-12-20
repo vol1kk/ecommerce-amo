@@ -1,13 +1,11 @@
 import assertNever from "@/utils/assertNever";
 import { GitHubIcon } from "@/components/Icons";
-import { AvailableProviders } from "@/components/SignIn/types";
+import { TAvailableProviders } from "@/components/SignIn";
 
-export function getOAuthIcon(name: Lowercase<AvailableProviders>) {
+export function getOAuthIcon(name: Lowercase<TAvailableProviders>) {
   switch (name) {
     case "github":
       return <GitHubIcon />;
-    case "credentials":
-      throw new Error("You shouldn't handle this here");
     default: {
       assertNever(name);
     }
