@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
 
+import Link from "@/components/common/Link";
 import { HOME_PAGE } from "@/constants/routes";
 import { LogoIcon } from "@/components/common/Icons";
 import { HeaderActions, HeaderBurger, HeaderSearch } from "@/layouts/Header";

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import cn from "@/utils/cn";
 import { getNavbarIcon, NavbarCategories } from "@/layouts/Sidebar";
+import Link from "@/components/common/Link";
 
 type NavbarProps = {
   className?: string;

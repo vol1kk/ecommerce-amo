@@ -1,8 +1,7 @@
-import Link from "next/link";
-
 import { Card } from "@/components/common/Card";
 import Section from "@/components/common/Section";
 import { NewArrival } from "@/components/Homepage";
+import Link from "@/components/common/Link";
 
 type SectionArrivalsProps = {
   arrivals: NewArrival[];

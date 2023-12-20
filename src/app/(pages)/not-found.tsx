@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/common/Link";
 import { HOME_PAGE } from "@/constants/routes";
 
 export default function NotFound() {

@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import { Clothing } from "@/constants/clothing";
 import { Card } from "@/components/common/Card";
@@ -23,7 +22,7 @@ export default function Page({ params }: PageProps) {
     return (
       <main className="flex flex-1 flex-col place-content-center font-bold">
         <h2 className="mb-4 text-center text-3xl"> No items found</h2>
-        <Button className="self-center bg-purpleAccent text-white">
+        <Button className="bg-purpleAccent self-center text-white">
           <Link href={SHOP_PAGE}>Continue Shopping</Link>
         </Button>
       </main>
