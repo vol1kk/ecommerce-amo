@@ -20,7 +20,7 @@ export default function Navbar({ className }: NavbarProps) {
     <nav>
       <ul
         className={cn(
-          "flex flex-col gap-4 text-xl text-lightColor md:flex-row md:flex-wrap md:justify-center",
+          "flex flex-wrap justify-center gap-4 text-xl text-lightColor",
           className,
         )}
       >

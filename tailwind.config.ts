@@ -17,7 +17,7 @@ const config: Config = {
       },
       screens: {
         "xl-max": { max: "1280px" },
-        lg: { max: "1024px" },
+        lg: { max: "1023px" },
         "md-header": { max: "806px" },
         md: { max: "768px" },
         sm: { max: "640px" },
