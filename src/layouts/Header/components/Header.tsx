@@ -1,15 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import Button from "@/components/Button";
+import { LogoIcon } from "@/components/Icons";
 import { HeaderActions, HeaderBurger, HeaderSearch } from "@/layouts/Header";
-import {
-  CartIcon,
-  HeartIcon,
-  LogoIcon,
-  SearchIcon,
-  UserIcon,
-} from "@/components/Icons";
 
 export default function Header() {
   return (

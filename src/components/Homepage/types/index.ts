@@ -33,3 +33,14 @@ export type DiscountedItem = {
 
   isLimited?: boolean;
 };
+
+export type Slide = {
+  image: {
+    src: string;
+  };
+  content: {
+    title: string;
+    subtitle: string;
+    category: string;
+  };
+};

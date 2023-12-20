@@ -3,7 +3,7 @@ type TestimonialContent = {
   description: string;
 };
 
-export default function TestimonialContent({
+export function TestimonialContent({
   name,
   description,
 }: TestimonialContent) {

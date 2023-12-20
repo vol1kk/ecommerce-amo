@@ -1,6 +1,6 @@
 import { FeaturedCategory } from "@/components/Homepage";
 
-const FeaturedCategories: FeaturedCategory[] = [
+export const FeaturedCategories: FeaturedCategory[] = [
   {
     image: {
       src: "/featured/card-cozy.jpg",
@@ -27,4 +27,3 @@ const FeaturedCategories: FeaturedCategory[] = [
   },
 ];
 
-export default FeaturedCategories;

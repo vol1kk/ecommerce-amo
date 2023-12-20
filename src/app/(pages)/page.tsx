@@ -1,8 +1,8 @@
-import { Slider } from "@/features/Slider";
 import {
   FeaturedCategories,
   HomeSlides,
   NewArrivals,
+  Slider,
   SectionArrivals,
   SectionDiscount,
   SectionFeatured,

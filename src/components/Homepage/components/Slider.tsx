@@ -1,9 +1,10 @@
 "use client";
+
 import { useState } from "react";
 
 import cn from "@/utils/cn";
 import Button from "@/components/Button";
-import { Slide } from "@/features/Slider";
+import { Slide } from "@/components/Homepage";
 import { ChevronIcon } from "@/components/Icons";
 
 type SliderProps = {

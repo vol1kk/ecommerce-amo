@@ -9,7 +9,7 @@ type CardImageProps = {
   className?: string;
 };
 
-export default function CardImage({
+export function CardImage({
   src,
   alt,
   href,

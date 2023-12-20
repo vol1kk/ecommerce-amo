@@ -1,4 +1,4 @@
-const HomeSlides = [
+export const HomeSlides = [
   {
     image: {
       src: "/slides/slide-one.jpg",
@@ -21,4 +21,3 @@ const HomeSlides = [
   },
 ];
 
-export default HomeSlides;

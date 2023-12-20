@@ -2,7 +2,7 @@
 
 import { HeartIcon } from "@/components/Icons";
 
-export default function CardFavorite() {
+export function CardFavorite() {
   return (
     <button
       onClick={() => console.log("change isFavorite to true")}

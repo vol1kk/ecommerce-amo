@@ -7,7 +7,7 @@ type AbsoluteCardContentProps = {
   className?: string;
 };
 
-export default function AbsoluteCardContent({
+export function AbsoluteCardContent({
   children,
   className,
 }: AbsoluteCardContentProps) {
