@@ -1,18 +1,8 @@
-import { Item } from "@/types";
 import Link from "@/components/common/Link";
+import { getItems } from "@/components/Shop";
 import { Card } from "@/components/common/Card";
 import { SHOP_PAGE } from "@/constants/routes";
 import Button from "@/components/common/Button";
-
-async function getItems(category?: string) {
-  const resp = await fetch(
-    `http://localhost:3000/api/v1/shop?category=${category}`,
-  );
-
-  if (!resp.ok) throw new Error("Something went wrong");
-
-  return resp.json() as Promise<Item[]>;
-}
 
 type ItemsListProps = {
   category: string | undefined;

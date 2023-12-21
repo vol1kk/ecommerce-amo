@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 
 import Section from "@/components/common/Section";
-import ItemsList from "@/components/Shop/ItemsList";
-import ShopSkeleton from "@/components/Shop/ShopSkeleton";
+import { ItemsList, ShopSkeleton } from "@/components/Shop";
 
 type PageProps = {
   params: {

@@ -1,6 +1,6 @@
 import { Card } from "@/components/common/Card";
 
-export default function ShopSkeleton() {
+export function ShopSkeleton() {
   const items = Array.from({ length: 8 }, (_, ind) => ind);
 
   return (
