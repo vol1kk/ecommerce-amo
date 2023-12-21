@@ -1,9 +1,10 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import GithubProvider from "next-auth/providers/github";
+import { SIGN_IN_PAGE } from "@/constants/routes";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -39,7 +40,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/signin",
+    signIn: SIGN_IN_PAGE,
   },
   secret: process.env.NEXTAUTH_SECRET as string,
 };

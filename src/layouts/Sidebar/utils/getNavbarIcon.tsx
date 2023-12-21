@@ -1,8 +1,15 @@
-import { CartIcon, ManIcon, UnisexIcon, WomanIcon } from "@/components/Icons";
+import assertNever from "@/utils/assertNever";
+import { NavbarIcons } from "@/layouts/Sidebar/constants/NavbarCategories";
+import {
+  CartIcon,
+  ManIcon,
+  UnisexIcon,
+  WomanIcon,
+} from "@/components/common/Icons";
 
-export default function getNavbarIcon(style: string) {
-  const genderClasses = "group-hover:fill-boldColor";
+const genderClasses = "group-hover:fill-boldColor";
 
+export default function getNavbarIcon(style: NavbarIcons) {
   switch (style) {
     case "woman":
       return <WomanIcon className={genderClasses} />;
@@ -13,6 +20,6 @@ export default function getNavbarIcon(style: string) {
     case "cart":
       return <CartIcon className="group-hover:[&>path]:stroke-boldColor" />;
     default:
-      throw new Error("Unexpected icon");
+      assertNever(style);
   }
 }

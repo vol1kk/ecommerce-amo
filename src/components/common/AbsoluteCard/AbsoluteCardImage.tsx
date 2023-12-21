@@ -6,7 +6,7 @@ type AbsoluteCardImageProps = {
   className?: string;
 };
 
-export default function AbsoluteCardImage({
+export function AbsoluteCardImage({
   src,
   alt,
   className,

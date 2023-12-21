@@ -1,7 +1,7 @@
 import cn from "@/utils/cn";
-import Section from "@/components/Section";
-import { ArrowIcon } from "@/components/Icons";
-import { AbsoluteCard } from "@/components/AbsoluteCard";
+import Section from "@/components/common/Section";
+import { ArrowIcon } from "@/components/common/Icons";
+import { AbsoluteCard } from "@/components/common/AbsoluteCard";
 import { DiscountedBottom, DiscountedUpper } from "@/components/Homepage";
 
 export default function SectionDiscount() {

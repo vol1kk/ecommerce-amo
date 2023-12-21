@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import cn from "@/utils/cn";
+import Link from "@/components/common/Link";
 
 type CardImageProps = {
   src: string;
@@ -9,7 +8,7 @@ type CardImageProps = {
   className?: string;
 };
 
-export default function CardImage({
+export function CardImage({
   src,
   alt,
   href,

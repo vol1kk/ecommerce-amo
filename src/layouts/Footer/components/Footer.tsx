@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/common/Link";
 import { HelpCategory, InfoCategory } from "@/layouts/Footer";
 
 export default function Footer() {

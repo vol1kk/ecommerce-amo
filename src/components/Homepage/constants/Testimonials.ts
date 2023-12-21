@@ -1,6 +1,6 @@
 import { TTestimonial } from "@/components/Testimonial";
 
-const Testimonials: TTestimonial[] = [
+export const Testimonials: TTestimonial[] = [
   {
     name: "Floyd Miles",
     description:
@@ -37,5 +37,3 @@ const Testimonials: TTestimonial[] = [
     rating: 4,
   },
 ];
-
-export default Testimonials;

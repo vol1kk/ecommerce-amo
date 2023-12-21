@@ -1,9 +1,8 @@
-import Link from "next/link";
-
 import cn from "@/utils/cn";
-import Section from "@/components/Section";
-import { AbsoluteCard } from "@/components/AbsoluteCard";
+import Link from "@/components/common/Link";
+import Section from "@/components/common/Section";
 import { FeaturedCategory } from "@/components/Homepage";
+import { AbsoluteCard } from "@/components/common/AbsoluteCard";
 
 type SectionFeaturedProps = {
   featured: FeaturedCategory[];

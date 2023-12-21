@@ -1,10 +1,10 @@
-import { StarIcon } from "@/components/Icons";
+import { StarIcon } from "@/components/common/Icons";
 
 type TestimonialRatingProps = {
   rating: number;
 };
 
-export default function TestimonialRating({ rating }: TestimonialRatingProps) {
+export function TestimonialRating({ rating }: TestimonialRatingProps) {
   return (
     <div className="flex">
       {Array.from({ length: 5 }, (_, ind) => {

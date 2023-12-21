@@ -1,22 +1,26 @@
+import { SHOP_PAGE } from "@/constants/routes";
+
 export const NavbarCategories = [
   {
     name: "Shop",
     icon: "cart",
-    href: "/shop",
+    href: `${SHOP_PAGE}`,
   },
   {
     name: "Men",
     icon: "man",
-    href: "/shop/men",
+    href: `${SHOP_PAGE}/men`,
   },
   {
     name: "Women",
     icon: "woman",
-    href: "/shop/women",
+    href: `${SHOP_PAGE}/women`,
   },
   {
     name: "Combos",
     icon: "unisex",
-    href: "/shop/combos",
+    href: `${SHOP_PAGE}/combos`,
   },
-];
+] as const;
+
+export type NavbarIcons = (typeof NavbarCategories)[number]["icon"];

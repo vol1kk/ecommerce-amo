@@ -1,4 +1,4 @@
-const NewArrivals = [
+export const NewArrivals = [
   {
     src: "/new/joggers.jpg",
     name: "Knitted Joggers",

@@ -1,9 +1,9 @@
-import Section from "@/components/Section";
+import Link from "@/components/common/Link";
+import { SHOP_PAGE } from "@/constants/routes";
 import { Clothing } from "@/constants/clothing";
-import { Card } from "@/components/Card";
-import Button from "@/components/Button";
-import Link from "next/link";
-import { HeartIcon } from "@/components/Icons";
+import { Card } from "@/components/common/Card";
+import Button from "@/components/common/Button";
+import Section from "@/components/common/Section";
 
 type PageProps = {
   params: {
@@ -22,8 +22,8 @@ export default function Page({ params }: PageProps) {
     return (
       <main className="flex flex-1 flex-col place-content-center font-bold">
         <h2 className="mb-4 text-center text-3xl"> No items found</h2>
-        <Button className="self-center bg-[#8A33FD] text-white">
-          <Link href="/shop">Continue Shopping</Link>
+        <Button className="bg-purpleAccent self-center text-white">
+          <Link href={SHOP_PAGE}>Continue Shopping</Link>
         </Button>
       </main>
     );
@@ -39,7 +39,7 @@ export default function Page({ params }: PageProps) {
                 <Card.Image
                   src={item.image}
                   alt={item.name}
-                  href="/shop/category/uuid"
+                  href={`${SHOP_PAGE}}/${category || "all"}/uuid`}
                 />
                 <Card.Favorite />
               </div>

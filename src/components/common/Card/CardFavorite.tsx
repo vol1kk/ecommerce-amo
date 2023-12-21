@@ -1,8 +1,8 @@
 "use client";
 
-import { HeartIcon } from "@/components/Icons";
+import { HeartIcon } from "@/components/common/Icons";
 
-export default function CardFavorite() {
+export function CardFavorite() {
   return (
     <button
       onClick={() => console.log("change isFavorite to true")}

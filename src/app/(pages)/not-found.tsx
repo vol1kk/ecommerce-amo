@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Link from "@/components/common/Link";
+import { HOME_PAGE } from "@/constants/routes";
 
 export default function NotFound() {
   return (
@@ -10,7 +11,7 @@ export default function NotFound() {
       <p className="text-lg">Could not find requested resource</p>
       <Link
         className="block text-center text-sm font-bold uppercase tracking-widest underline underline-offset-4"
-        href="/"
+        href={HOME_PAGE}
       >
         Return Home
       </Link>

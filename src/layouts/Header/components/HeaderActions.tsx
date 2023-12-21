@@ -1,15 +1,15 @@
 import React from "react";
 
 import cn from "@/utils/cn";
-import Button from "@/components/Button";
-import { CartIcon, HeartIcon } from "@/components/Icons";
-import HeaderAuthBtn from "@/layouts/Header/components/HeaderAuthBtn";
+import Button from "@/components/common/Button";
+import { CartIcon, HeartIcon } from "@/components/common/Icons";
+import { HeaderAuthBtn } from "@/layouts/Header/components/HeaderAuthBtn";
 
 type HeaderActionsProps = {
   className?: string;
 };
 
-export default function HeaderActions({ className }: HeaderActionsProps) {
+export function HeaderActions({ className }: HeaderActionsProps) {
   return (
     <div className={cn("[&_button]:px-4", className)}>
       <Button className="group">

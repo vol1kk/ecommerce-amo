@@ -4,8 +4,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-import Button from "@/components/Button";
-import { HideIcon } from "@/components/Icons";
+import Button from "@/components/common/Button";
+import { HideIcon } from "@/components/common/Icons";
 
 const labelClasses = "mb-2 font-bold uppercase tracking-wide";
 
