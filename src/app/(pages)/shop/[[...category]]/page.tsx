@@ -9,7 +9,7 @@ type PageProps = {
   };
 };
 
-export default async function Page({ params }: PageProps) {
+export default function Page({ params }: PageProps) {
   const category = params.category?.at(0);
 
   return (
