@@ -20,7 +20,7 @@ export default function Slider({ slides }: SliderProps) {
     setCurrSlide(prev => (prev === 0 ? slides.length - 1 : prev - 1));
 
   return (
-    <section className="relative mr-4 flex overflow-hidden rounded-lg md:mr-0 md:rounded-none">
+    <section className="relative flex overflow-hidden">
       <button
         onClick={prevSlide}
         aria-label="Go to previous slide"
