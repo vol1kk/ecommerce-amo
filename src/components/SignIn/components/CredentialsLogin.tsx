@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 
 import Button from "@/components/common/Button";
 import { HideIcon } from "@/components/common/Icons";
+import { ACCOUNT_PAGE } from "@/constants/routes";
 
 const labelClasses = "mb-2 font-bold uppercase tracking-wide";
 
@@ -67,8 +68,14 @@ export default function CredentialsLogin() {
         />
       </label>
       {isError && (
-        <div className="text-bold w-full text-center text-red-500">
-          Invalid credentials! Please try again.
+        <div className="text-bold grid w-full place-content-center gap-2 text-red-500">
+          <span>Invalid credentials! Please try again.</span>
+          <Button
+            onClick={() => router.push(ACCOUNT_PAGE)}
+            className="justify-self-center bg-transparent p-0 text-sm font-bold uppercase underline underline-offset-4"
+          >
+            Register
+          </Button>
         </div>
       )}
       <Button isSubmit={true} className="mt-2 w-full text-lg font-bold">
