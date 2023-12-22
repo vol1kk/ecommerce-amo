@@ -19,7 +19,7 @@ export default function CredentialsLogin() {
     const formData = new FormData(e.currentTarget);
 
     const result = await signIn("credentials", {
-      login: formData.get("login"),
+      email: formData.get("email"),
       password: formData.get("password"),
       redirect: false,
     });
@@ -40,10 +40,10 @@ export default function CredentialsLogin() {
       <label htmlFor="login">
         <span className={labelClasses}>Login</span>
         <input
-          id="login"
-          name="login"
+          id="email"
+          name="email"
           type="text"
-          placeholder="Login"
+          placeholder="me@example.com"
           className="w-full rounded-md border-2 border-black px-4 py-2"
         />
       </label>
@@ -61,7 +61,7 @@ export default function CredentialsLogin() {
         <input
           id="password"
           name="password"
-          placeholder="Password"
+          placeholder="******"
           type={showPassword ? "text" : "password"}
           className="rounded-md border-2 border-black px-4 py-2"
         />

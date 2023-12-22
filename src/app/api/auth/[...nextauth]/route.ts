@@ -1,10 +1,17 @@
+import prisma from "@/lib/prisma";
+import bcrypt from "bcrypt";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { SIGN_IN_PAGE } from "@/constants/routes";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
+  adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -13,27 +20,33 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        login: { label: "Login", type: "text", placeholder: "ruzytskyivn" },
-        password: { label: "Password", type: "text", placeholder: "***" },
+        email: { label: "Email", type: "text", placeholder: "me@example.com" },
+        password: { label: "Password", type: "password", placeholder: "***" },
       },
+
       async authorize(credentials, req) {
-        const user = {
-          id: "1",
-          login: "admin",
-          password: "admin",
-          email: "admin@example.com",
-          test: 123,
-        };
+        if (!credentials?.password || !credentials?.email) {
+          return null;
+        }
 
-        if (
-          user.login === credentials?.login &&
-          user.password === credentials?.password
-        ) {
-          return user;
+        const existingUser = await prisma.user.findUnique({
+          where: { email: credentials?.email },
+        });
+
+        if (!existingUser) {
+          return null;
+        }
+
+        // const salt = await bcrypt.genSalt();
+        // const hashedPassword = await bcrypt.hash(credentials.password, salt);
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          existingUser.password!,
+        );
+
+        if (isPasswordValid) {
+          return existingUser;
         } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-
           return null;
         }
       },
