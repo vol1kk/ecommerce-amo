@@ -1,8 +1,8 @@
 export function HideIcon() {
   return (
     <svg
-      width="20"
-      height="17"
+      width="20px"
+      height="17px"
       viewBox="0 0 19 16"
       fill="#807D7E"
       xmlns="http://www.w3.org/2000/svg"
