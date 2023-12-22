@@ -17,9 +17,11 @@ model Item {
   name       String
   brand      String
   price      Float
-  isFavorite Boolean
+  isFavorite Boolean // Will be removed later in favor
   details    ItemDetails @relation(fields: [detailsId], references: [id], onDelete: Cascade)
   detailsId  String      @unique @db.ObjectId
+  user       User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String?     @db.ObjectId
 }
 
 model ItemDetails {
@@ -57,6 +59,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  favoriteItems Item[]
 }
 
 model Account {
