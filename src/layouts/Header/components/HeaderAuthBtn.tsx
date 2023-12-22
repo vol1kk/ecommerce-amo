@@ -1,25 +1,37 @@
 "use client";
 
 import React from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import Button from "@/components/common/Button";
-import { LogoutIcon, UserIcon } from "@/components/common/Icons";
+import { UserIcon } from "@/components/common/Icons";
+import { ACCOUNT_PAGE, SIGN_IN_PAGE } from "@/constants/routes";
+import { SpinnerIcon } from "@/components/common/Icons/SpinnerIcon";
 
 export function HeaderAuthBtn() {
-  const { data } = useSession();
+  const router = useRouter();
 
-  function authOnClick() {
+  const { data, status } = useSession();
+
+  function handleAuthentication() {
     if (!data) {
-      void signIn();
+      router.push(SIGN_IN_PAGE);
     } else {
-      void signOut();
+      router.push(ACCOUNT_PAGE);
     }
   }
 
   return (
-    <Button onClick={authOnClick}>
-      {data ? <LogoutIcon /> : <UserIcon />}
+    <Button onClick={handleAuthentication}>
+      {status === "loading" ? (
+        <SpinnerIcon
+          width={20}
+          className="animate-spin fill-purple-700 text-lightColor"
+        />
+      ) : (
+        <UserIcon />
+      )}
     </Button>
   );
 }
