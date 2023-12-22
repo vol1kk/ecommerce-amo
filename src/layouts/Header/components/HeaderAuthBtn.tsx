@@ -8,6 +8,7 @@ import { LogoutIcon, UserIcon } from "@/components/common/Icons";
 
 export function HeaderAuthBtn() {
   const { data } = useSession();
+  console.log(data);
 
   function authOnClick() {
     if (!data) {

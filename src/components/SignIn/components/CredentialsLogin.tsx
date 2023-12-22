@@ -19,7 +19,7 @@ export default function CredentialsLogin() {
     const formData = new FormData(e.currentTarget);
 
     const result = await signIn("credentials", {
-      login: formData.get("login"),
+      email: formData.get("email"),
       password: formData.get("password"),
       redirect: false,
     });
@@ -37,11 +37,11 @@ export default function CredentialsLogin() {
       onSubmit={onFormSubmit}
       className="[&>label>input]:w-full [&>label]:mb-3 [&>label]:inline-block [&>label]:w-full"
     >
-      <label htmlFor="login">
+      <label htmlFor="email">
         <span className={labelClasses}>Login</span>
         <input
-          id="login"
-          name="login"
+          id="email"
+          name="email"
           type="text"
           placeholder="Login"
           className="w-full rounded-md border-2 border-black px-4 py-2"
