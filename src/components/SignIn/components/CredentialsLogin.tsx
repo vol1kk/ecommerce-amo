@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 import Button from "@/components/common/Button";
-import { HideIcon } from "@/components/common/Icons";
+import { HideIcon, ShowIcon } from "@/components/common/Icons";
 
 const labelClasses = "mb-2 font-bold uppercase tracking-wide";
 
@@ -54,8 +54,17 @@ export default function CredentialsLogin() {
             onClick={() => setShowPassword(prev => !prev)}
             className="flex items-center gap-2 bg-transparent p-0 text-sm font-bold tracking-widest text-lightColor"
           >
-            <HideIcon />
-            Hide
+            {showPassword ? (
+              <>
+                <HideIcon />
+                Hide
+              </>
+            ) : (
+              <>
+                <ShowIcon />
+                Show
+              </>
+            )}
           </Button>
         </div>
         <input
