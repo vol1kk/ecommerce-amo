@@ -1,8 +1,8 @@
 import {
-  AvailableOAuthProviders,
-  CredentialsLogin,
   OAuthLogin,
-} from "@/components/SignIn";
+  CredentialsLogin,
+  AvailableOAuthProviders,
+} from "@/components/Auth";
 
 export default function Page() {
   return (
@@ -13,7 +13,7 @@ export default function Page() {
         alt="Sign in"
         className="aspect-square w-full object-cover"
       />
-      <section className="grid flex-1 place-content-center  p-4">
+      <section className="grid flex-1 place-content-center p-4">
         {AvailableOAuthProviders.length > 0 && (
           <>
             <div className="grid gap-3">

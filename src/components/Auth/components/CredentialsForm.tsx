@@ -1,50 +1,44 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 import Button from "@/components/common/Button";
+import { CredentialsError } from "@/components/Auth/types";
 import { HideIcon, ShowIcon } from "@/components/common/Icons";
+import cn from "@/utils/cn";
 
 const labelClasses = "mb-2 font-bold uppercase tracking-wide";
 
-export default function CredentialsLogin() {
-  const router = useRouter();
-  const [isError, setIsError] = useState(false);
+type CredentialsFormProps = {
+  type: "login" | "register";
+  error: CredentialsError;
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
+};
+
+export default function CredentialsForm({
+  type,
+  error,
+  handleSubmit,
+}: CredentialsFormProps) {
   const [showPassword, setShowPassword] = useState(false);
-
-  async function onFormSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const result = await signIn("credentials", {
-      email: formData.get("email"),
-      password: formData.get("password"),
-      redirect: false,
-    });
-
-    if (result?.ok) {
-      router.push("/");
-    } else {
-      (e.target as HTMLFormElement).reset();
-      setIsError(true);
-    }
-  }
 
   return (
     <form
-      onSubmit={onFormSubmit}
+      onSubmit={e => handleSubmit(e)}
       className="[&>label>input]:w-full [&>label]:mb-3 [&>label]:inline-block [&>label]:w-full"
     >
       <label htmlFor="email">
-        <span className={labelClasses}>Login</span>
+        <span className={labelClasses}>Email</span>
         <input
+          required
           id="email"
           name="email"
           type="text"
-          placeholder="Login"
-          className="w-full rounded-md border-2 border-black px-4 py-2"
+          placeholder="me@example.com"
+          className={cn(
+            "w-full rounded-md border-2 border-black px-4 py-2",
+            error.email && "border-red-500",
+          )}
         />
       </label>
       <label htmlFor="password">
@@ -68,20 +62,24 @@ export default function CredentialsLogin() {
           </Button>
         </div>
         <input
+          required
           id="password"
           name="password"
-          placeholder="Password"
+          placeholder="*****"
           type={showPassword ? "text" : "password"}
-          className="rounded-md border-2 border-black px-4 py-2"
+          className={cn(
+            "w-full rounded-md border-2 border-black px-4 py-2",
+            error.password && "border-red-500",
+          )}
         />
       </label>
-      {isError && (
+      {error.text && (
         <div className="text-bold w-full text-center text-red-500">
-          Invalid credentials! Please try again.
+          {error.text}
         </div>
       )}
       <Button isSubmit={true} className="mt-2 w-full text-lg font-bold">
-        Sign in
+        Sign {type === "login" ? "in" : "up"}
       </Button>
     </form>
   );
