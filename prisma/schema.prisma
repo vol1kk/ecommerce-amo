@@ -26,26 +26,16 @@ model OrderList {
   userId       String        @db.ObjectId
 }
 
-model FavoriteItem {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  item   Item   @relation(fields: [itemId], references: [id])
-  itemId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @db.ObjectId
-}
-
 model Item {
-  id          String         @id @default(auto()) @map("_id") @db.ObjectId
-  image       String
-  category    String
-  name        String
-  brand       String
-  price       Float
-  isFavorite  Boolean
-  details     ItemDetails    @relation(fields: [detailsId], references: [id], onDelete: Cascade)
-  detailsId   String         @unique @db.ObjectId
-  favoritedBy FavoriteItem[] // m:n
-  orders      OrderedItem[]
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
+  image     String
+  category  String
+  name      String
+  brand     String
+  price     Float
+  details   ItemDetails   @relation(fields: [detailsId], references: [id], onDelete: Cascade)
+  detailsId String        @unique @db.ObjectId
+  orders    OrderedItem[]
 }
 
 model ItemDetails {
@@ -74,17 +64,17 @@ model Comment {
 
 // Necessary for Next auth
 model User {
-  id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  name           String?
-  surname        String?
-  email          String         @unique
-  password       String?
-  emailVerified  DateTime?
-  image          String?
-  accounts       Account[]
-  sessions       Session[]
-  favoritedItems FavoriteItem[] // m:n
-  orders         OrderList[] // 1:n
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  surname       String?
+  email         String      @unique
+  password      String?
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  favoriteItems String[]
+  orders        OrderList[]
 }
 
 model Account {

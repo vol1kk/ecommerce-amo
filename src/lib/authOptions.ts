@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -7,12 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 import prisma from "@/lib/prisma";
 import { SIGN_IN_PAGE } from "@/constants/routes";
-
-declare module "next-auth" {
-  interface User {
-    accessToken: string;
-  }
-}
+import generateJWT from "@/utils/generateJWT";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -52,11 +46,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const accessToken = jwt.sign(
-          credentials,
-          process.env.JWT_SECRET as string,
-        );
-
+        const accessToken = generateJWT(user.id, credentials.email);
         const { password, ...userRest } = Object.assign(user, {
           accessToken,
         });
@@ -68,11 +58,13 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account, user }) {
       if (account?.type === "credentials") {
+        token.id = user.id;
         token.accessToken = user.accessToken;
       }
 
-      if (account?.type === "oauth") {
-        token.accessToken = account.access_token;
+      if (account?.type === "oauth" && token.email) {
+        token.id = token.sub as string;
+        token.accessToken = generateJWT(user.id, token.email);
       }
 
       return token;

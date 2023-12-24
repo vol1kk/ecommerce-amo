@@ -6,7 +6,6 @@ export type Item = {
   name: string;
   brand: string;
   price: number;
-  isFavorite: boolean;
 };
 
 export type ItemDetails = {
