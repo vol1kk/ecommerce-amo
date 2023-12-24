@@ -11,7 +11,7 @@ type AuthProps = {
 
 export default function Auth({ children }: AuthProps) {
   return (
-    <main className="grid grid-cols-2 gap-4 lg:grid-cols-1 lg:flex-col">
+    <main className="grid h-full grid-cols-2 gap-4 lg:grid-cols-1">
       {children}
     </main>
   );

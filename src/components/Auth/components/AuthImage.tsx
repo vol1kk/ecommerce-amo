@@ -9,7 +9,7 @@ export function AuthImage({ src, alt }: AuthImageProps) {
       aria-hidden
       src={src}
       alt={alt}
-      className="aspect-[1/1.02] w-full object-cover"
+      className="aspect-[1/1.02] h-full w-full object-cover"
     />
   );
 }
