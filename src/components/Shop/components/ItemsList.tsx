@@ -1,8 +1,8 @@
 import Link from "@/components/common/Link";
-import { getItems } from "@/components/Shop";
 import { Card } from "@/components/common/Card";
 import { SHOP_PAGE } from "@/constants/routes";
 import Button from "@/components/common/Button";
+import { getFavoriteItems, getItems } from "@/components/Shop";
 
 type ItemsListProps = {
   category: string | undefined;
@@ -10,6 +10,7 @@ type ItemsListProps = {
 
 export default async function ItemsList({ category }: ItemsListProps) {
   const items = await getItems(category);
+  const favoriteItems = await getFavoriteItems();
 
   if (items.length === 0) {
     return (
@@ -32,7 +33,10 @@ export default async function ItemsList({ category }: ItemsListProps) {
               alt={item.name}
               href={`${SHOP_PAGE}/${category || "all"}/uuid`}
             />
-            <Card.Favorite />
+            <Card.Favorite
+              id={item.id}
+              isFavorite={favoriteItems.includes(item.id)}
+            />
           </div>
           <div className="flex items-center justify-between gap-2">
             <div>
