@@ -8,7 +8,7 @@ export type CredentialsError = {
   text: string;
 };
 
-export type RegisterCredentials = {
+export type Credentials = {
   email: string;
   password: string;
 };
@@ -20,7 +20,7 @@ export type RegisterErrorResponse = {
 
 export type RegisterSuccessResponse = {
   success: true;
-  data: RegisterCredentials;
+  data: Credentials;
 };
 
 export type RegisterResponse = RegisterErrorResponse | RegisterSuccessResponse;

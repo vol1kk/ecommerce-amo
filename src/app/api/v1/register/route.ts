@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
 
 import prisma from "@/lib/prisma";
-import { RegisterCredentials } from "@/components/SignIn";
+import { Credentials } from "@/components/Auth";
 
 export async function POST(request: Request) {
-  const data = (await request.json()) as RegisterCredentials;
+  const data = (await request.json()) as Credentials;
 
   const existingUser = await prisma.user.findUnique({
     where: { email: data.email },
