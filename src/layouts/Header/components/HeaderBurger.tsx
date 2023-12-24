@@ -24,7 +24,7 @@ export function HeaderBurger() {
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Navbar className="mb-4 !flex-col" />
             <HeaderSearch className="mb-4" />
-            <HeaderActions className="flex justify-center gap-2 [&>button]:w-fit" />
+            <HeaderActions className="grid gap-2" />
           </div>
         </div>
       </OverlayPortal>
