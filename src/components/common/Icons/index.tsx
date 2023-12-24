@@ -8,6 +8,7 @@ export { LogoIcon } from "@/components/common/Icons/LogoIcon";
 export { WomanIcon } from "@/components/common/Icons/WomanIcon";
 export { HeartIcon } from "@/components/common/Icons/HeartIcon";
 export { ArrowIcon } from "@/components/common/Icons/ArrowIcon";
+export { OrdersIcon } from "@/components/common/Icons/OrdersIcon";
 export { UnisexIcon } from "@/components/common/Icons/UnisexIcon";
 export { LogoutIcon } from "@/components/common/Icons/LogoutIcon";
 export { SearchIcon } from "@/components/common/Icons/SearchIcon";
