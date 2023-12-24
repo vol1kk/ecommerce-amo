@@ -1,4 +1,4 @@
-import { TTestimonial } from "@/components/Testimonial";
+import { TTestimonial } from "@/components/common/Testimonial";
 
 export const Testimonials: TTestimonial[] = [
   {
