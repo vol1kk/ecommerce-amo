@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
+import { HOME_PAGE } from "@/constants/routes";
 import { getFormCredentials } from "@/components/Auth";
 
 const initialError = {
@@ -28,7 +29,7 @@ export function useLogin() {
     });
 
     if (result?.ok) {
-      router.push("/");
+      router.push(HOME_PAGE);
     } else {
       form.reset();
       setError(prev => ({

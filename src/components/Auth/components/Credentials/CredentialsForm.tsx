@@ -34,6 +34,7 @@ export default function CredentialsForm({
           id="email"
           name="email"
           type="text"
+          autoComplete="email"
           placeholder="me@example.com"
           className={cn(
             "w-full rounded-md border-2 border-black px-4 py-2",
@@ -66,6 +67,7 @@ export default function CredentialsForm({
           id="password"
           name="password"
           placeholder="*****"
+          autoComplete="password"
           type={showPassword ? "text" : "password"}
           className={cn(
             "w-full rounded-md border-2 border-black px-4 py-2",
