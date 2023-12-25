@@ -5,6 +5,7 @@ export { StarIcon } from "@/components/common/Icons/StarIcon";
 export { UserIcon } from "@/components/common/Icons/UserIcon";
 export { CartIcon } from "@/components/common/Icons/CartIcon";
 export { LogoIcon } from "@/components/common/Icons/LogoIcon";
+export { CrossIcon } from "@/components/common/Icons/CrossIcon";
 export { WomanIcon } from "@/components/common/Icons/WomanIcon";
 export { HeartIcon } from "@/components/common/Icons/HeartIcon";
 export { ArrowIcon } from "@/components/common/Icons/ArrowIcon";

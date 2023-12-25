@@ -7,7 +7,7 @@ export default function Sidebar() {
   return (
     <aside>
       <nav className="grid justify-center">
-        <ul className="text-lg font-semibold text-lightColor [&>li]:flex [&>li]:w-[250px] [&>li]:items-center [&>li]:gap-4 [&>li]:py-2">
+        <ul className="text-lg font-semibold text-lightColor lg:flex lg:flex-wrap lg:justify-center lg:gap-4 [&>li]:flex [&>li]:w-[250px] [&>li]:items-center [&>li]:gap-4 [&>li]:py-2">
           {AccountCategories.map(category => (
             <AccountLink
               key={category.href}
@@ -16,7 +16,7 @@ export default function Sidebar() {
               icon={category.icon}
             />
           ))}
-          <li className="text-color justify-center text-base text-red-500 [&_svg>path]:fill-red-500">
+          <li className="text-color justify-center text-base text-red-500 lg:justify-start lg:px-3 [&_svg>path]:fill-red-500">
             <LogoutIcon width={16} />
             <SidebarLogout />
           </li>

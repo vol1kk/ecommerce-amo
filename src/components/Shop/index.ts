@@ -1,5 +1,5 @@
 export { getItems } from "@/components/Shop/utils/getItems";
-export { addFavorite } from "@/components/Shop/actions/addFavorite";
+export { toggleFavoriteAction } from "@/components/Shop/actions/toggleFavoriteAction";
 export { ShopSkeleton } from "@/components/Shop/components/ShopSkeleton";
 export { getFavoriteItems } from "@/components/Shop/utils/getFavoriteItems";
 export { default as ItemsList } from "@/components/Shop/components/ItemsList";
