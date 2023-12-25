@@ -7,7 +7,6 @@ import { FavoriteItem } from "@/components/Favorites";
 
 export default async function Page() {
   const favoriteItems = await getFavoriteItems();
-  console.log(favoriteItems);
 
   let content;
   if (favoriteItems.length === 0) {
@@ -38,7 +37,7 @@ export default async function Page() {
     content = (
       <div className="mb-4 grid gap-6">
         {favoriteItems.map(i => (
-          <FavoriteItem key={i.id} item={i.item} />
+          <FavoriteItem key={i.id} selectedItem={i} />
         ))}
       </div>
     );

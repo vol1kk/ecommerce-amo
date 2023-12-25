@@ -4,6 +4,7 @@ export type SelectedItem = {
   quantity: number;
   size: string;
   item: Item;
+  itemId: string;
 };
 
 export type Item = {

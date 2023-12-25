@@ -35,7 +35,6 @@ export async function toggleFavoriteAction({
 
   const favoriteItems = (await resp.json()) as SelectedItem[];
   const existingFavoriteItem = favoriteItems.find(fav => fav.itemId === itemId);
-  console.log(existingFavoriteItem, itemId);
 
   if (existingFavoriteItem) {
     await prisma.selectedItem.delete({

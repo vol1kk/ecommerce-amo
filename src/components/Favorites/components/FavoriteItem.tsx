@@ -1,4 +1,4 @@
-import { Item } from "@/types";
+import { SelectedItem } from "@/types";
 import {
   FavoriteImage,
   FavoriteRemove,
@@ -6,10 +6,12 @@ import {
 } from "@/components/Favorites";
 
 type WishlistItemProps = {
-  item: Item;
+  selectedItem: SelectedItem;
 };
 
-export default function FavoriteItem({ item }: WishlistItemProps) {
+export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
+  const item = selectedItem.item;
+
   return (
     <div className="grid grid-cols-[auto,1fr,auto,auto] place-items-center gap-6 border-b-2 pb-4 sm:grid-cols-1 sm:gap-2">
       <div className="flex items-center gap-4 sm:flex-col">
@@ -19,10 +21,18 @@ export default function FavoriteItem({ item }: WishlistItemProps) {
       <div className="justify-self-start sm:justify-self-center">
         <h2 className="font-bold">{item.name}</h2>
         <div>
-          <div>
-            <span className="font-semibold">Color: </span>
-            <span>Blue</span>
-          </div>
+          {selectedItem.color && (
+            <div>
+              <span className="font-semibold">Color: </span>
+              <span>{selectedItem.color}</span>
+            </div>
+          )}
+          {selectedItem.size && (
+            <div>
+              <span className="font-semibold">Size: </span>
+              <span>{selectedItem.size}</span>
+            </div>
+          )}
         </div>
       </div>
       <span className="font-semibold">${item.price}</span>
