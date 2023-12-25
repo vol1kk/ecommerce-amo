@@ -11,16 +11,18 @@ datasource db {
 }
 
 model SelectedItem {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  itemId   String  @db.ObjectId
-  item     Item    @relation(fields: [itemId], references: [id])
-  color    String?
-  quantity Int     @default(1)
-  size     String?
-  order    Order?  @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId  String? @db.ObjectId
-  user     User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId   String? @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  isInCart     Boolean?
+  isInWishlist Boolean?
+  itemId       String   @db.ObjectId
+  item         Item     @relation(fields: [itemId], references: [id])
+  color        String?
+  quantity     Int      @default(1)
+  size         String?
+  order        Order?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId      String?  @db.ObjectId
+  user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String?  @db.ObjectId
 }
 
 model Order {

@@ -1,5 +1,7 @@
 export type SelectedItem = {
   id: string;
+  isInWishlist?: boolean;
+  isInCart?: boolean;
   color: string;
   quantity: number;
   size: string;

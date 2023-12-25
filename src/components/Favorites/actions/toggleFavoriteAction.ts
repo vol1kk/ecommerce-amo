@@ -36,13 +36,14 @@ export async function toggleFavoriteAction({
   const favoriteItems = (await resp.json()) as SelectedItem[];
   const existingFavoriteItem = favoriteItems.find(fav => fav.itemId === itemId);
 
-  if (existingFavoriteItem) {
+  if (existingFavoriteItem) {``
     await prisma.selectedItem.delete({
       where: { id: existingFavoriteItem.id },
     });
   } else {
     await prisma.selectedItem.create({
       data: {
+        isInWishlist: true,
         item: {
           connect: { id: itemId },
         },

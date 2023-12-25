@@ -19,7 +19,7 @@ export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
         <FavoriteImage src={item.image} alt={item.name} />
       </div>
       <div className="justify-self-start sm:justify-self-center">
-        <h2 className="font-bold">{item.name}</h2>
+        <h2 className="text-xl font-bold">{item.name}</h2>
         <div>
           {selectedItem.color && (
             <div>
@@ -36,7 +36,7 @@ export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
         </div>
       </div>
       <span className="font-semibold">${item.price}</span>
-      <FavoriteToCart id={item.id} />
+      <FavoriteToCart id={item.id} isInCart={selectedItem.isInCart} />
     </div>
   );
 }

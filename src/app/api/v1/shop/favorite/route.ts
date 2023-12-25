@@ -21,7 +21,10 @@ export async function GET(request: Request) {
       await prisma.user.findUnique({
         where: { id: decoded.id },
         select: {
-          favoriteItems: { include: { item: { include: { details: true } } } },
+          favoriteItems: {
+            where: { isInWishlist: true },
+            include: { item: { include: { details: true } } },
+          },
         },
       })
     )?.favoriteItems;
