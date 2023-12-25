@@ -21,7 +21,11 @@ export async function GET(request: Request) {
       where: { id: decoded.id },
     });
 
-    return Response.json(user?.favoriteItems || []);
+    const favoriteItems = await prisma.item.findMany({
+      where: { id: { in: user?.favoriteItems || [] } },
+    });
+
+    return Response.json(favoriteItems);
   } catch (e) {
     throw new Error("Couldn't decode token...");
   }

@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import { FavoriteTag } from "@/components/Shop/constants";
+import { Item } from "@/types";
 
 export async function getFavoriteItems() {
   const session = await getServerSession(authOptions);
@@ -20,5 +21,5 @@ export async function getFavoriteItems() {
 
   if (!resp.ok) throw new Error("Something went wrong");
 
-  return (await resp.json()) as Promise<string[]>;
+  return (await resp.json()) as Promise<Item[]>;
 }

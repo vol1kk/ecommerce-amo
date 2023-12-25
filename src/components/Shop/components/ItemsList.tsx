@@ -35,7 +35,7 @@ export default async function ItemsList({ category }: ItemsListProps) {
             />
             <Card.Favorite
               id={item.id}
-              isFavorite={favoriteItems.includes(item.id)}
+              isFavorite={favoriteItems.some(i => i.id === item.id)}
             />
           </div>
           <div className="flex items-center justify-between gap-2">
