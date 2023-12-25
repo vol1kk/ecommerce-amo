@@ -1,6 +1,6 @@
 import Link from "@/components/common/Link";
-import { Card } from "@/components/common/Card";
 import { SHOP_PAGE } from "@/constants/routes";
+import { Card } from "@/components/common/Card";
 import Button from "@/components/common/Button";
 import { getFavoriteItems, getItems } from "@/components/Shop";
 
@@ -35,7 +35,7 @@ export default async function ItemsList({ category }: ItemsListProps) {
             />
             <Card.Favorite
               id={item.id}
-              isFavorite={favoriteItems.some(i => i.id === item.id)}
+              isFavorite={favoriteItems.some(i => i.itemId === item.id)}
             />
           </div>
           <div className="flex items-center justify-between gap-2">

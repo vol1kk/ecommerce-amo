@@ -17,15 +17,16 @@ export async function GET(request: Request) {
       email: string;
     };
 
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
-    });
+    const favoriteItems = (
+      await prisma.user.findUnique({
+        where: { id: decoded.id },
+        select: {
+          favoriteItems: { include: { item: { include: { details: true } } } },
+        },
+      })
+    )?.favoriteItems;
 
-    const favoriteItems = await prisma.item.findMany({
-      where: { id: { in: user?.favoriteItems || [] } },
-    });
-
-    return Response.json(favoriteItems);
+    return Response.json(favoriteItems || []);
   } catch (e) {
     throw new Error("Couldn't decode token...");
   }

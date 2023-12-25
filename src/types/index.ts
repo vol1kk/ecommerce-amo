@@ -1,11 +1,19 @@
+export type SelectedItem = {
+  id: string;
+  color: string;
+  quantity: number;
+  size: string;
+  item: Item;
+};
+
 export type Item = {
   id: string;
-  category: "men" | "women" | "combo";
-  details: ItemDetails;
   image: string;
+  category: "men" | "women" | "combo";
   name: string;
   brand: string;
   price: number;
+  details: ItemDetails;
 };
 
 export type ItemDetails = {
