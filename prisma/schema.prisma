@@ -54,7 +54,7 @@ model ItemDetails {
   neck     String
   sleeve   String
   style    String
-  Item     Item?
+  item     Item?
   comments Comment[]
 }
 
