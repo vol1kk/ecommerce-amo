@@ -1,3 +1,4 @@
+import { SelectedItemBasic } from "@/types";
 import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import { Card } from "@/components/common/Card";
@@ -10,7 +11,10 @@ type ItemsListProps = {
 
 export default async function ItemsList({ category }: ItemsListProps) {
   const items = await getItems(category);
-  const favoriteItems = await getSelectedItems("wishlist");
+  const favoriteItems = (await getSelectedItems(
+    "wishlist",
+    undefined,
+  )) as SelectedItemBasic[];
 
   if (items.length === 0) {
     return (

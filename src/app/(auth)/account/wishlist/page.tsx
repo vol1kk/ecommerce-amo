@@ -6,7 +6,7 @@ import { HeartIcon } from "@/components/common/Icons";
 import { FavoriteItem } from "@/components/Favorites";
 
 export default async function Page() {
-  const wishlistItem = await getSelectedItems("wishlist");
+  const wishlistItem = await getSelectedItems("wishlist", "bare");
 
   let content;
   if (wishlistItem.length === 0) {

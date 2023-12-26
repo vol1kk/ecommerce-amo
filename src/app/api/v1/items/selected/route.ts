@@ -19,18 +19,34 @@ export async function GET(request: Request) {
 
     const searchParams = new URL(request.url).searchParams;
     const action = getActionVariant(searchParams.get("type"));
+    const fullness = getFullnessVariant(searchParams.get("fullness"));
 
     const selectedItems = await prisma.selectedItem.findMany({
       where: {
         userId: decoded.id,
         ...(action && { [action]: true }),
       },
-      include: { item: { include: { details: true } } },
+      include: fullness,
     });
 
     return Response.json(selectedItems || []);
   } catch (e) {
     throw new Error("Something went wrong");
+  }
+}
+
+function getFullnessVariant(variant: string | null) {
+  switch (variant) {
+    case "full":
+      return {
+        item: { include: { details: { include: { comments: true } } } },
+      };
+    case "half":
+      return { item: { include: { details: true } } };
+    case "bare":
+      return { item: true };
+    default:
+      return {};
   }
 }
 

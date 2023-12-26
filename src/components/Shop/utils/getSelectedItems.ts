@@ -4,19 +4,30 @@ import { authOptions } from "@/lib/authOptions";
 import { SelectedItems } from "@/components/Shop/constants";
 import { SelectedItem } from "@/types";
 
-type SelectedItemTypes = "cart" | "wishlist";
+type SelectedItemTypes = "cart" | "wishlist" | undefined;
+type SelectedItemFullness = "full" | "half" | "bare" | undefined;
 
-export async function getSelectedItems(type?: SelectedItemTypes) {
+export async function getSelectedItems(
+  type: SelectedItemTypes,
+  fullness: SelectedItemFullness,
+) {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
     return [];
   }
 
-  const queryParam = type ? `?type=${type}` : "";
+  const searchParams = new URLSearchParams();
+  if (type) {
+    searchParams.append("type", type);
+  }
+
+  if (fullness) {
+    searchParams.append("fullness", fullness);
+  }
 
   const resp = await fetch(
-    `http://localhost:3000/api/v1/items/selected${queryParam}`,
+    `http://localhost:3000/api/v1/items/selected?${searchParams.toString()}`,
     {
       headers: {
         Authorization: `Bearer ${session.user.accessToken}`,

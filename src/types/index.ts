@@ -9,6 +9,8 @@ export type SelectedItem = {
   itemId: string;
 };
 
+export type SelectedItemBasic = Omit<SelectedItem, "item">;
+
 export type Item = {
   id: string;
   image: string;
