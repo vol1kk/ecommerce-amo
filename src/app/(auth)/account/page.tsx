@@ -1,10 +1,7 @@
 import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/lib/authOptions";
-import { DetailsName } from "@/components/UserDetails/components/DetailsName";
-import { DetailsEmail } from "@/components/UserDetails/components/DetailsEmail";
-import DetailsNumber from "@/components/UserDetails/components/DetailsNumber";
-import DetailsPassword from "@/components/UserDetails/components/DetailsPassword";
+import DetailsView from "@/components/UserDetails/components/DetailsView";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -21,13 +18,13 @@ export default async function Page() {
         <h2 className="mb-2 text-xl font-semibold text-boldColor">
           Contact Details
         </h2>
-        <DetailsName
+        <DetailsView.Name
           firstName={session.user.name || ""}
           lastName={session.user.surname || ""}
         />
-        <DetailsEmail initialEmail={session.user.email || ""} />
-        <DetailsNumber number="050-844-66-58" />
-        <DetailsPassword />
+        <DetailsView.Email initialEmail={session.user.email || ""} />
+        <DetailsView.Phone number="050-844-66-58" />
+        <DetailsView.Password />
       </section>
     </div>
   );

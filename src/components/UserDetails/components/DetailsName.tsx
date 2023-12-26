@@ -22,7 +22,11 @@ export function DetailsName({ firstName, lastName }: DetailsNameViewProps) {
     <DetailsView>
       {isEditing ? (
         <DetailsForm
-          discardHandler={() => setIsEditing(false)}
+          discardHandler={() => {
+            setIsEditing(false);
+            setName(firstName);
+            setSurname(lastName);
+          }}
           action={updateNameAction.bind(undefined, name, surname)}
         >
           <div className="mb-4 grid grid-cols-2 gap-2">
@@ -41,7 +45,9 @@ export function DetailsName({ firstName, lastName }: DetailsNameViewProps) {
       ) : (
         <DetailsView.Value
           title="Your Name"
-          value={`${name} ${surname}`.trim()}
+          value={`${name} ${surname
+            .slice(0, 1)
+            .padEnd(surname.length - 1, "*")}`.trim()}
           onClick={() => setIsEditing(true)}
         />
       )}

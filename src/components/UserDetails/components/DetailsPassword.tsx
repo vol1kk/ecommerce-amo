@@ -36,7 +36,7 @@ export default function DetailsPassword() {
       ) : (
         <DetailsView.Value
           title="Password"
-          value="****"
+          value="********"
           onClick={() => setIsEditing(true)}
         />
       )}

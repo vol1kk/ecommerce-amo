@@ -59,10 +59,11 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, account, user }) {
       if (account?.type === "credentials") {
         token = { ...user, ...token };
+        token.provider = account.type;
       }
 
       if (account?.type === "oauth" && token.email) {
-        token = { ...user, ...token };
+        token.provider = account.type;
         token.accessToken = generateJWT(user.id, token.email!);
       }
 
