@@ -58,13 +58,12 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account, user }) {
       if (account?.type === "credentials") {
-        token.id = user.id;
-        token.accessToken = user.accessToken;
+        token = { ...user, ...token };
       }
 
       if (account?.type === "oauth" && token.email) {
-        token.id = token.sub as string;
-        token.accessToken = generateJWT(user.id, token.email);
+        token = { ...user, ...token };
+        token.accessToken = generateJWT(user.id, token.email!);
       }
 
       return token;
