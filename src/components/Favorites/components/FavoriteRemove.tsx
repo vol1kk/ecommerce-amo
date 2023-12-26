@@ -7,7 +7,12 @@ type FavoriteRemoveProps = {
 
 export function FavoriteRemove({ id }: FavoriteRemoveProps) {
   return (
-    <form action={itemStatusAction.bind(undefined, { itemId: id })}>
+    <form
+      action={itemStatusAction.bind(undefined, {
+        type: "wishlist",
+        itemId: id,
+      })}
+    >
       <button type="submit">
         <CrossIcon />
       </button>

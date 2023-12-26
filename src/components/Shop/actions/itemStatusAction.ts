@@ -1,14 +1,15 @@
 "use server";
 
-import prisma from "@/lib/prisma";
 import { revalidateTag } from "next/cache";
 import { getServerSession } from "next-auth";
-import { SelectedItem } from "@prisma/client";
+
+import prisma from "@/lib/prisma";
 import { authOptions } from "@/lib/authOptions";
-import { FavoriteTag } from "@/components/Shop/constants";
+import { getSelectedItems } from "@/components/Shop";
+import { SelectedItems } from "@/components/Shop/constants";
 
 type ItemStatusActionProps = {
-  type?: "cart" | "wishlist";
+  type: "cart" | "wishlist";
   itemId: string;
   color?: string;
   size?: string;
@@ -16,27 +17,16 @@ type ItemStatusActionProps = {
 };
 
 export async function itemStatusAction({
-  type = "wishlist",
+  type,
   itemId,
   ...props
 }: ItemStatusActionProps) {
   const session = await getServerSession(authOptions);
-
   if (!session?.user) return;
 
-  const resp = await fetch(`http://localhost:3000/api/v1/shop/favorite`, {
-    headers: {
-      Authorization: `Bearer ${session.user.accessToken}`,
-    },
-    next: {
-      tags: [FavoriteTag],
-    },
-  });
+  const selectedItems = await getSelectedItems();
 
-  if (!resp.ok) throw new Error("Something went wrong");
-  const favoriteItems = (await resp.json()) as SelectedItem[];
-
-  const existingFavoriteItem = favoriteItems.find(fav => fav.itemId === itemId);
+  const existingFavoriteItem = selectedItems.find(fav => fav.itemId === itemId);
   const action = type === "wishlist" ? "isInWishlist" : "isInCart";
 
   if (existingFavoriteItem) {
@@ -76,5 +66,5 @@ export async function itemStatusAction({
     });
   }
 
-  revalidateTag("favoriteItems");
+  revalidateTag(SelectedItems);
 }

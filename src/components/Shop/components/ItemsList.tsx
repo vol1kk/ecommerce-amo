@@ -2,7 +2,7 @@ import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import { Card } from "@/components/common/Card";
 import Button from "@/components/common/Button";
-import { getFavoriteItems, getItems } from "@/components/Shop";
+import { getSelectedItems, getItems } from "@/components/Shop";
 
 type ItemsListProps = {
   category: string | undefined;
@@ -10,7 +10,7 @@ type ItemsListProps = {
 
 export default async function ItemsList({ category }: ItemsListProps) {
   const items = await getItems(category);
-  const favoriteItems = await getFavoriteItems();
+  const favoriteItems = await getSelectedItems("wishlist");
 
   if (items.length === 0) {
     return (

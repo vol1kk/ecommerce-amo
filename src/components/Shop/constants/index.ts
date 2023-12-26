@@ -1,2 +1,2 @@
-export const FavoriteTag = "favoriteItems";
+export const SelectedItems = "selectedItems";
 export const ItemsListTag = "itemsList";

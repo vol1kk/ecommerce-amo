@@ -79,7 +79,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  favoriteItems SelectedItem[]
+  selectedItems SelectedItem[]
   order         Order[]
 }
 

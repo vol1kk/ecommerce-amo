@@ -1,4 +1,5 @@
 import Button from "@/components/common/Button";
+import { itemStatusAction } from "@/components/Shop";
 
 type FavoriteToCartProps = {
   id: string;
@@ -7,12 +8,15 @@ type FavoriteToCartProps = {
 
 export function FavoriteToCart({ id, isInCart }: FavoriteToCartProps) {
   return (
-    <form action="" className="sm:justify-self-stretch">
+    <form
+      action={itemStatusAction.bind(undefined, { type: "cart", itemId: id })}
+      className="sm:justify-self-stretch"
+    >
       <Button
         isSubmit
         className="w-full bg-purple-700 font-semibold text-white"
       >
-        {isInCart ? "Item already in cart" : "Add to Cart"}
+        {isInCart ? "Remove from Cart" : "Add to Cart"}
       </Button>
     </form>
   );

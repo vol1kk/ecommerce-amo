@@ -1,15 +1,15 @@
 import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import Button from "@/components/common/Button";
-import { getFavoriteItems } from "@/components/Shop";
+import { getSelectedItems } from "@/components/Shop";
 import { HeartIcon } from "@/components/common/Icons";
 import { FavoriteItem } from "@/components/Favorites";
 
 export default async function Page() {
-  const favoriteItems = await getFavoriteItems();
+  const wishlistItem = await getSelectedItems("wishlist");
 
   let content;
-  if (favoriteItems.length === 0) {
+  if (wishlistItem.length === 0) {
     content = (
       <div className="mb-6 grid place-content-center place-items-center gap-6">
         <div className="rounded-full bg-[#F0F9F4] p-8">
@@ -36,7 +36,7 @@ export default async function Page() {
   } else {
     content = (
       <div className="mb-4 grid gap-6">
-        {favoriteItems.map(i => (
+        {wishlistItem.map(i => (
           <FavoriteItem key={i.id} selectedItem={i} />
         ))}
       </div>
