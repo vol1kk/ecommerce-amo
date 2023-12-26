@@ -1,6 +1,6 @@
 import { SelectedItemBasic } from "@/types";
 import Link from "@/components/common/Link";
-import { SHOP_PAGE } from "@/constants/routes";
+import { ITEM_PAGE, SHOP_PAGE } from "@/constants/routes";
 import { Card } from "@/components/common/Card";
 import Button from "@/components/common/Button";
 import { getSelectedItems, getItems } from "@/components/Shop";
@@ -35,7 +35,7 @@ export default async function ItemsList({ category }: ItemsListProps) {
             <Card.Image
               src={item.image}
               alt={item.name}
-              href={`${SHOP_PAGE}/${category || "all"}/uuid`}
+              href={`${ITEM_PAGE}/${item.id}`}
             />
             <Card.Favorite
               id={item.id}

@@ -14,7 +14,7 @@ export function FavoriteToCart({ id, isInCart }: FavoriteToCartProps) {
     >
       <Button
         isSubmit
-        className="w-full bg-purple-700 font-semibold text-white"
+        className="w-full min-w-[180px] bg-purple-700 font-semibold text-white"
       >
         {isInCart ? "Remove from Cart" : "Add to Cart"}
       </Button>
