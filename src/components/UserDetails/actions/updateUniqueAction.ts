@@ -9,7 +9,7 @@ import getFormDataStr from "@/components/UserDetails/utils/getFormDataStr";
 
 type AllowedUniqueFields = "email" | "phone";
 
-export default async function updateUniqueAction(
+export async function updateUniqueAction(
   field: AllowedUniqueFields,
   formData: FormData,
 ) {

@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 
-export default async function updatePasswordAction(formData: FormData) {
+export async function updatePasswordAction(formData: FormData) {
   const currentPassword = getFormDataStr(formData, "current-pass");
   const newPass = getFormDataStr(formData, "new-pass");
   const repeatedNewPass = getFormDataStr(formData, "repeat-new-pass");
