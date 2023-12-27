@@ -56,15 +56,24 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account, user }) {
+    async jwt({ token, account, user, trigger }) {
       if (account?.type === "credentials") {
+        token.provider = account?.provider;
         token = { ...user, ...token };
-        token.provider = account.type;
       }
 
-      if (account?.type === "oauth" && token.email) {
-        token.provider = account.type;
+      if (account?.type === "oauth") {
+        token.provider = account?.provider;
+        token = { ...user, ...token };
         token.accessToken = generateJWT(user.id, token.email!);
+      }
+
+      if (trigger === "update") {
+        const updatedUser = await prisma.user.findUnique({
+          where: { id: token.id },
+        });
+
+        token = { ...token, ...updatedUser };
       }
 
       return token;

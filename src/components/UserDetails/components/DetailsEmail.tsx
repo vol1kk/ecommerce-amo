@@ -1,48 +1,57 @@
 "use client";
 
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 import DetailsView from "@/components/UserDetails/components/DetailsView";
 import DetailsForm from "@/components/UserDetails/components/DetailsForm";
 import DetailsInput from "@/components/UserDetails/components/DetailsInput";
-import { updateNameAction } from "@/components/UserDetails/actions/updateNameAction";
+import hideDetails from "@/components/UserDetails/utils/hideDetails";
+import updateUniqueAction from "@/components/UserDetails/actions/updateUniqueAction";
 
 type DetailsNameViewProps = {
   initialEmail: string;
 };
 
 export function DetailsEmail({ initialEmail }: DetailsNameViewProps) {
+  const { update } = useSession();
   const [isEditing, setIsEditing] = useState(false);
 
   const [email, setEmail] = useState(initialEmail);
-  const [name, domain] = email.split("@");
-  const [beforeDot, afterDot] = domain.split(".");
-
-  const hiddenName = name.slice(0, 3).padEnd(10, "*");
-  const hiddenDomain =
-    beforeDot.slice(0, 1).padEnd(5, "*") +
-    "." +
-    "".padStart(afterDot.length, "*");
+  const hiddenEmail = hideDetails(email, "email");
 
   return (
     <DetailsView>
       {isEditing ? (
         <DetailsForm
           discardHandler={() => setIsEditing(false)}
-          action={updateNameAction.bind(undefined, "", "")} // Todo: Change to actual name
+          action={async formData => {
+            const emailRaw = formData.get("email");
+            const email = typeof emailRaw === "string" ? emailRaw : "";
+
+            try {
+              await updateUniqueAction("email", formData);
+              setEmail(email);
+              await update(Object.fromEntries(formData));
+            } catch (e) {
+              console.log(e);
+            } finally {
+              setIsEditing(false);
+            }
+          }}
         >
           <div className="mb-4">
             <DetailsInput
-              value={email}
+              name="email"
+              defaultValue={email}
               placeholder="Email Address"
-              onChange={e => setEmail(e.currentTarget.value.trim())}
             />
           </div>
         </DetailsForm>
       ) : (
         <DetailsView.Value
           title="Email Address"
-          value={`${hiddenName}@${hiddenDomain}`}
+          value={hiddenEmail}
           onClick={() => setIsEditing(true)}
         />
       )}

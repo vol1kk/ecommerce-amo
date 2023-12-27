@@ -5,11 +5,14 @@ import DetailsView from "@/components/UserDetails/components/DetailsView";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
+
   if (!session?.user) {
     return (
       <div>TODO: Content that states that something is wrong with session</div>
     );
   }
+
+  console.log(session.user);
 
   return (
     <div>
@@ -23,7 +26,7 @@ export default async function Page() {
           lastName={session.user.surname || ""}
         />
         <DetailsView.Email initialEmail={session.user.email || ""} />
-        <DetailsView.Phone number="050-844-66-58" />
+        <DetailsView.Phone number={session.user.phone || ""} />
         <DetailsView.Password />
       </section>
     </div>
