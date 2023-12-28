@@ -9,12 +9,18 @@ type AccountDetailsProps = {
 };
 
 export default function AccountDetails({ user }: AccountDetailsProps) {
+  const isEditable = user.provider === "credentials";
+
   return (
     <>
-      <Details.Name firstName={user.name || ""} lastName={user.surname || ""} />
-      <Details.Email initialEmail={user.email || ""} />
-      <Details.Phone number={user.phone || ""} />
-      <Details.Password />
+      <Details.Name
+        isEditable
+        firstName={user.name || ""}
+        lastName={user.surname || ""}
+      />
+      <Details.Email isEditable={isEditable} initialEmail={user.email || ""} />
+      <Details.Phone isEditable number={user.phone || ""} />
+      {isEditable && <Details.Password isEditable={isEditable} />}
     </>
   );
 }

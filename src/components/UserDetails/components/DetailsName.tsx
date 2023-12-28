@@ -13,9 +13,14 @@ import {
 type DetailsNameViewProps = {
   firstName: string;
   lastName: string;
+  isEditable: boolean;
 };
 
-export function DetailsName({ firstName, lastName }: DetailsNameViewProps) {
+export function DetailsName({
+  firstName,
+  lastName,
+  isEditable,
+}: DetailsNameViewProps) {
   const [fullName, setFullName] = useState({
     name: firstName,
     surname: lastName,
@@ -28,6 +33,7 @@ export function DetailsName({ firstName, lastName }: DetailsNameViewProps) {
       {(isEditing, setIsEditing, update) =>
         isEditing ? (
           <DetailsForm
+            isEditable={isEditable}
             action={async formData => {
               try {
                 await updateNameAction(formData);

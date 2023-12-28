@@ -24,11 +24,13 @@ export default function hideDetails(data: string, type: string) {
     }
 
     case "number": {
-      const numberBeginning = data.slice(0, 3);
-      const numberEnd = data.slice(-2);
+      const parsedData = data.replaceAll("-", "");
+
+      const numberBeginning = parsedData.slice(0, 3);
+      const numberEnd = parsedData.slice(-2);
 
       const hiddenBeginning = numberBeginning.padEnd(
-        data.length - numberEnd.length,
+        parsedData.length - numberEnd.length,
         "*",
       );
 

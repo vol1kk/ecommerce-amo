@@ -12,9 +12,13 @@ import {
 
 type DetailsNameViewProps = {
   initialEmail: string;
+  isEditable: boolean;
 };
 
-export function DetailsEmail({ initialEmail }: DetailsNameViewProps) {
+export function DetailsEmail({
+  initialEmail,
+  isEditable,
+}: DetailsNameViewProps) {
   const [email, setEmail] = useState(initialEmail);
   const hiddenEmail = hideDetails(email, "email");
 
@@ -23,6 +27,7 @@ export function DetailsEmail({ initialEmail }: DetailsNameViewProps) {
       {(isEditing, setIsEditing, update) =>
         isEditing ? (
           <DetailsForm
+            isEditable={isEditable}
             discardHandler={() => setIsEditing(false)}
             action={async formData => {
               const emailRaw = formData.get("email");
@@ -41,6 +46,7 @@ export function DetailsEmail({ initialEmail }: DetailsNameViewProps) {
           >
             <div className="mb-4">
               <DetailsInput
+                readOnly={!isEditable}
                 name="email"
                 defaultValue={email}
                 placeholder="Email Address"

@@ -5,12 +5,17 @@ import {
   updatePasswordAction,
 } from "@/components/UserDetails";
 
-export function DetailsPassword() {
+type DetailsPasswordProps = {
+  isEditable: boolean;
+};
+
+export function DetailsPassword({ isEditable }: DetailsPasswordProps) {
   return (
     <Details>
       {(isEditing, setIsEditing) =>
         isEditing ? (
           <DetailsForm
+            isEditable={isEditable}
             action={async formData => {
               try {
                 await updatePasswordAction(formData);

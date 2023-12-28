@@ -13,8 +13,9 @@ import {
 
 type DetailsNumberProps = {
   number: string;
+  isEditable: boolean;
 };
-export function DetailsNumber({ number }: DetailsNumberProps) {
+export function DetailsPhone({ number, isEditable }: DetailsNumberProps) {
   const [phoneNumber, setPhoneNumber] = useState(number);
 
   const hiddenNumber = hideDetails(phoneNumber, "number");
@@ -24,6 +25,7 @@ export function DetailsNumber({ number }: DetailsNumberProps) {
       {(isEditing, setIsEditing, update) =>
         isEditing ? (
           <DetailsForm
+            isEditable={isEditable}
             discardHandler={() => setIsEditing(false)}
             action={async formData => {
               const phoneField = getFormDataStr(formData, "phone");

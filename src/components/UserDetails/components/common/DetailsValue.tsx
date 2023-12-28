@@ -1,17 +1,12 @@
 import { MouseEvent } from "react";
 
-type DetailsValueView = {
+type DetailsValue = {
   title: string;
   value: string | undefined;
-  canEdit?: boolean;
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
-export default function DetailsValueView({
-  title,
-  value,
-  onClick,
-}: DetailsValueView) {
+export default function DetailsValue({ title, value, onClick }: DetailsValue) {
   return (
     <div className="flex items-center justify-between">
       <div className="grid font-semibold">

@@ -1,8 +1,10 @@
 import Button from "@/components/common/Button";
 import { ReactNode, MouseEvent } from "react";
+import { DetailsFormHandlers } from "@/components/UserDetails/components/common/DetailsFormHandlers";
 
 type DetailsFormProps = {
   children: ReactNode;
+  isEditable: boolean;
   action: (data: FormData) => Promise<void>;
   discardHandler: (e: MouseEvent<HTMLButtonElement>) => void;
 };
@@ -10,15 +12,16 @@ type DetailsFormProps = {
 export default function DetailsForm({
   action,
   children,
+  isEditable,
   discardHandler,
 }: DetailsFormProps) {
   return (
     <form action={action}>
       {children}
-      <div className="grid grid-cols-1 gap-2 font-semibold">
-        <Button isSubmit>Save</Button>
-        <Button onClick={discardHandler}>Discard</Button>
-      </div>
+      <DetailsFormHandlers
+        isEditable={isEditable}
+        discardHandler={discardHandler}
+      />
     </form>
   );
 }

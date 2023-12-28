@@ -5,9 +5,9 @@ import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 
 import { DetailsName } from "@/components/UserDetails/components/DetailsName";
 import { DetailsEmail } from "@/components/UserDetails/components/DetailsEmail";
-import { DetailsNumber } from "@/components/UserDetails/components/DetailsNumber";
+import { DetailsPhone } from "@/components/UserDetails/components/DetailsPhone";
+import DetailsValue from "@/components/UserDetails/components/common/DetailsValue";
 import { DetailsPassword } from "@/components/UserDetails/components/DetailsPassword";
-import DetailsValueView from "@/components/UserDetails/components/common/DetailsValueView";
 
 export default function Details({
   children,
@@ -18,8 +18,8 @@ export default function Details({
     update: ReturnType<typeof useSession>["update"],
   ) => ReactNode;
 }) {
-  const [isEditing, setIsEditing] = useState(false);
   const { update } = useSession();
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="relative mb-6 after:absolute after:inset-x-0 after:-bottom-3 after:h-[2px] after:rounded-md after:bg-accent">
@@ -28,8 +28,8 @@ export default function Details({
   );
 }
 
-Details.Value = DetailsValueView;
+Details.Value = DetailsValue;
 Details.Name = DetailsName;
 Details.Email = DetailsEmail;
-Details.Phone = DetailsNumber;
+Details.Phone = DetailsPhone;
 Details.Password = DetailsPassword;
