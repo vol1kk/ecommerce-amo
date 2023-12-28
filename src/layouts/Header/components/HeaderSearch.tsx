@@ -7,7 +7,7 @@ type HeaderSearchProps = {
   className?: string;
 };
 
-export default function HeaderSearch({ className }: HeaderSearchProps) {
+export function HeaderSearch({ className }: HeaderSearchProps) {
   return (
     <search className={cn("relative w-full", className)}>
       <label className="w-full">

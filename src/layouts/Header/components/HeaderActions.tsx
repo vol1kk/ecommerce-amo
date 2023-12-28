@@ -1,9 +1,8 @@
 import React from "react";
 
-import cn from "@/utils/cn";
-import Button from "@/components/common/Button";
-import { CartIcon, HeartIcon } from "@/components/common/Icons";
-import { HeaderAuthBtn } from "@/layouts/Header/components/HeaderAuthBtn";
+import { HeaderLink } from "@/layouts/Header";
+import { CartIcon, HeartIcon, UserIcon } from "@/components/common/Icons";
+import { ACCOUNT_PAGE, CART_PAGE, WISHLIST_PAGE } from "@/constants/routes";
 
 type HeaderActionsProps = {
   className?: string;
@@ -11,14 +10,10 @@ type HeaderActionsProps = {
 
 export function HeaderActions({ className }: HeaderActionsProps) {
   return (
-    <div className={cn("[&_button]:px-4", className)}>
-      <Button className="group">
-        <HeartIcon className="fill-transparent transition-[fill] group-hover:fill-red-500 [&>path]:transition-[stroke] group-hover:[&>path]:stroke-red-500" />
-      </Button>
-      <HeaderAuthBtn />
-      <Button>
-        <CartIcon />
-      </Button>
+    <div className={className}>
+      <HeaderLink icon={<HeartIcon />} href={WISHLIST_PAGE} />
+      <HeaderLink icon={<UserIcon />} href={ACCOUNT_PAGE} />
+      <HeaderLink icon={<CartIcon />} href={CART_PAGE} />
     </div>
   );
 }
