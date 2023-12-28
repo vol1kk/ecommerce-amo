@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="flex h-full flex-col">
+          <div className="flex min-h-screen flex-col">
             <Header />
             <div className="flex flex-1 flex-col">
               <aside className="p-2 pb-4 pl-4 sm:hidden">

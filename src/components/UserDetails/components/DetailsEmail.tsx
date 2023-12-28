@@ -6,8 +6,9 @@ import {
   Details,
   DetailsForm,
   DetailsInput,
+  getFormDataStr,
   hideDetails,
-  updateUniqueAction,
+  updateUserAction,
 } from "@/components/UserDetails";
 
 type DetailsNameViewProps = {
@@ -30,13 +31,11 @@ export function DetailsEmail({
             isEditable={isEditable}
             discardHandler={() => setIsEditing(false)}
             action={async formData => {
-              const emailRaw = formData.get("email");
-              const email = typeof emailRaw === "string" ? emailRaw : "";
-
               try {
-                await updateUniqueAction("email", formData);
-                setEmail(email);
+                await updateUserAction(formData);
                 await update(Object.fromEntries(formData));
+
+                setEmail(getFormDataStr(formData, "email"));
               } catch (e) {
                 console.log(e);
               } finally {

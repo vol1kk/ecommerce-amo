@@ -1,30 +1,26 @@
 import prisma from "@/lib/prisma";
 import verifyJWT from "@/utils/verifyJWT";
+import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
 
-export async function GET(request: Request) {
-  const authHeader = request.headers.get("Authorization");
+import { decode } from "next-auth/jwt";
+import withAuth from "@/middlewares/withAuth";
 
-  if (!authHeader) {
-    throw new Error("Authorization header must be set.");
-  }
-
-  const token = authHeader.split(" ")[1];
-  const decoded = verifyJWT(token);
-
-  const searchParams = new URL(request.url).searchParams;
+export const GET = withAuth(async (req, res) => {
+  const searchParams = new URL(req.url).searchParams;
   const action = getActionVariant(searchParams.get("type"));
   const fullness = getFullnessVariant(searchParams.get("fullness"));
 
   const selectedItems = await prisma.selectedItem.findMany({
     where: {
-      userId: decoded.id,
+      userId: req.verified.id,
       ...(action && { [action]: true }),
     },
     include: fullness,
   });
 
   return Response.json(selectedItems || []);
-}
+});
 
 function getFullnessVariant(variant: string | null) {
   switch (variant) {

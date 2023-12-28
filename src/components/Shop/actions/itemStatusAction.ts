@@ -60,7 +60,7 @@ export async function itemStatusAction({
           connect: { id: itemId },
         },
         user: {
-          connect: { id: session.user.id },
+          connect: { id: session.user.id }, // Todo: user.sub for oauth, user.id for credentials?
         },
       },
     });

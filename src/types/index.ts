@@ -40,3 +40,10 @@ type Comment = {
   text: string;
   rating: number;
 };
+
+export type ProtectedRequest = {
+  verified: {
+    id: string;
+    email: string;
+  };
+} & Request;

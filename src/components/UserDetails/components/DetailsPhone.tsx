@@ -8,7 +8,7 @@ import {
   hideDetails,
   DetailsInput,
   getFormDataStr,
-  updateUniqueAction,
+  updateUserAction,
 } from "@/components/UserDetails";
 
 type DetailsNumberProps = {
@@ -28,12 +28,11 @@ export function DetailsPhone({ number, isEditable }: DetailsNumberProps) {
             isEditable={isEditable}
             discardHandler={() => setIsEditing(false)}
             action={async formData => {
-              const phoneField = getFormDataStr(formData, "phone");
-
               try {
-                await updateUniqueAction("phone", formData);
-                setPhoneNumber(phoneField);
+                await updateUserAction(formData);
                 await update(Object.fromEntries(formData));
+
+                setPhoneNumber(getFormDataStr(formData, "phone"));
               } catch (e) {
                 console.log(e);
               } finally {

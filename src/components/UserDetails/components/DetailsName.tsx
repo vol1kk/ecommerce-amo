@@ -7,7 +7,7 @@ import {
   hideDetails,
   DetailsForm,
   DetailsInput,
-  updateNameAction,
+  updateUserAction,
 } from "@/components/UserDetails";
 
 type DetailsNameViewProps = {
@@ -36,7 +36,7 @@ export function DetailsName({
             isEditable={isEditable}
             action={async formData => {
               try {
-                await updateNameAction(formData);
+                await updateUserAction(formData);
                 const formObj = Object.fromEntries(formData) as typeof fullName;
 
                 setFullName(formObj);

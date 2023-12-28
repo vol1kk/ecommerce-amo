@@ -1,8 +1,11 @@
+import { useRef, useState } from "react";
+
 import {
   Details,
   DetailsForm,
   DetailsInput,
   updatePasswordAction,
+  updateUserAction,
 } from "@/components/UserDetails";
 
 type DetailsPasswordProps = {
@@ -10,6 +13,9 @@ type DetailsPasswordProps = {
 };
 
 export function DetailsPassword({ isEditable }: DetailsPasswordProps) {
+  const newPassword = useRef<HTMLInputElement>(null);
+  const repeatedNewPassword = useRef<HTMLInputElement>(null);
+
   return (
     <Details>
       {(isEditing, setIsEditing) =>
@@ -18,7 +24,15 @@ export function DetailsPassword({ isEditable }: DetailsPasswordProps) {
             isEditable={isEditable}
             action={async formData => {
               try {
-                await updatePasswordAction(formData);
+                if (
+                  newPassword.current?.value &&
+                  newPassword.current.value ===
+                    repeatedNewPassword.current?.value
+                ) {
+                  await updateUserAction(formData);
+                } else {
+                  console.log("New passwords don't match");
+                }
               } catch (e) {
                 console.log(e);
               } finally {
@@ -30,17 +44,19 @@ export function DetailsPassword({ isEditable }: DetailsPasswordProps) {
             <div className="mb-4 grid gap-2">
               <DetailsInput
                 type="password"
-                name="current-pass"
+                name="currentPass"
                 placeholder="Current Password"
               />
               <DetailsInput
+                ref={newPassword}
                 type="password"
-                name="new-pass"
+                name="newPass"
                 placeholder="New Password"
               />
               <DetailsInput
+                ref={repeatedNewPassword}
                 type="password"
-                name="repeat-new-pass"
+                name="repeatedPass"
                 placeholder="Repeat New Password"
               />
             </div>
