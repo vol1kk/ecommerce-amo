@@ -1,12 +1,24 @@
+export type SelectedItem = {
+  id: string;
+  isInWishlist?: boolean;
+  isInCart?: boolean;
+  color: string;
+  quantity: number;
+  size: string;
+  item: Item;
+  itemId: string;
+};
+
+export type SelectedItemBasic = Omit<SelectedItem, "item">;
+
 export type Item = {
   id: string;
-  category: "men" | "women" | "combo";
-  details: ItemDetails;
   image: string;
+  category: "men" | "women" | "combo";
   name: string;
   brand: string;
   price: number;
-  isFavorite: boolean;
+  details: ItemDetails;
 };
 
 export type ItemDetails = {

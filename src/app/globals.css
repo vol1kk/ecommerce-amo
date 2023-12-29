@@ -4,7 +4,7 @@
 
 
 html, body {
-    @apply h-[100vh];
+    @apply min-h-screen;
 }
 
 

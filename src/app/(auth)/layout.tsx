@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="flex h-full flex-col">
+          <div className="flex min-h-screen flex-col">
             <Header />
             <div className="flex-1">{children}</div>
             <Footer />

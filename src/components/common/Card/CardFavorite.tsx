@@ -1,14 +1,25 @@
-"use client";
-
+import cn from "@/utils/cn";
+import { itemStatusAction } from "@/components/Shop";
 import { HeartIcon } from "@/components/common/Icons";
 
-export function CardFavorite() {
+type CardFavoriteProps = {
+  id: string;
+  isFavorite: boolean;
+};
+
+export async function CardFavorite({ id, isFavorite }: CardFavoriteProps) {
   return (
-    <button
-      onClick={() => console.log("change isFavorite to true")}
-      className="absolute right-4 top-4 rounded-full bg-white p-2"
+    <form
+      action={itemStatusAction.bind(undefined, {
+        type: "wishlist",
+        itemId: id,
+      })}
     >
-      <HeartIcon />
-    </button>
+      <button className="absolute right-4 top-4 rounded-full bg-white p-2">
+        <HeartIcon
+          className={cn(isFavorite && "fill-red-500 [&>path]:stroke-red-500")}
+        />
+      </button>
+    </form>
   );
 }
