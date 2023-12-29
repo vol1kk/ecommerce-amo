@@ -4,7 +4,7 @@ import cn from "@/utils/cn";
 
 type DetailsInputProps = HTMLProps<HTMLInputElement>;
 
-const DetailsInput = forwardRef<HTMLInputElement, DetailsInputProps>(
+export const DetailsInput = forwardRef<HTMLInputElement, DetailsInputProps>(
   function DetailsInput({ className, ...props }, ref) {
     return (
       <label htmlFor={props.name}>
@@ -18,5 +18,3 @@ const DetailsInput = forwardRef<HTMLInputElement, DetailsInputProps>(
     );
   },
 );
-
-export default DetailsInput;

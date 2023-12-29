@@ -1,74 +1,61 @@
-import { useRef, useState } from "react";
+"use client";
 
-import {
-  Details,
-  DetailsForm,
-  DetailsInput,
-  updatePasswordAction,
-  updateUserAction,
-} from "@/components/UserDetails";
+import cn from "@/utils/cn";
+import { Details, useDetailsForm } from "@/components/UserDetails";
 
 type DetailsPasswordProps = {
-  isEditable: boolean;
+  canEdit: boolean;
 };
 
-export function DetailsPassword({ isEditable }: DetailsPasswordProps) {
-  const newPassword = useRef<HTMLInputElement>(null);
-  const repeatedNewPassword = useRef<HTMLInputElement>(null);
+export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
+  const { isEditing, setIsEditing, formAction, error } = useDetailsForm("");
 
   return (
     <Details>
-      {(isEditing, setIsEditing) =>
-        isEditing ? (
-          <DetailsForm
-            isEditable={isEditable}
-            action={async formData => {
-              try {
-                if (
-                  newPassword.current?.value &&
-                  newPassword.current.value ===
-                    repeatedNewPassword.current?.value
-                ) {
-                  await updateUserAction(formData);
-                } else {
-                  console.log("New passwords don't match");
-                }
-              } catch (e) {
-                console.log(e);
-              } finally {
-                setIsEditing(false);
-              }
-            }}
-            discardHandler={() => setIsEditing(false)}
-          >
-            <div className="mb-4 grid gap-2">
-              <DetailsInput
-                type="password"
-                name="currentPass"
-                placeholder="Current Password"
-              />
-              <DetailsInput
-                ref={newPassword}
-                type="password"
-                name="newPass"
-                placeholder="New Password"
-              />
-              <DetailsInput
-                ref={repeatedNewPassword}
-                type="password"
-                name="repeatedPass"
-                placeholder="Repeat New Password"
-              />
-            </div>
-          </DetailsForm>
-        ) : (
-          <Details.Value
-            title="Password"
-            value="********"
-            onClick={() => setIsEditing(true)}
-          />
-        )
-      }
+      <Details.View
+        value="*****"
+        canEdit={canEdit}
+        title="Your Password"
+        onClick={() => setIsEditing(true)}
+      >
+        <Details.Overlay
+          title="Password"
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        >
+          <form className="grid gap-2" action={formAction}>
+            <Details.Input
+              type="password"
+              name="currentPass"
+              placeholder="Current Passwrod"
+              className={cn(error.password?.old && "border-2 border-red-500")}
+            />
+            {error.password?.old && (
+              <span className="text-center font-semibold text-red-500">
+                {error.password?.old}
+              </span>
+            )}
+            <Details.Input
+              type="password"
+              name="newPass"
+              placeholder="New Password"
+              className={cn(error.password?.new && "border-2 border-red-500")}
+            />
+            <Details.Input
+              type="password"
+              name="repeatedPass"
+              placeholder="Repeat New Passwrod"
+              className={cn(error.password?.new && "border-2 border-red-500")}
+            />
+            {error.password?.new && (
+              <span className="text-center font-semibold text-red-500">
+                {error.password?.new}
+              </span>
+            )}
+            <Details.Submit isEditable />
+          </form>
+        </Details.Overlay>
+      </Details.View>
     </Details>
   );
 }

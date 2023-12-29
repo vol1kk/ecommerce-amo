@@ -2,15 +2,18 @@ import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/lib/authOptions";
 import AccountDetails from "@/components/Account/components/AccountDetails";
+import { Details } from "@/components/UserDetails";
+import { redirect } from "next/navigation";
+import { SIGN_IN_PAGE } from "@/constants/routes";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
-    return (
-      <div>TODO: Content that states that something is wrong with session</div>
-    );
+    redirect(SIGN_IN_PAGE);
   }
+
+  const canEdit = session.user.provider === "credentials";
 
   return (
     <div>
@@ -19,7 +22,16 @@ export default async function Page() {
         <h2 className="mb-2 text-xl font-semibold text-boldColor">
           Contact Details
         </h2>
-        <AccountDetails user={session.user} />
+        <Details.Name
+          firstName={session.user.name || ""}
+          lastName={session.user.surname || ""}
+        />
+        <Details.Email
+          canEdit={canEdit}
+          initialEmail={session.user.email || ""}
+        />
+        <Details.Phone number={session.user.phone || ""} />
+        <Details.Password canEdit={canEdit} />
       </section>
     </div>
   );

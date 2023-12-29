@@ -3,10 +3,10 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
-export async function updateUserAction(formData: FormData) {
+export async function updateUserAction(initialState: any, formData: FormData) {
   const session = await getServerSession(authOptions);
 
-  await fetch(`${process.env.NEXTAUTH_URL}/api/v1/user/update`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/user/update`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${session?.user.accessToken}`,
@@ -14,4 +14,6 @@ export async function updateUserAction(formData: FormData) {
     },
     body: JSON.stringify(Object.fromEntries(formData)),
   });
+
+  return await res.json();
 }

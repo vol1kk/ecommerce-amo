@@ -1,6 +1,13 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import {
+  MouseEvent,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 
 import cn from "@/utils/cn";
@@ -13,11 +20,10 @@ type OverlayProps = {
 
 export default function OverlayPortal({
   isOpen,
-  className,
   children,
+  className,
 }: OverlayProps) {
-  const overlayRef = useRef<HTMLDivElement>(null);
-
+  const [overlay, setOverlay] = useState<Element | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => setIsMounted(true), []);
@@ -29,24 +35,23 @@ export default function OverlayPortal({
 
   useEffect(() => {
     if (isMounted) {
-      // @ts-ignore
-      overlayRef.current = document.querySelector("#overlay");
+      setOverlay(document.querySelector("#overlay"));
     }
   }, [isMounted]);
 
-  if (overlayRef.current) {
+  if (overlay && isOpen) {
     return createPortal(
       <div
         role="dialog"
         className={cn(
           !isOpen && "invisible",
           "fixed inset-0 z-30 overflow-y-auto",
-          className,
+          isOpen && className,
         )}
       >
-        {children}
+        <div onClick={e => e.stopPropagation()}>{children}</div>
       </div>,
-      overlayRef.current,
+      overlay,
     );
   }
 

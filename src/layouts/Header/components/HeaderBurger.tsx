@@ -19,13 +19,11 @@ export function HeaderBurger() {
         <span className="top-1/2 -translate-y-1/2" />
         <span className="bottom-0" />
       </div>
-      <OverlayPortal isOpen={isOpen}>
-        <div className="h-full w-full bg-white">
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Navbar className="mb-4 !flex-col" />
-            <HeaderSearch className="mb-4" />
-            <HeaderActions className="grid gap-2" />
-          </div>
+      <OverlayPortal isOpen={isOpen} className="h-full w-full bg-white">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Navbar className="mb-4 !flex-col" />
+          <HeaderSearch className="mb-4" />
+          <HeaderActions className="grid gap-2" />
         </div>
       </OverlayPortal>
     </>

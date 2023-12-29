@@ -1,4 +1,5 @@
 export { ManIcon } from "@/components/common/Icons/ManIcon";
+export { EditIcon } from "@/components/common/Icons/EditIcon";
 export { ShowIcon } from "@/components/common/Icons/ShowIcon";
 export { HideIcon } from "@/components/common/Icons/HideIcon";
 export { StarIcon } from "@/components/common/Icons/StarIcon";
