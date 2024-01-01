@@ -4,17 +4,14 @@ import { revalidateTag } from "next/cache";
 import { getServerSession } from "next-auth";
 
 import prisma from "@/lib/prisma";
+import { SelectedItem } from "@/types";
 import { authOptions } from "@/lib/authOptions";
 import { getSelectedItems } from "@/components/server/Shop";
 import { SelectedItems } from "@/components/server/Shop/constants";
 
 type ItemStatusActionProps = {
   type: "cart" | "wishlist";
-  itemId: string;
-  color?: string;
-  size?: string;
-  quantity?: number;
-};
+} & Omit<SelectedItem, "id">;
 
 export async function itemStatusAction({
   type,
@@ -35,7 +32,7 @@ export async function itemStatusAction({
 
     const { id, isInCart, isInWishlist } = existingFavoriteItem;
 
-    // If after toggling both values are false, then delete this items
+    // If after toggling both values are false, then delete this item
     if (!isInCart && !isInWishlist) {
       await prisma.selectedItem.delete({
         where: { id },
@@ -49,9 +46,7 @@ export async function itemStatusAction({
         },
       });
     }
-  }
-
-  if (!existingFavoriteItem) {
+  } else {
     await prisma.selectedItem.create({
       data: {
         ...props,
@@ -60,7 +55,7 @@ export async function itemStatusAction({
           connect: { id: itemId },
         },
         user: {
-          connect: { id: session.user.id }, // Todo: user.sub for oauth, user.id for credentials?
+          connect: { id: session.user.id }, // Todo?: user.sub for oauth, user.id for credentials
         },
       },
     });

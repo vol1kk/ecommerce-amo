@@ -1,4 +1,4 @@
-import { SelectedItemBasic } from "@/types";
+import { SelectedItem } from "@/types";
 import Link from "@/components/common/Link";
 import { Card } from "@/components/common/Card";
 import Button from "@/components/common/Button";
@@ -14,7 +14,7 @@ export default async function ItemsList({ category }: ItemsListProps) {
   const favoriteItems = (await getSelectedItems(
     "wishlist",
     undefined,
-  )) as SelectedItemBasic[];
+  )) as SelectedItem[];
 
   if (items.length === 0) {
     return (
