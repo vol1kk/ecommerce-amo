@@ -4,14 +4,14 @@ import React from "react";
 import { usePathname } from "next/navigation";
 
 import cn from "@/utils/cn";
-import { getNavbarIcon, NavbarCategories } from "@/layouts/Sidebar";
 import Link from "@/components/common/Link";
+import { SidebarCategories } from "@/layouts/Sidebar";
 
 type NavbarProps = {
   className?: string;
 };
 
-export default function Navbar({ className }: NavbarProps) {
+export default function Sidebar({ className }: NavbarProps) {
   const pathname = usePathname();
 
   const isPathShop = pathname === "/shop";
@@ -25,7 +25,7 @@ export default function Navbar({ className }: NavbarProps) {
           className,
         )}
       >
-        {NavbarCategories.map(category => {
+        {SidebarCategories.map(category => {
           const isSelected = category.name.toLowerCase() === pathCategory;
           return (
             <li
@@ -38,7 +38,8 @@ export default function Navbar({ className }: NavbarProps) {
               )}
             >
               <Link href={category.href} className="flex items-center gap-2">
-                {getNavbarIcon(category.icon)} {category.name}
+                {category.icon}
+                {category.name}
               </Link>
             </li>
           );
