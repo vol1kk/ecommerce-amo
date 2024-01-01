@@ -2,12 +2,12 @@
 
 import { FormEvent } from "react";
 
-import CredentialsForm from "@/components/Auth/components/Credentials/CredentialsForm";
+import CredentialsForm from "@/components/client/Auth/components/Credentials/CredentialsForm";
 import {
   useLogin,
   RegisterResponse,
   getFormCredentials,
-} from "@/components/Auth";
+} from "@/components/client/Auth";
 
 export function CredentialsRegister() {
   const { handleLogin, setError, error } = useLogin();

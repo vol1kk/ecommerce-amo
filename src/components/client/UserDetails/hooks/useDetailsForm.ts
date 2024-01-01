@@ -4,7 +4,7 @@ import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
-import { updateUserAction } from "@/components/UserDetails";
+import { updateUserAction } from "@/components/client/UserDetails";
 import {
   UpdateResponse,
   UpdateResponseError,

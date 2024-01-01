@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "@/utils/cn";
-import { Details, useDetailsForm } from "@/components/UserDetails";
+import { Details, useDetailsForm } from "@/components/client/UserDetails";
 
 type DetailsPasswordProps = {
   canEdit: boolean;

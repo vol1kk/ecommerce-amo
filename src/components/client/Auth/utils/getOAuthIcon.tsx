@@ -1,6 +1,6 @@
 import assertNever from "@/utils/assertNever";
 import { GitHubIcon } from "@/components/common/Icons";
-import { TAvailableProviders } from "@/components/Auth";
+import { TAvailableProviders } from "@/components/client/Auth";
 
 export function getOAuthIcon(name: Lowercase<TAvailableProviders>) {
   switch (name) {

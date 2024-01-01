@@ -2,10 +2,10 @@
 
 import { FormEvent, useState } from "react";
 
-import Button from "@/components/common/Button";
-import { CredentialsError } from "@/components/Auth/types";
-import { HideIcon, ShowIcon } from "@/components/common/Icons";
 import cn from "@/utils/cn";
+import Button from "@/components/common/Button";
+import { CredentialsError } from "@/components/client/Auth/types";
+import { HideIcon, ShowIcon } from "@/components/common/Icons";
 
 const labelClasses = "inline-block mb-2 font-bold uppercase tracking-wide";
 

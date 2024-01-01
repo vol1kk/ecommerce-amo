@@ -1,9 +1,8 @@
 import { getServerSession } from "next-auth";
 
+import { SelectedItem } from "@/types";
 import { authOptions } from "@/lib/authOptions";
 import { SelectedItems } from "@/components/Shop/constants";
-import { SelectedItem } from "@/types";
-import { headers } from "next/headers";
 
 type SelectedItemTypes = "cart" | "wishlist" | undefined;
 type SelectedItemFullness = "full" | "half" | "bare" | undefined;
@@ -31,7 +30,10 @@ export async function getSelectedItems(
       process.env.NEXTAUTH_URL
     }/api/v1/items/selected?${searchParams.toString()}`,
     {
-      headers: headers(),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.user.accessToken}`,
+      },
       next: {
         tags: [SelectedItems],
       },

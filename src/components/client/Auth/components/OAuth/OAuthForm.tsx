@@ -3,7 +3,7 @@
 import { signIn } from "next-auth/react";
 
 import Button from "@/components/common/Button";
-import { getOAuthIcon, TAvailableProviders } from "@/components/Auth";
+import { getOAuthIcon, TAvailableProviders } from "@/components/client/Auth";
 
 type OAUthLoginProps = {
   name: TAvailableProviders;

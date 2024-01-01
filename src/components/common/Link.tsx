@@ -1,7 +1,7 @@
 import NextLink, { LinkProps } from "next/link";
 import { AnchorHTMLAttributes, ReactNode } from "react";
 
-type CustomLinkProps = {
+export type CustomLinkProps = {
   children: ReactNode;
 } & LinkProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;

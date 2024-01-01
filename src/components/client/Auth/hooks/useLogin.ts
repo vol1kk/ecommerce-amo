@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 import { HOME_PAGE } from "@/constants/routes";
-import { getFormCredentials } from "@/components/Auth";
+import { getFormCredentials } from "@/components/client/Auth";
 
 const initialError = {
   text: "",

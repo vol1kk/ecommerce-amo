@@ -1,6 +1,10 @@
 "use client";
 
-import { Details, hideDetails, useDetailsForm } from "@/components/UserDetails";
+import {
+  Details,
+  hideDetails,
+  useDetailsForm,
+} from "@/components/client/UserDetails";
 
 type DetailsEmailProps = {
   initialEmail: string;

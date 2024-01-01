@@ -1,4 +1,4 @@
-import { AvailableOAuthProviders } from "@/components/Auth";
+import { AvailableOAuthProviders } from "@/components/client/Auth";
 
 export type AvailableProviders = (typeof AvailableOAuthProviders)[number];
 
