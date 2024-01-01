@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 import prisma from "@/lib/prisma";
-import { Credentials } from "@/components/Auth";
+import { Credentials } from "@/components/client/Auth";
 
 export async function POST(request: Request) {
   const data = (await request.json()) as Credentials;

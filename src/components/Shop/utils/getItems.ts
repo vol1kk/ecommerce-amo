@@ -2,8 +2,14 @@ import { Item } from "@/types";
 import { ItemsListTag } from "@/components/Shop/constants";
 
 export async function getItems(category?: string) {
+  const searchParams = new URLSearchParams();
+
+  if (category) {
+    searchParams.append("category", category);
+  }
+
   const resp = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/v1/shop?category=${category}`,
+    `${process.env.NEXTAUTH_URL}/api/v1/shop?${searchParams.toString()}`,
     { next: { tags: [ItemsListTag] } },
   );
 
