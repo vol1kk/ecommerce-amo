@@ -1,22 +1,30 @@
 import Button from "@/components/common/Button";
 import { itemStatusAction } from "@/components/server/Shop";
+import { SelectedItem } from "@/types";
 
 type FavoriteToCartProps = {
-  id: string;
-  isInCart?: boolean;
+  selectedItem: SelectedItem;
 };
 
-export function FavoriteToCart({ id, isInCart }: FavoriteToCartProps) {
+export function FavoriteToCart({ selectedItem }: FavoriteToCartProps) {
+  const { isInCart, itemId, size, color } = selectedItem;
+
+  const canBuy = !!(size && color);
   return (
     <form
-      action={itemStatusAction.bind(undefined, { type: "cart", itemId: id })}
+      action={itemStatusAction.bind(undefined, { type: "cart", itemId })}
       className="sm:justify-self-stretch"
     >
       <Button
         isSubmit
-        className="w-full min-w-[180px] bg-purple-700 font-semibold text-white"
+        disabled={!canBuy}
+        className="w-full min-w-[180px] bg-purple-700 font-semibold text-white disabled:cursor-no-drop disabled:bg-purple-800"
       >
-        {isInCart ? "Remove from Cart" : "Add to Cart"}
+        {!canBuy
+          ? "Can't add to cart"
+          : isInCart
+            ? "Remove from Cart"
+            : "Add to Cart"}
       </Button>
     </form>
   );
