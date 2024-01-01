@@ -27,7 +27,9 @@ export async function getSelectedItems(
   }
 
   const resp = await fetch(
-    `http://localhost:3000/api/v1/items/selected?${searchParams.toString()}`,
+    `${
+      process.env.NEXTAUTH_URL
+    }/api/v1/items/selected?${searchParams.toString()}`,
     {
       headers: {
         Authorization: `Bearer ${session.user.accessToken}`,

@@ -3,7 +3,7 @@ import { HelpCategory, InfoCategory } from "@/layouts/Footer";
 
 export default function Footer() {
   return (
-    <footer className=" bg-boldColor px-4 py-8 text-accent">
+    <footer className="bg-boldColor px-4 py-8 text-accent">
       <div className="mx-auto flex max-w-screen-xl justify-between gap-4 sm:w-fit sm:flex-col [&>div>h2]:mb-6 [&>div>h2]:text-2xl [&>div>h2]:font-bold [&>div>ul]:text-lg [&>div>ul]:leading-loose">
         {[HelpCategory, InfoCategory].map(category => (
           <div key={category.name} className="flex flex-col items-center">

@@ -1,6 +1,5 @@
-import jwt from "jsonwebtoken";
-
 import prisma from "@/lib/prisma";
+import verifyJWT from "@/utils/verifyJWT";
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get("Authorization");
@@ -10,29 +9,21 @@ export async function GET(request: Request) {
   }
 
   const token = authHeader.split(" ")[1];
+  const decoded = verifyJWT(token);
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
-      id: string;
-      email: string;
-    };
+  const searchParams = new URL(request.url).searchParams;
+  const action = getActionVariant(searchParams.get("type"));
+  const fullness = getFullnessVariant(searchParams.get("fullness"));
 
-    const searchParams = new URL(request.url).searchParams;
-    const action = getActionVariant(searchParams.get("type"));
-    const fullness = getFullnessVariant(searchParams.get("fullness"));
+  const selectedItems = await prisma.selectedItem.findMany({
+    where: {
+      userId: decoded.id,
+      ...(action && { [action]: true }),
+    },
+    include: fullness,
+  });
 
-    const selectedItems = await prisma.selectedItem.findMany({
-      where: {
-        userId: decoded.id,
-        ...(action && { [action]: true }),
-      },
-      include: fullness,
-    });
-
-    return Response.json(selectedItems || []);
-  } catch (e) {
-    throw new Error("Something went wrong");
-  }
+  return Response.json(selectedItems || []);
 }
 
 function getFullnessVariant(variant: string | null) {
