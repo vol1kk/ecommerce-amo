@@ -1,7 +1,3 @@
-import { AvailableOAuthProviders } from "@/components/client/Auth";
-
-export type AvailableProviders = (typeof AvailableOAuthProviders)[number];
-
 export type CredentialsError = {
   email: boolean;
   password: boolean;

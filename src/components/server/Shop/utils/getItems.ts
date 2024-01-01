@@ -1,5 +1,5 @@
 import { Item } from "@/types";
-import { ItemsListTag } from "@/components/Shop/constants";
+import { ItemsListTag } from "@/components/server/Shop/constants";
 
 export async function getItems(category?: string) {
   const searchParams = new URLSearchParams();

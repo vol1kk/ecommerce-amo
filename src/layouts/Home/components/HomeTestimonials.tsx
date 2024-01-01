@@ -4,14 +4,14 @@ import { useState } from "react";
 
 import cn from "@/utils/cn";
 import Section from "@/components/common/Section";
-import groupByThree from "@/components/Homepage/utils/groupByThree";
 import { Testimonial, TTestimonial } from "@/components/common/Testimonial";
+import groupByThree from "@/layouts/Home/utils/groupByThree";
 
 type SectionTestimonialsProps = {
   testimonials: TTestimonial[];
 };
 
-export default function SectionTestimonials({
+export default function HomeTestimonials({
   testimonials,
 }: SectionTestimonialsProps) {
   const [group, setGroup] = useState(0);

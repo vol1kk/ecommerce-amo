@@ -1,9 +1,9 @@
 import { SelectedItemBasic } from "@/types";
 import Link from "@/components/common/Link";
-import { ITEM_PAGE, SHOP_PAGE } from "@/constants/routes";
 import { Card } from "@/components/common/Card";
 import Button from "@/components/common/Button";
-import { getSelectedItems, getItems } from "@/components/Shop";
+import { ITEM_PAGE, SHOP_PAGE } from "@/constants/routes";
+import { getSelectedItems, getItems } from "@/components/server/Shop";
 
 type ItemsListProps = {
   category: string | undefined;

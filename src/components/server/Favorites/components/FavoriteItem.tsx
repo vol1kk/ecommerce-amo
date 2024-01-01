@@ -1,11 +1,11 @@
 import { SelectedItem } from "@/types";
+import Link from "@/components/common/Link";
+import { ITEM_PAGE } from "@/constants/routes";
 import {
   FavoriteImage,
   FavoriteRemove,
   FavoriteToCart,
-} from "@/components/Favorites";
-import Link from "@/components/common/Link";
-import { ITEM_PAGE } from "@/constants/routes";
+} from "@/components/server/Favorites";
 
 type WishlistItemProps = {
   selectedItem: SelectedItem;

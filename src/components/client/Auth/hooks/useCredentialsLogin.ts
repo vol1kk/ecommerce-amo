@@ -13,7 +13,7 @@ const initialError = {
   password: false,
 };
 
-export function useLogin() {
+export function useCredentialsLogin() {
   const router = useRouter();
   const [error, setError] = useState(initialError);
 

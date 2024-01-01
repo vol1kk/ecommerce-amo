@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { AuthImage } from "@/components/client/Auth/components/AuthImage";
 import { AuthOptions } from "@/components/client/Auth/components/AuthOptions";
+import { AuthSignOut } from "@/components/client/Auth/components/AuthSignOut";
 import { OAuthLogin } from "@/components/client/Auth/components/OAuth/OAuthLogin";
 import { CredentialsLogin } from "@/components/client/Auth/components/Credentials/CredentialsLogin";
 import { CredentialsRegister } from "@/components/client/Auth/components/Credentials/CredentialsRegister";
@@ -18,7 +19,8 @@ export default function Auth({ children }: AuthProps) {
 }
 
 Auth.Image = AuthImage;
-Auth.OAuthLogin = OAuthLogin;
 Auth.Options = AuthOptions;
+Auth.SignOut = AuthSignOut;
+Auth.OAuthLogin = OAuthLogin;
 Auth.CredentialsLogin = CredentialsLogin;
 Auth.CredentialsRegister = CredentialsRegister;

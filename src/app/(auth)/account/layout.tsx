@@ -1,15 +1,15 @@
 import React, { ReactNode } from "react";
 
-import { LogoutIcon } from "@/components/common/Icons";
+import { Auth } from "@/components/client/Auth";
 import ActiveLink from "@/components/common/ActiveLink";
-import SidebarLogout from "@/components/Account/components/SidebarLogout";
-import { AccountCategories } from "@/components/Account/constants/AccountCategories";
+import { ACCOUNT_PAGE, ORDERS_PAGE, WISHLIST_PAGE } from "@/constants/routes";
+import { HeartIcon, OrdersIcon, UserIcon } from "@/components/common/Icons";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <main className="grid h-full grid-cols-[1fr,_4fr] gap-4 px-12 py-3 lg:grid-cols-1 [&>section]:py-1">
       <aside>
-        <nav className="">
+        <nav>
           <ul className="flex flex-col gap-4 text-lg font-semibold text-lightColor lg:flex-row lg:flex-wrap lg:justify-center [&>li]:flex [&>li]:w-[250px] [&>li]:items-center [&>li]:gap-4">
             {AccountCategories.map(category => (
               <li key={category.href}>
@@ -24,8 +24,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </li>
             ))}
             <li className="text-color justify-center text-base text-red-500 lg:justify-start lg:px-3 [&_svg>path]:fill-red-500">
-              <LogoutIcon width={16} />
-              <SidebarLogout />
+              <Auth.SignOut className="flex items-center gap-4" />
             </li>
           </ul>
         </nav>
@@ -34,3 +33,21 @@ export default function Layout({ children }: { children: ReactNode }) {
     </main>
   );
 }
+
+const AccountCategories = [
+  {
+    name: "My Info",
+    href: ACCOUNT_PAGE,
+    icon: <UserIcon />,
+  },
+  {
+    name: "Orders",
+    href: ORDERS_PAGE,
+    icon: <OrdersIcon />,
+  },
+  {
+    name: "Wishlist",
+    href: WISHLIST_PAGE,
+    icon: <HeartIcon />,
+  },
+] as const;

@@ -1,10 +1,10 @@
 "use client";
 
-import { useLogin } from "@/components/client/Auth";
+import { useCredentialsLogin } from "@/components/client/Auth";
 import CredentialsForm from "@/components/client/Auth/components/Credentials/CredentialsForm";
 
 export function CredentialsLogin() {
-  const { error, handleLogin } = useLogin();
+  const { error, handleLogin } = useCredentialsLogin();
 
   return (
     <CredentialsForm type="login" handleSubmit={handleLogin} error={error} />

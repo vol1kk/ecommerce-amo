@@ -1,5 +1,5 @@
 import Button from "@/components/common/Button";
-import { itemStatusAction } from "@/components/Shop";
+import { itemStatusAction } from "@/components/server/Shop";
 
 type FavoriteToCartProps = {
   id: string;

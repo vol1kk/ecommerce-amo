@@ -1,14 +1,22 @@
 import cn from "@/utils/cn";
+import { DiscountedItem } from "@/layouts/Home";
 import Section from "@/components/common/Section";
 import { ArrowIcon } from "@/components/common/Icons";
 import { AbsoluteCard } from "@/components/common/AbsoluteCard";
-import { DiscountedBottom, DiscountedUpper } from "@/components/Homepage";
 
-export default function SectionDiscount() {
+type HomeDiscountsProps = {
+  triples: DiscountedItem[];
+  doubles: DiscountedItem[];
+};
+
+export default function HomeDiscounts({
+  doubles,
+  triples,
+}: HomeDiscountsProps) {
   return (
     <Section name="Big Saving Zone">
       <div className="grid w-full grid-cols-3 gap-6 lg:grid-cols-1">
-        {DiscountedUpper.map(discounted => (
+        {triples.map(discounted => (
           <AbsoluteCard key={discounted.image.src} className="max-h-[400px]">
             <AbsoluteCard.Image
               src={discounted.image.src}
@@ -39,7 +47,7 @@ export default function SectionDiscount() {
         ))}
       </div>
       <div className="grid w-full grid-cols-2 gap-6 lg:grid-cols-1">
-        {DiscountedBottom.map(discounted => (
+        {doubles.map(discounted => (
           <AbsoluteCard key={discounted.image.src} className="max-h-[400px]">
             <AbsoluteCard.Image
               src={discounted.image.src}

@@ -1,23 +1,22 @@
+import Slider from "@/components/common/Slider";
 import {
-  FeaturedCategories,
+  Home,
   HomeSlides,
   NewArrivals,
-  Slider,
-  SectionArrivals,
-  SectionDiscount,
-  SectionFeatured,
-  SectionTestimonials,
   Testimonials,
-} from "@/components/Homepage";
+  DiscountedUpper,
+  DiscountedBottom,
+  FeaturedCategories,
+} from "@/layouts/Home";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="[&>section]:mb-16">
+    <Home>
       <Slider slides={HomeSlides} />
-      <SectionFeatured featured={FeaturedCategories} />
-      <SectionArrivals arrivals={NewArrivals} />
-      <SectionDiscount />
-      <SectionTestimonials testimonials={Testimonials} />
-    </main>
+      <Home.Featured featured={FeaturedCategories} />
+      <Home.Arrivals arrivals={NewArrivals} />
+      <Home.Discounts triples={DiscountedUpper} doubles={DiscountedBottom} />
+      <Home.Testimonials testimonials={Testimonials} />
+    </Home>
   );
 }

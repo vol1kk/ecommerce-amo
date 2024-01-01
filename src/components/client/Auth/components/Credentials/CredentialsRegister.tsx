@@ -4,13 +4,13 @@ import { FormEvent } from "react";
 
 import CredentialsForm from "@/components/client/Auth/components/Credentials/CredentialsForm";
 import {
-  useLogin,
+  useCredentialsLogin,
   RegisterResponse,
   getFormCredentials,
 } from "@/components/client/Auth";
 
 export function CredentialsRegister() {
-  const { handleLogin, setError, error } = useLogin();
+  const { handleLogin, setError, error } = useCredentialsLogin();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

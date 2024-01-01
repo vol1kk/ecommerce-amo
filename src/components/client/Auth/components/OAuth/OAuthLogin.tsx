@@ -7,7 +7,7 @@ export function OAuthLogin() {
       {AvailableOAuthProviders.length > 0 && (
         <div className="grid gap-3">
           {AvailableOAuthProviders.map(provider => (
-            <OAuthForm key={provider} name={provider} />
+            <OAuthForm key={provider.name} provider={provider} />
           ))}
         </div>
       )}

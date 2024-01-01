@@ -5,8 +5,8 @@ import { getServerSession } from "next-auth";
 
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/lib/authOptions";
-import { getSelectedItems } from "@/components/Shop";
-import { SelectedItems } from "@/components/Shop/constants";
+import { getSelectedItems } from "@/components/server/Shop";
+import { SelectedItems } from "@/components/server/Shop/constants";
 
 type ItemStatusActionProps = {
   type: "cart" | "wishlist";

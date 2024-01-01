@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 
 import { SelectedItem } from "@/types";
 import { authOptions } from "@/lib/authOptions";
-import { SelectedItems } from "@/components/Shop/constants";
+import { SelectedItems } from "@/components/server/Shop/constants";
 
 type SelectedItemTypes = "cart" | "wishlist" | undefined;
 type SelectedItemFullness = "full" | "half" | "bare" | undefined;

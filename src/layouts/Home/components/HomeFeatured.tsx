@@ -1,14 +1,14 @@
 import cn from "@/utils/cn";
 import Link from "@/components/common/Link";
 import Section from "@/components/common/Section";
-import { FeaturedCategory } from "@/components/Homepage";
+import { FeaturedCategory } from "@/layouts/Home";
 import { AbsoluteCard } from "@/components/common/AbsoluteCard";
 
 type SectionFeaturedProps = {
   featured: FeaturedCategory[];
 };
 
-export default function SectionFeatured({ featured }: SectionFeaturedProps) {
+export default function HomeFeatured({ featured }: SectionFeaturedProps) {
   return (
     <Section className="flex flex-wrap justify-between gap-6 py-0 xl-max:justify-center">
       {featured.map((featured, i) => (

@@ -1,13 +1,13 @@
+import Link from "@/components/common/Link";
+import { NewArrival } from "@/layouts/Home";
 import { Card } from "@/components/common/Card";
 import Section from "@/components/common/Section";
-import { NewArrival } from "@/components/Homepage";
-import Link from "@/components/common/Link";
 
 type SectionArrivalsProps = {
   arrivals: NewArrival[];
 };
 
-export default function SectionArrivals({ arrivals }: SectionArrivalsProps) {
+export default function HomeArrivals({ arrivals }: SectionArrivalsProps) {
   return (
     <Section name="New Arrivals">
       <div className="flex flex-wrap justify-center gap-8">

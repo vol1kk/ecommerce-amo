@@ -1,4 +1,4 @@
-import { itemStatusAction } from "@/components/Shop";
+import { itemStatusAction } from "@/components/server/Shop";
 import { CrossIcon } from "@/components/common/Icons";
 
 type FavoriteRemoveProps = {
