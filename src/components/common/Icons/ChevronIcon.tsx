@@ -1,6 +1,6 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
-export function ChevronIcon(props: SVGProps) {
+export function ChevronIcon(props?: SVGProps) {
   return (
     <svg
       height="30"

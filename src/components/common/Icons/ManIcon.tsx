@@ -1,6 +1,6 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
-export function ManIcon(props: SVGProps) {
+export function ManIcon(props?: SVGProps) {
   return (
     <svg
       fill="#807D7E"

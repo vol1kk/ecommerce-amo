@@ -1,5 +1,5 @@
 import cn from "@/utils/cn";
-import { ButtonProps } from "@/types/ButtonProps";
+import { ButtonProps } from "@/types";
 
 export default function Button({
   children,

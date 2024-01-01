@@ -1,9 +1,4 @@
 import prisma from "@/lib/prisma";
-import verifyJWT from "@/utils/verifyJWT";
-import { getToken } from "next-auth/jwt";
-import { NextRequest } from "next/server";
-
-import { decode } from "next-auth/jwt";
 import withAuth from "@/middlewares/withAuth";
 
 export const GET = withAuth(async (req, res) => {

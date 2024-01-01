@@ -1,4 +1,4 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
 type StarIconProps = {
   fillStyle?: "empty" | "half" | "full";

@@ -1,6 +1,6 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
-export function ArrowIcon(props: SVGProps) {
+export function ArrowIcon(props?: SVGProps) {
   return (
     <svg
       width="23"

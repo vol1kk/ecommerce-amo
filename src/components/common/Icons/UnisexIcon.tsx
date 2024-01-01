@@ -1,6 +1,6 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
-export function UnisexIcon(props: SVGProps) {
+export function UnisexIcon(props?: SVGProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

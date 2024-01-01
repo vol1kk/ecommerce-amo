@@ -1,6 +1,6 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
-export function LogoutIcon(props: SVGProps) {
+export function LogoutIcon(props?: SVGProps) {
   return (
     <svg
       height="20px"
