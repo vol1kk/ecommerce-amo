@@ -1,4 +1,5 @@
 import cn from "@/utils/cn";
+import TypographyEqual from "@/components/common/TypographyEqual";
 
 type FavoriteDetailProps = {
   title: string;
@@ -7,11 +8,11 @@ type FavoriteDetailProps = {
 
 export default function FavoriteDetail({ title, value }: FavoriteDetailProps) {
   return (
-    <div className="grid grid-cols-2 gap-2">
-      <span className="font-semibold">{title}:</span>
-      <span className={cn(!value && "font-semibold text-red-500")}>
-        {value || "None"}
-      </span>
-    </div>
+    <TypographyEqual
+      title={title}
+      value={value || "None"}
+      classNameTitle="font-semibold"
+      classNameValue={cn(!value && "font-semibold text-red-500")}
+    />
   );
 }

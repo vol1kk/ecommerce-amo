@@ -1,4 +1,4 @@
-import { FeaturedCategory } from "@/components/Homepage";
+import { FeaturedCategory } from "@/layouts/Home";
 
 export const FeaturedCategories: FeaturedCategory[] = [
   {

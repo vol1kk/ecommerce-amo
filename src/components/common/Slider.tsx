@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import cn from "@/utils/cn";
-import { Slide } from "@/components/Homepage";
+import { Slide } from "@/layouts/Home";
 import Button from "@/components/common/Button";
 import { ChevronIcon } from "@/components/common/Icons/ChevronIcon";
 

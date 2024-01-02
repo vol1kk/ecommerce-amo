@@ -7,7 +7,7 @@ import { HeartIcon, OrdersIcon, UserIcon } from "@/components/common/Icons";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <main className="grid h-full grid-cols-[1fr,_4fr] gap-4 px-12 py-3 lg:grid-cols-1 [&>section]:py-1">
+    <main className="grid flex-1 grid-cols-[1fr,_4fr] gap-4 px-12 py-3 lg:grid-cols-1 [&>section]:py-1">
       <aside>
         <nav>
           <ul className="flex flex-col gap-4 text-lg font-semibold text-lightColor lg:flex-row lg:flex-wrap lg:justify-center [&>li]:flex [&>li]:w-[250px] [&>li]:items-center [&>li]:gap-4">

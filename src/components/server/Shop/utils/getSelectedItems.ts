@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 
 import { SelectedItem } from "@/types";
 import { authOptions } from "@/lib/authOptions";
-import { SelectedItems } from "@/components/server/Shop/constants";
+import { SelectedItemsTag } from "@/components/server/Shop";
 
 type SelectedItemTypes = "cart" | "wishlist" | undefined;
 type SelectedItemFullness = "full" | "half" | "bare" | undefined;
@@ -35,7 +35,7 @@ export async function getSelectedItems(
         Authorization: `Bearer ${session.user.accessToken}`,
       },
       next: {
-        tags: [SelectedItems],
+        tags: [SelectedItemsTag],
       },
     },
   );

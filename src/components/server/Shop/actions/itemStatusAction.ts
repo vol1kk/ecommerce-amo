@@ -6,8 +6,7 @@ import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 import { SelectedItem } from "@/types";
 import { authOptions } from "@/lib/authOptions";
-import { getSelectedItems } from "@/components/server/Shop";
-import { SelectedItems } from "@/components/server/Shop/constants";
+import { getSelectedItems, SelectedItemsTag } from "@/components/server/Shop";
 
 type ItemStatusActionProps = {
   type: "cart" | "wishlist";
@@ -61,5 +60,5 @@ export async function itemStatusAction({
     });
   }
 
-  revalidateTag(SelectedItems);
+  revalidateTag(SelectedItemsTag);
 }

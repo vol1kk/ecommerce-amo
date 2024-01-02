@@ -4,13 +4,13 @@ import verifyJWT from "@/utils/verifyJWT";
 import { ProtectedRequest } from "@/types";
 import { authOptions } from "@/lib/authOptions";
 
-type HandlerProps = (
+type HandlerProps<T> = (
   req: ProtectedRequest,
-  res: Response,
+  res: T,
 ) => Response | Promise<Response>;
 
-export default function withAuth(handler: HandlerProps) {
-  return async function (req: Request, res: Response) {
+export default function withAuth<T>(handler: HandlerProps<T>) {
+  return async function (req: Request, res: T) {
     try {
       const authHeader = req.headers.get("Authorization");
       const headerToken = authHeader?.split(" ")[1];
