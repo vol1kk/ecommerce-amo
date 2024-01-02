@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { ACCOUNT_PAGE } from "@/constants/routes";
 import Sidebar from "@/components/Account/components/Sidebar";
 

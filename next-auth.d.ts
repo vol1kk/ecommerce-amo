@@ -9,7 +9,6 @@ declare module "next-auth" {
     id: string;
     surname: string | null;
     phone: string | null;
-    provider: string;
     accessToken: string;
   }
 

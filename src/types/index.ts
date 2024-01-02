@@ -1,3 +1,5 @@
+import React, { ComponentPropsWithoutRef } from "react";
+
 export type SelectedItem = {
   id: string;
   isInWishlist?: boolean;
@@ -40,3 +42,18 @@ type Comment = {
   text: string;
   rating: number;
 };
+
+export type ProtectedRequest = {
+  verified: {
+    id: string;
+    email: string;
+  };
+} & Request;
+
+type CustomButtonProps = {
+  isSubmit?: boolean;
+};
+
+export type SVGProps = React.SVGProps<SVGSVGElement>;
+export type ButtonProps = ComponentPropsWithoutRef<"button"> &
+  CustomButtonProps;

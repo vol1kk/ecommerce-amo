@@ -1,66 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { Details, hideDetails, useDetailsForm } from "@/components/UserDetails";
 
-import {
-  Details,
-  DetailsForm,
-  DetailsInput,
-  hideDetails,
-  updateUniqueAction,
-} from "@/components/UserDetails";
-
-type DetailsNameViewProps = {
+type DetailsEmailProps = {
   initialEmail: string;
-  isEditable: boolean;
+  canEdit: boolean;
 };
 
-export function DetailsEmail({
-  initialEmail,
-  isEditable,
-}: DetailsNameViewProps) {
-  const [email, setEmail] = useState(initialEmail);
+export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
+  const {
+    error,
+    isEditing,
+    formAction,
+    state: email,
+    setIsEditing,
+  } = useDetailsForm(initialEmail);
+
   const hiddenEmail = hideDetails(email, "email");
 
   return (
     <Details>
-      {(isEditing, setIsEditing, update) =>
-        isEditing ? (
-          <DetailsForm
-            isEditable={isEditable}
-            discardHandler={() => setIsEditing(false)}
-            action={async formData => {
-              const emailRaw = formData.get("email");
-              const email = typeof emailRaw === "string" ? emailRaw : "";
-
-              try {
-                await updateUniqueAction("email", formData);
-                setEmail(email);
-                await update(Object.fromEntries(formData));
-              } catch (e) {
-                console.log(e);
-              } finally {
-                setIsEditing(false);
-              }
-            }}
-          >
-            <div className="mb-4">
-              <DetailsInput
-                readOnly={!isEditable}
-                name="email"
-                defaultValue={email}
-                placeholder="Email Address"
-              />
-            </div>
-          </DetailsForm>
-        ) : (
-          <Details.Value
-            title="Email Address"
-            value={hiddenEmail}
-            onClick={() => setIsEditing(true)}
-          />
-        )
-      }
+      <Details.View
+        title="Your Email"
+        canEdit={canEdit}
+        value={hiddenEmail}
+        onClick={() => setIsEditing(true)}
+      >
+        <Details.Overlay
+          title="Email"
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        >
+          <form className="grid gap-2" action={formAction}>
+            <Details.Input
+              name="email"
+              placeholder="Email"
+              defaultValue={email}
+            />
+            <Details.Submit isEditable />
+          </form>
+        </Details.Overlay>
+      </Details.View>
     </Details>
   );
 }

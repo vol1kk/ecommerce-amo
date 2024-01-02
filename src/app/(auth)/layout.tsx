@@ -8,25 +8,12 @@ import { Header } from "@/layouts/Header";
 import { Footer } from "@/layouts/Footer";
 import Providers from "@/layouts/Providers/Providers";
 
-const inter = Inter({ subsets: ["latin"] });
-export const metadata: Metadata = {
-  title: "Euphoria",
-  description: "Keep it classy",
-};
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </div>
-          <div id="overlay" />
-        </Providers>
-      </body>
-    </html>
+    <>
+      <Header />
+      <div className="flex-1">{children}</div>
+      <Footer />
+    </>
   );
 }

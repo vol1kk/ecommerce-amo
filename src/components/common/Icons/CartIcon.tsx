@@ -1,6 +1,6 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
-export function CartIcon(props: SVGProps) {
+export function CartIcon(props?: SVGProps) {
   return (
     <svg
       width="20"

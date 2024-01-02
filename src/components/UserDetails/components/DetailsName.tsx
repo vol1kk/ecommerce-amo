@@ -1,75 +1,60 @@
 "use client";
 
-import { useState } from "react";
+import { Details, hideDetails, useDetailsForm } from "@/components/UserDetails";
 
-import {
-  Details,
-  hideDetails,
-  DetailsForm,
-  DetailsInput,
-  updateNameAction,
-} from "@/components/UserDetails";
-
-type DetailsNameViewProps = {
+type DetailsNameProps = {
   firstName: string;
   lastName: string;
-  isEditable: boolean;
 };
 
-export function DetailsName({
-  firstName,
-  lastName,
-  isEditable,
-}: DetailsNameViewProps) {
-  const [fullName, setFullName] = useState({
+export function DetailsName({ firstName, lastName }: DetailsNameProps) {
+  const {
+    error,
+    isEditing,
+    formAction,
+    setIsEditing,
+    state: fullName,
+  } = useDetailsForm({
     name: firstName,
     surname: lastName,
   });
 
   const hiddenName = hideDetails(JSON.stringify(fullName), "name");
-
   return (
     <Details>
-      {(isEditing, setIsEditing, update) =>
-        isEditing ? (
-          <DetailsForm
-            isEditable={isEditable}
+      <Details.View
+        title="Your Name"
+        value={hiddenName}
+        onClick={() => setIsEditing(true)}
+      >
+        <Details.Overlay
+          title="Name"
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        >
+          <form
+            className="grid gap-2"
             action={async formData => {
-              try {
-                await updateNameAction(formData);
-                const formObj = Object.fromEntries(formData) as typeof fullName;
-
-                setFullName(formObj);
-                await update(formObj);
-              } catch (e) {
-                console.log(e);
-              } finally {
-                setIsEditing(false);
-              }
+              formAction(formData);
             }}
-            discardHandler={() => setIsEditing(false)}
           >
-            <div className="mb-4 grid grid-cols-2 gap-2">
-              <DetailsInput
-                name="name"
-                placeholder="First Name"
-                defaultValue={fullName.name}
-              />
-              <DetailsInput
-                name="surname"
-                placeholder="Last Name"
-                defaultValue={fullName.surname}
-              />
-            </div>
-          </DetailsForm>
-        ) : (
-          <Details.Value
-            title="Your Name"
-            value={hiddenName}
-            onClick={() => setIsEditing(true)}
-          />
-        )
-      }
+            <Details.Input
+              name="name"
+              placeholder="Name"
+              defaultValue={fullName.name}
+            />
+            <Details.Input
+              name="surname"
+              placeholder="Surname"
+              defaultValue={fullName.surname}
+            />
+            {error?.fullName && (
+              <span className="text-red-500">{error.fullName}</span>
+            )}
+            <Details.Submit isEditable />
+          </form>
+        </Details.Overlay>
+      </Details.View>
     </Details>
   );
 }

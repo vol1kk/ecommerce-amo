@@ -1,4 +1,4 @@
-import { SVGProps } from "@/types/SVGProps";
+import { SVGProps } from "@/types";
 
 export function WomanIcon(props: SVGProps) {
   return (

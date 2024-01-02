@@ -1,4 +1,6 @@
-export function ShowIcon() {
+import { SVGProps } from "@/types";
+
+export function ShowIcon(props: SVGProps) {
   return (
     <svg
       fill="#807D7E"
