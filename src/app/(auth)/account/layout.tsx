@@ -4,6 +4,7 @@ import { Auth } from "@/components/client/Auth";
 import ActiveLink from "@/components/common/ActiveLink";
 import { ACCOUNT_PAGE, ORDERS_PAGE, WISHLIST_PAGE } from "@/constants/routes";
 import { HeartIcon, OrdersIcon, UserIcon } from "@/components/common/Icons";
+import Loading from "@/app/(auth)/account/loading";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

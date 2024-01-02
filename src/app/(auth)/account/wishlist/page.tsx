@@ -45,7 +45,7 @@ export default async function Page() {
 
   return (
     <section>
-      <h1 className="mb-4 text-center text-2xl font-bold">Wishlist</h1>
+      <h1 className="mb-4 text-2xl font-bold text-boldColor">Wishlist</h1>
       {content}
     </section>
   );
