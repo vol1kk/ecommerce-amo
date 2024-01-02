@@ -27,7 +27,7 @@ export function HeaderLink({
       className={cn(
         "flex items-center justify-center rounded-md bg-accent px-4 py-3",
         (path === href || path === highlightedHref) &&
-          "bg-purple-700 [&>svg_path]:stroke-purple-300",
+          "bg-purple-700 [&>svg_path]:stroke-white",
         className,
       )}
     >
