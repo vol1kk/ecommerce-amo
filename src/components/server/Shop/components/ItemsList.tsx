@@ -4,17 +4,20 @@ import { Card } from "@/components/common/Card";
 import Button from "@/components/common/Button";
 import { ITEM_PAGE, SHOP_PAGE } from "@/constants/routes";
 import { getSelectedItems, getItems } from "@/components/server/Shop";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
 
 type ItemsListProps = {
   category: string | undefined;
 };
 
 export default async function ItemsList({ category }: ItemsListProps) {
+  const session = await getServerSession(authOptions);
+
   const items = await getItems(category);
-  const favoriteItems = (await getSelectedItems(
-    "wishlist",
-    undefined,
-  )) as SelectedItem[];
+  const favoriteItems = session
+    ? ((await getSelectedItems("wishlist", undefined)) as SelectedItem[])
+    : [];
 
   if (items.length === 0) {
     return (
@@ -39,6 +42,7 @@ export default async function ItemsList({ category }: ItemsListProps) {
             />
             <Card.Favorite
               id={item.id}
+              isAuthed={!!session}
               isFavorite={favoriteItems.some(i => i.itemId === item.id)}
             />
           </div>
