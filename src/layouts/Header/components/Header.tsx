@@ -6,6 +6,7 @@ import { LogoIcon } from "@/components/common/Icons";
 import { HeaderActions, HeaderBurger, HeaderSearch } from "@/layouts/Header";
 import { useTranslations } from "next-intl";
 import { Sidebar } from "@/layouts/Sidebar";
+import SidebarLocale from "@/layouts/Sidebar/components/SidebarLocale";
 
 export default function Header() {
   const t = useTranslations("Home");
@@ -25,6 +26,7 @@ export default function Header() {
           <HeaderSearch placeholder={searchTL} className="mb-4" />
           <HeaderActions className="grid gap-2" />
         </HeaderBurger>
+        <SidebarLocale />
       </div>
     </header>
   );
