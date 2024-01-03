@@ -4,14 +4,20 @@ import Button from "@/components/common/Button";
 import { CHECKOUT_PAGE } from "@/constants/routes";
 import { getSelectedItems } from "@/components/server/Shop";
 import TypographyEqual from "@/components/common/TypographyEqual";
+import CartEmpty from "@/components/server/Cart/components/CartEmpty";
 import CartDelete from "@/components/server/Cart/components/CartDelete";
 import CartQuantity from "@/components/server/Cart/components/CartQuantity";
 import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDetail";
-import CartEmpty from "@/components/server/Cart/components/CartEmpty";
 
 const shippingFee = 5; // I don't have the fee field, so gotta pretend I have smth
 export default async function Page() {
   const items = await getSelectedItems("cart", "bare");
+
+  if (items.length === 0) {
+    return <CartEmpty />;
+  }
+
+  const canProceed = items.every(i => i.size && i.color);
 
   const subTotal = items.reduce(
     (acc, selectedItem) =>
@@ -19,10 +25,6 @@ export default async function Page() {
     0,
   );
   const grandTotal = (subTotal + shippingFee).toFixed(2);
-
-  if (items.length === 0) {
-    return <CartEmpty />;
-  }
 
   return (
     <main className="grid flex-1 grid-rows-[1fr,auto]">
@@ -100,7 +102,7 @@ export default async function Page() {
           </div>
           <Link href={CHECKOUT_PAGE}>
             <Button className="bg-purple-600 px-12 font-semibold text-white">
-              Proceed to Checkout
+              {canProceed ? "Proceed to Checkout" : "Can't"}
             </Button>
           </Link>
         </div>

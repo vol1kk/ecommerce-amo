@@ -5,7 +5,7 @@ import { EmptyCartIcon } from "@/components/common/Icons";
 
 export default function CartEmpty() {
   return (
-    <main className="grid flex-1 place-items-center gap-4">
+    <main className="grid flex-1 place-items-center gap-4 p-6">
       <EmptyCartIcon />
       <div>
         <h1 className="text-2xl font-bold">Your cart is empty and sad :(</h1>
