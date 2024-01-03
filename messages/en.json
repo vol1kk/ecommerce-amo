@@ -1,0 +1,13 @@
+{
+  "Home": {
+    "categories": "Categories",
+    "shop": "Shop",
+    "men": "Men",
+    "women": "Women",
+    "combos": "Combos",
+    "search": "Search for your items",
+    "wishlist": "Wishlist",
+    "account": "Account",
+    "cart": "Cart"
+  }
+}

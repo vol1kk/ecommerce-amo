@@ -12,12 +12,18 @@ export const metadata: Metadata = {
   description: "Keep it classy",
 };
 
-export default function RootLayout(props: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+  params: { locale },
+}: {
+  children: ReactNode;
+  params: { locale: string };
+}) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={inter.className}>
         <Providers>
-          <div className="flex min-h-screen flex-col">{props.children}</div>
+          <div className="flex min-h-screen flex-col">{children}</div>
           <div id="overlay" />
         </Providers>
       </body>
