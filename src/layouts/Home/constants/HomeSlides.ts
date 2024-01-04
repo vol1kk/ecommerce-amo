@@ -4,9 +4,9 @@ export const HomeSlides = [
       src: "/slides/slide-one.jpg",
     },
     content: {
-      title: "Summer Value Pack",
-      subtitle: "cool / colorful / comfy",
-      category: "Tops",
+      title: "tops_title",
+      subtitle: "tops_subtitle",
+      category: "tops_category",
     },
   },
   {
@@ -14,9 +14,9 @@ export const HomeSlides = [
       src: "/slides/slide-two.jpg",
     },
     content: {
-      title: "Celebrating Pack",
-      subtitle: "stylish / cute / lovely",
-      category: "Dresses",
+      title: "dress_title",
+      subtitle: "dress_subtitle",
+      category: "dress_category",
     },
   },
 ];

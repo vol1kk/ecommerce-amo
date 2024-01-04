@@ -8,6 +8,56 @@
     "search": "Search for your items",
     "wishlist": "Wishlist",
     "account": "Account",
-    "cart": "Cart"
+    "cart": "Cart",
+    "saving_zone": "Big Saving Zone",
+    "feedback": "Feedback",
+    "discount": "UP TO {discount}% OFF",
+    "shop_now": "Shop Now",
+    "explore_items": "Explore Items",
+    "Featured": {
+      "cozy_title": "High Coziness",
+      "cozy_subtitle": "Low Price",
+      "breezy_title": "Breezy Summer Style",
+      "breezy_subtitle": "Beyoung Presents"
+    },
+    "Discounted": {
+      "hawaii_title": "Hawaiian Shirts",
+      "hawaii_subtitle": "Dress up in summer vibe",
+      "printed_title": "Printed T-Shirts",
+      "printed_subtitle": "New Designs every Week",
+      "cargo_title": "Cargo Joggers",
+      "cargo_subtitle": "Move with style & comfort",
+      "urban_title": "Urban Shirts",
+      "urban_subtitle": "Live in Comfort",
+      "oversized_title": "Oversized T-Shirts",
+      "oversized_subtitle": "Street style Icon"
+    },
+    "Cards": {
+      "new_arrivals": "New Arrivals",
+      "joggers": "Knitted Joggers",
+      "full_sleeve": "Full Sleeves",
+      "active_shirts": "Active Shirts",
+      "urban_shirts": "Urban Shirts"
+    }
+  },
+  "Slides": {
+    "dress_category": "Dresses",
+    "dress_title": "Celebrating Pack",
+    "dress_subtitle": "stylish / cute / love",
+    "tops_category": "Tops",
+    "tops_title": "Summer Value Pack",
+    "tops_subtitle": "cool / colorful / comfy"
+  },
+  "Footer": {
+    "help": "Need Help",
+    "track": "Track Order",
+    "refunds": "Returns & Refunds",
+    "faq": "FAQs",
+    "career": "Career",
+    "more": "More Info",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "shipping": "Shipping Policy",
+    "contact": "Contact Us"
   }
 }

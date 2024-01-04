@@ -1,24 +1,27 @@
 import Link from "@/components/common/Link";
 import { HelpCategory, InfoCategory } from "@/layouts/Footer";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="bg-boldColor px-4 py-8 text-accent">
       <div className="mx-auto flex max-w-screen-xl justify-between gap-4 sm:w-fit sm:flex-col [&>div>h2]:mb-6 [&>div>h2]:text-2xl [&>div>h2]:font-bold [&>div>ul]:text-lg [&>div>ul]:leading-loose">
         {[HelpCategory, InfoCategory].map(category => (
           <div key={category.name} className="flex flex-col items-center">
-            <h2>{category.name}</h2>
+            <h2>{t(category.name)}</h2>
             <ul>
               {category.links.map(link => (
                 <li key={link.name}>
-                  <Link href={link.href}>{link.name}</Link>
+                  <Link href={link.href}>{t(link.name)}</Link>
                 </li>
               ))}
             </ul>
           </div>
         ))}
         <div className="flex flex-col items-center [&>ul>li]:text-center">
-          <h2>Contact Us</h2>
+          <h2>{t("contact")}</h2>
           <ul>
             <li>
               <a href="mailto:support@example.com">support@example.com</a>

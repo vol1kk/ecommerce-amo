@@ -8,6 +8,56 @@
     "search": "Шукай що треба!",
     "wishlist": "Вішлист",
     "account": "Акаунт",
-    "cart": "Корзина"
+    "cart": "Корзина",
+    "saving_zone": "Зона знижок",
+    "feedback": "Відгуки",
+    "discount": "ЗАОЩАДЖУЙ до {discount}%",
+    "shop_now": "Придбати зараз",
+    "explore_items": "Подивитись товари",
+    "Discounted": {
+      "hawaii_title": "Гавайські сорочки",
+      "hawaii_subtitle": "Одягайся по літньому",
+      "printed_title": "Прінтові футболки",
+      "printed_subtitle": "Нові дизайни щотижня!",
+      "cargo_title": "Джогери",
+      "cargo_subtitle": "Рухайся зі стилем та комфортом",
+      "urban_title": "Міські сорочки",
+      "urban_subtitle": "Живи у комфорті",
+      "oversized_title": "Оверсайзд футболки",
+      "oversized_subtitle": "Ікона вуличного одягу"
+    },
+    "Featured": {
+      "cozy_title": "Зручні",
+      "cozy_subtitle": "та недорогі",
+      "breezy_title": "Свіжість літа",
+      "breezy_subtitle": "від Beyoung"
+    },
+    "Cards": {
+      "new_arrivals": "Нові товари",
+      "joggers": "В'язані штани",
+      "full_sleeve": "Довгі рукава",
+      "active_shirts": "Спортивні футболки",
+      "urban_shirts": "Міські сорочки"
+    }
+  },
+  "Slides": {
+    "dress_category": "Плаття",
+    "dress_title": "Святкові наряди",
+    "dress_subtitle": "стильні / милі",
+    "tops_category": "Топи",
+    "tops_title": "Літній одяг",
+    "tops_subtitle": "крутий / кольоровий / зручний"
+  },
+  "Footer": {
+    "help": "Допомога",
+    "track": "Відстежити замовлення",
+    "refunds": "Повернення",
+    "faq": "Довідка",
+    "career": "Кар'єра",
+    "more": "Більше інформації",
+    "terms": "Правила та умови",
+    "privacy": "Політика конфіденційності",
+    "shipping": "Політика доставки",
+    "contact": "Зв'язатись з нами"
   }
 }

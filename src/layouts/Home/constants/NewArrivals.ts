@@ -1,22 +1,22 @@
 export const NewArrivals = [
   {
     src: "/new/joggers.jpg",
-    name: "Knitted Joggers",
+    name: "joggers",
     href: "/",
   },
   {
     src: "/new/sleeve.jpg",
-    name: "Full Sleeves",
+    name: "full_sleeve",
     href: "/",
   },
   {
     src: "/new/tshirt.jpg",
-    name: "Active T-Shirts",
+    name: "active_shirts",
     href: "/",
   },
   {
     src: "/new/urban-shirt.jpg",
-    name: "Urban Shirts",
+    name: "urban_shirts",
     href: "/",
   },
 ];

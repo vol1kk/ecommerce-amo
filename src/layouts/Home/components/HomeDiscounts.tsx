@@ -3,6 +3,7 @@ import { DiscountedItem } from "@/layouts/Home";
 import Section from "@/components/common/Section";
 import { ArrowIcon } from "@/components/common/Icons";
 import { AbsoluteCard } from "@/components/common/AbsoluteCard";
+import { useTranslations } from "next-intl";
 
 type HomeDiscountsProps = {
   triples: DiscountedItem[];
@@ -13,6 +14,10 @@ export default function HomeDiscounts({
   doubles,
   triples,
 }: HomeDiscountsProps) {
+  const t = useTranslations("Home");
+
+  const shopNow = t("shop_now");
+
   return (
     <Section name="Big Saving Zone">
       <div className="grid w-full grid-cols-3 gap-6 lg:grid-cols-1">
@@ -30,17 +35,19 @@ export default function HomeDiscounts({
               )}
             >
               <h2 className="max-w-[140px] text-3xl sm-x:text-center">
-                {discounted.content.title}
+                {t("Discounted." + discounted.content.title)}
               </h2>
               <div className="text-sm">
-                <h3>{discounted.content.subtitle}</h3>
+                <h3>{t("Discounted." + discounted.content.subtitle)}</h3>
                 {discounted.content.discount && (
-                  <span>UP TO {discounted.content.discount}% OFF</span>
+                  <span>
+                    {t("discount", { discount: discounted.content.discount })}
+                  </span>
                 )}
               </div>
               <ArrowIcon className="justify-self-center" />
               <button className="self-end rounded-md border-2 border-white px-4 py-2">
-                Shop now
+                {shopNow}
               </button>
             </AbsoluteCard.Content>
           </AbsoluteCard>
@@ -59,17 +66,19 @@ export default function HomeDiscounts({
               )}
             >
               <h2 className="max-w-[140px] text-3xl sm-x:text-center">
-                {discounted.content.title}
+                {t("Discounted." + discounted.content.title)}
               </h2>
               <div className="text-sm">
-                <h3>{discounted.content.subtitle}</h3>
+                <h3>{t("Discounted." + discounted.content.subtitle)}</h3>
                 {discounted.content.discount && (
-                  <span>FLAT {discounted.content.discount}% OFF</span>
+                  <span>
+                    {t("discount", { discount: discounted.content.discount })}
+                  </span>
                 )}
               </div>
               <ArrowIcon className="justify-self-center [&>path]:stroke-black" />
               <button className="self-end rounded-md border-2 border-black px-4 py-2">
-                Shop now
+                {shopNow}
               </button>
             </AbsoluteCard.Content>
           </AbsoluteCard>
