@@ -24,7 +24,7 @@ export function DetailsOverlay({
     >
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white p-8 pt-4 shadow-2xl">
         <div className="flex items-center justify-between">
-          <span className="text-lg font-bold">Change {title}</span>
+          <span className="text-lg font-bold">{title}</span>
           <button
             className="p-4"
             onClick={() => {

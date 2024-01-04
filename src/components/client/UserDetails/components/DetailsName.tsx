@@ -5,13 +5,16 @@ import {
   hideDetails,
   useDetailsForm,
 } from "@/components/client/UserDetails";
+import { DetailsSubmitTL } from "@/components/client/UserDetails/components/common/DetailsSubmit";
+import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 
 type DetailsNameProps = {
   firstName: string;
   lastName: string;
+  tl: Omit<BaseTL, "placeholder"> & { name: string; surname: string };
 };
 
-export function DetailsName({ firstName, lastName }: DetailsNameProps) {
+export function DetailsName({ firstName, lastName, tl }: DetailsNameProps) {
   const {
     error,
     isEditing,
@@ -27,13 +30,13 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
   return (
     <Details>
       <Details.View
-        title="Your Name"
+        title={tl.title}
         value={hiddenName}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title="Name"
           isEditing={isEditing}
+          title={tl.changeTitle}
           setIsEditing={setIsEditing}
         >
           <form
@@ -44,18 +47,24 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
           >
             <Details.Input
               name="name"
-              placeholder="Name"
+              placeholder={tl.name}
               defaultValue={fullName.name}
             />
             <Details.Input
               name="surname"
-              placeholder="Surname"
+              placeholder={tl.surname}
               defaultValue={fullName.surname}
             />
             {error?.fullName && (
               <span className="text-red-500">{error.fullName}</span>
             )}
-            <Details.Submit isEditable />
+            <Details.Submit
+              isEditable
+              tl={{
+                editable: tl.submitTL.editable,
+                notEditable: tl.submitTL.notEditable,
+              }}
+            />
           </form>
         </Details.Overlay>
       </Details.View>

@@ -59,5 +59,31 @@
     "privacy": "Політика конфіденційності",
     "shipping": "Політика доставки",
     "contact": "Зв'язатись з нами"
+  },
+  "Account": {
+    "info": "Інформація",
+    "contact_details": "Контактні Дані",
+
+    "name_placeholder": "Введіть ім'я",
+    "surname_placeholder": "Введіть прізвище",
+    "fullname_title": "Ім'я",
+    "fullname_overlay": "Змінити ім'я",
+
+    "email_placeholder": "Введіть пошта",
+    "your_email": "Електронна Пошта",
+    "change_email": "Змінити пошту",
+
+    "phone_placeholder": "Введіть номер",
+    "your_phone": "Номер Телефону",
+    "change_phone": "Змінити номер",
+
+    "your_password": "Ваш пароль",
+    "change_password": "Змінити Пароль",
+    "password_current": "Введіть поточний пароль",
+    "password_new": "Введіть новий пароль",
+    "password_repeat": "Повторіть пароль",
+
+    "submit_allowed": "Зберігти",
+    "submit_disallowed": "Редагування заборонено"
   }
 }

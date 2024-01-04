@@ -1,5 +1,6 @@
 "use client";
 
+import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 import {
   Details,
   hideDetails,
@@ -8,8 +9,9 @@ import {
 
 type DetailsPhoneProps = {
   number: string;
+  tl: BaseTL;
 };
-export function DetailsPhone({ number }: DetailsPhoneProps) {
+export function DetailsPhone({ number, tl }: DetailsPhoneProps) {
   const {
     error,
     isEditing,
@@ -23,22 +25,22 @@ export function DetailsPhone({ number }: DetailsPhoneProps) {
   return (
     <Details>
       <Details.View
-        title="Your Phone"
+        title={tl.title}
         value={hiddenNumber}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title="Phone"
           isEditing={isEditing}
+          title={tl.changeTitle}
           setIsEditing={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="phone"
-              placeholder="Phone Number"
+              placeholder={tl.placeholder}
               defaultValue={phoneNumber}
             />
-            <Details.Submit isEditable />
+            <Details.Submit tl={tl.submitTL} isEditable />
           </form>
         </Details.Overlay>
       </Details.View>

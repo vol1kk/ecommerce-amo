@@ -40,14 +40,6 @@
       "urban_shirts": "Urban Shirts"
     }
   },
-  "Slides": {
-    "dress_category": "Dresses",
-    "dress_title": "Celebrating Pack",
-    "dress_subtitle": "stylish / cute / love",
-    "tops_category": "Tops",
-    "tops_title": "Summer Value Pack",
-    "tops_subtitle": "cool / colorful / comfy"
-  },
   "Footer": {
     "help": "Need Help",
     "track": "Track Order",
@@ -59,5 +51,39 @@
     "privacy": "Privacy Policy",
     "shipping": "Shipping Policy",
     "contact": "Contact Us"
+  },
+  "Slides": {
+    "dress_category": "Dresses",
+    "dress_title": "Celebrating Pack",
+    "dress_subtitle": "stylish / cute / love",
+    "tops_category": "Tops",
+    "tops_title": "Summer Value Pack",
+    "tops_subtitle": "cool / colorful / comfy"
+  },
+  "Account": {
+    "info": "My Information",
+    "contact_details": "Contact Details",
+
+    "name_placeholder": "Enter Name",
+    "surname_placeholder": "Enter Surname",
+    "fullname_title": "Your Name",
+    "fullname_overlay": "Change Full Name",
+
+    "email_placeholder": "Enter Email",
+    "your_email": "Your Email",
+    "change_email": "Change Email",
+
+    "phone_placeholder": "Enter Phone Number",
+    "your_phone": "Your Phone",
+    "change_phone": "Change Phone",
+
+    "your_password": "Your Password",
+    "change_password": "Change Password",
+    "password_current": "Enter Current Password",
+    "password_new": "Enter new Password",
+    "password_repeat": "Repeat new Password",
+
+    "submit_allowed": "Save",
+    "submit_disallowed": "Changing isn't allowed"
   }
 }

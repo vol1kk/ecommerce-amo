@@ -2,12 +2,18 @@
 
 import cn from "@/utils/cn";
 import { Details, useDetailsForm } from "@/components/client/UserDetails";
+import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 
 type DetailsPasswordProps = {
   canEdit: boolean;
+  tl: Omit<BaseTL, "placeholder"> & {
+    currPas: string;
+    newPass: string;
+    repeatPass: string;
+  };
 };
 
-export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
+export function DetailsPassword({ canEdit, tl }: DetailsPasswordProps) {
   const { isEditing, setIsEditing, formAction, error } = useDetailsForm("");
 
   return (
@@ -15,11 +21,11 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
       <Details.View
         value="*****"
         canEdit={canEdit}
-        title="Your Password"
+        title={tl.title}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title="Password"
+          title={tl.changeTitle}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
         >
@@ -27,7 +33,7 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
             <Details.Input
               type="password"
               name="currentPass"
-              placeholder="Current Passwrod"
+              placeholder={tl.currPas}
               className={cn(error.password?.old && "border-2 border-red-500")}
             />
             {error.password?.old && (
@@ -38,13 +44,13 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
             <Details.Input
               type="password"
               name="newPass"
-              placeholder="New Password"
+              placeholder={tl.newPass}
               className={cn(error.password?.new && "border-2 border-red-500")}
             />
             <Details.Input
               type="password"
               name="repeatedPass"
-              placeholder="Repeat New Passwrod"
+              placeholder={tl.repeatPass}
               className={cn(error.password?.new && "border-2 border-red-500")}
             />
             {error.password?.new && (
@@ -52,7 +58,7 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
                 {error.password?.new}
               </span>
             )}
-            <Details.Submit isEditable />
+            <Details.Submit tl={tl.submitTL} isEditable />
           </form>
         </Details.Overlay>
       </Details.View>
