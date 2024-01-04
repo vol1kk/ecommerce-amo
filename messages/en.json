@@ -63,6 +63,9 @@
   "Account": {
     "info": "My Information",
     "contact_details": "Contact Details",
+    "orders": "Orders",
+    "wishlist": "Wishlist",
+    "sign_out": "Sign Out",
 
     "name_placeholder": "Enter Name",
     "surname_placeholder": "Enter Surname",

@@ -1,9 +1,10 @@
+import { useTranslations } from "next-intl";
+
 import cn from "@/utils/cn";
 import Link from "@/components/common/Link";
 import Section from "@/components/common/Section";
 import { FeaturedCategory } from "@/layouts/Home";
 import { AbsoluteCard } from "@/components/common/AbsoluteCard";
-import { useTranslations } from "next-intl";
 
 type SectionFeaturedProps = {
   featured: FeaturedCategory[];

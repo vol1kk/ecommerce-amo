@@ -1,9 +1,10 @@
+import { useTranslations } from "next-intl";
+
 import cn from "@/utils/cn";
 import { DiscountedItem } from "@/layouts/Home";
 import Section from "@/components/common/Section";
 import { ArrowIcon } from "@/components/common/Icons";
 import { AbsoluteCard } from "@/components/common/AbsoluteCard";
-import { useTranslations } from "next-intl";
 
 type HomeDiscountsProps = {
   triples: DiscountedItem[];

@@ -63,6 +63,9 @@
   "Account": {
     "info": "Інформація",
     "contact_details": "Контактні Дані",
+    "orders": "Замовлення",
+    "wishlist": "Вішлист",
+    "sign_out": "Вийти",
 
     "name_placeholder": "Введіть ім'я",
     "surname_placeholder": "Введіть прізвище",
