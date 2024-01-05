@@ -1,18 +1,28 @@
 import Link from "@/components/common/Link";
 import { Auth } from "@/components/client/Auth";
+import {
+  NextIntlClientProvider,
+  useMessages,
+  useTranslations,
+} from "next-intl";
 
 export default function Page() {
+  const t = useTranslations("Account");
+  const messages = useMessages();
+
   return (
     <Auth>
       <Auth.Image src="/slides/slide-signin.jpg" alt="Sign In" />
       <Auth.Options>
         <Auth.OAuthLogin />
-        <Auth.CredentialsLogin />
+        <NextIntlClientProvider messages={messages}>
+          <Auth.CredentialsLogin />
+        </NextIntlClientProvider>
         <Link
           href="/register"
           className="mt-4 rounded-md bg-accent py-3 text-center font-bold"
         >
-          Sign Up
+          {t("sign_up")}
         </Link>
       </Auth.Options>
     </Auth>

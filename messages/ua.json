@@ -4,7 +4,7 @@
     "shop": "Магазин",
     "men": "Чоловіки",
     "women": "Жінки",
-    "combos": "Юнісекс",
+    "combos": "Унісекс",
     "search": "Шукай що треба!",
     "wishlist": "Вішлист",
     "account": "Акаунт",
@@ -66,13 +66,19 @@
     "orders": "Замовлення",
     "wishlist": "Вішлист",
     "sign_out": "Вийти",
+    "oauth_continue": "Увійти через",
+    "or": "Або",
+    "show": "Показати",
+    "hide": "Приховати",
+    "sign_in": "Увійти",
+    "sign_up": "Зареєструватись",
 
     "name_placeholder": "Введіть ім'я",
     "surname_placeholder": "Введіть прізвище",
     "fullname_title": "Ім'я",
     "fullname_overlay": "Змінити ім'я",
 
-    "email_placeholder": "Введіть пошта",
+    "email_placeholder": "Введіть пошту",
     "your_email": "Електронна Пошта",
     "change_email": "Змінити пошту",
 
@@ -80,7 +86,7 @@
     "your_phone": "Номер Телефону",
     "change_phone": "Змінити номер",
 
-    "your_password": "Ваш пароль",
+    "your_password": "Пароль",
     "change_password": "Змінити Пароль",
     "password_current": "Введіть поточний пароль",
     "password_new": "Введіть новий пароль",

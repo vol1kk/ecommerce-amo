@@ -6,13 +6,14 @@ import { signIn } from "next-auth/react";
 import Button from "@/components/common/Button";
 
 type OAUthLoginProps = {
+  tl: string;
   provider: {
     name: string;
     icon: ReactNode;
   };
 };
 
-export default function OAuthForm({ provider }: OAUthLoginProps) {
+export default function OAuthForm({ provider, tl }: OAUthLoginProps) {
   return (
     <Button
       onClick={() =>
@@ -25,7 +26,9 @@ export default function OAuthForm({ provider }: OAUthLoginProps) {
     >
       <span className="flex items-center justify-center gap-4">
         {provider.icon}
-        <span className="text-lg font-bold">Continue with {provider.name}</span>
+        <span className="text-lg font-bold">
+          {tl} {provider.name}
+        </span>
       </span>
     </Button>
   );

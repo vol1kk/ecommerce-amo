@@ -66,6 +66,12 @@
     "orders": "Orders",
     "wishlist": "Wishlist",
     "sign_out": "Sign Out",
+    "oauth_continue": "Continue with",
+    "or": "Or",
+    "show": "Show",
+    "hide": "Hide",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
 
     "name_placeholder": "Enter Name",
     "surname_placeholder": "Enter Surname",
