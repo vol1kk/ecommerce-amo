@@ -1,15 +1,15 @@
-import NextLink, { LinkProps } from "next/link";
-import { AnchorHTMLAttributes, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
+
+import { Link as IntlLink } from "@/utils/intlHooks";
 
 export type CustomLinkProps = {
   children: ReactNode;
-} & LinkProps &
-  AnchorHTMLAttributes<HTMLAnchorElement>;
+} & ComponentProps<typeof IntlLink>;
 
-export default function Link({ href, children, ...props }: CustomLinkProps) {
+export default function Link2({ href, children, ...props }: CustomLinkProps) {
   return (
-    <NextLink href={href} {...props}>
+    <IntlLink href={href} {...props}>
       {children}
-    </NextLink>
+    </IntlLink>
   );
 }
