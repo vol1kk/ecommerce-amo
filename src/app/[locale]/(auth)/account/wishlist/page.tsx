@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import Button from "@/components/common/Button";
@@ -6,6 +8,7 @@ import { getSelectedItems } from "@/components/server/Shop";
 import { FavoriteItem } from "@/components/server/Favorites";
 
 export default async function Page() {
+  const t = await getTranslations("Item");
   const wishlistItem = await getSelectedItems("wishlist", "bare");
 
   let content;
@@ -45,7 +48,9 @@ export default async function Page() {
 
   return (
     <section>
-      <h1 className="mb-4 text-2xl font-bold text-boldColor">Wishlist</h1>
+      <h1 className="mb-4 text-2xl font-bold text-boldColor">
+        {t("wishlist")}
+      </h1>
       {content}
     </section>
   );

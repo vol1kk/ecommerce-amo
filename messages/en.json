@@ -1,4 +1,27 @@
 {
+  "Item": {
+    "product": "Product",
+    "wishlist": "Wishlist",
+    "cart_add": "Add to Cart",
+    "cart_remove": "Remove from Cart",
+    "cart_unavailable": "Can't add to Cart",
+    "color": "Color",
+    "size": "Size",
+    "not_selected": "None",
+    "prod_details": "Product Details",
+    "price": "Price",
+    "shipping": "Shipping",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "delete": "Delete",
+    "summary": "Order Summary",
+    "shipping_address": "Shipping Address",
+    "billing_address": "Billing Address",
+    "payment_method": "Payment Method",
+    "place_order": "Place Order",
+    "checkout_proceed": "Proceed to Checkout",
+    "checkout_unavailable": "Some options aren't selected"
+  },
   "Home": {
     "categories": "Categories",
     "shop": "Shop",

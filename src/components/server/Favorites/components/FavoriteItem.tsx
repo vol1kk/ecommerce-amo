@@ -8,12 +8,14 @@ import {
 } from "@/components/server/Favorites";
 import cn from "@/utils/cn";
 import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDetail";
+import { useTranslations } from "next-intl";
 
 type WishlistItemProps = {
   selectedItem: SelectedItem;
 };
 
 export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
+  const t = useTranslations("Item");
   const item = selectedItem.item as Item;
 
   return (
@@ -29,8 +31,8 @@ export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
           <Link href={ITEM_PAGE + `/${item.id}`}>{item.name}</Link>
         </h2>
         <div className="w-fit text-sm sm:mx-auto">
-          <FavoriteDetail title="Size" value={selectedItem.size} />
-          <FavoriteDetail title="Color" value={selectedItem.color} />
+          <FavoriteDetail title={t("size")} value={selectedItem.size} />
+          <FavoriteDetail title={t("color ")} value={selectedItem.color} />
         </div>
       </div>
       <span className="font-semibold">${item.price}</span>

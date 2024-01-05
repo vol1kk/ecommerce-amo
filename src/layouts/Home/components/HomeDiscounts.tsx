@@ -20,7 +20,7 @@ export default function HomeDiscounts({
   const shopNow = t("shop_now");
 
   return (
-    <Section name="Big Saving Zone">
+    <Section name={t("saving_zone")}>
       <div className="grid w-full grid-cols-3 gap-6 lg:grid-cols-1">
         {triples.map(discounted => (
           <AbsoluteCard key={discounted.image.src} className="max-h-[400px]">
@@ -38,7 +38,7 @@ export default function HomeDiscounts({
               <h2 className="max-w-[140px] text-3xl sm-x:text-center">
                 {t("Discounted." + discounted.content.title)}
               </h2>
-              <div className="text-sm">
+              <div className="grid text-sm">
                 <h3>{t("Discounted." + discounted.content.subtitle)}</h3>
                 {discounted.content.discount && (
                   <span>
@@ -46,7 +46,9 @@ export default function HomeDiscounts({
                   </span>
                 )}
               </div>
-              <ArrowIcon className="justify-self-center" />
+              <div className="self-center justify-self-center p-2">
+                <ArrowIcon />
+              </div>
               <button className="self-end rounded-md border-2 border-white px-4 py-2">
                 {shopNow}
               </button>
@@ -77,7 +79,9 @@ export default function HomeDiscounts({
                   </span>
                 )}
               </div>
-              <ArrowIcon className="justify-self-center [&>path]:stroke-black" />
+              <div className="self-center justify-self-center p-2">
+                <ArrowIcon className="[&>path]:stroke-black" />
+              </div>
               <button className="self-end rounded-md border-2 border-black px-4 py-2">
                 {shopNow}
               </button>

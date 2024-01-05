@@ -1,4 +1,27 @@
 {
+  "Item": {
+    "product": "Товар",
+    "wishlist": "Вішлист",
+    "cart_add": "Додати в корзину",
+    "cart_remove": "Видалити з корзини",
+    "cart_unavailable": "Неможливо додати",
+    "color": "Колір",
+    "size": "Розмір",
+    "not_selected": "Необраний",
+    "prod_details": "Детальніше",
+    "price": "Ціна",
+    "shipping": "Доставка",
+    "quantity": "Кількість",
+    "subtotal": "Підсумок",
+    "delete": "Видалити",
+    "summary": "Загалом",
+    "shipping_address": "Адрес доставки",
+    "billing_address": "Платіжний адрес",
+    "payment_method": "Метод платежу",
+    "place_order": "Замовити",
+    "checkout_proceed": "Продовжити",
+    "checkout_unavailable": "Не всі опції обрано"
+  },
   "Home": {
     "categories": "Категорії",
     "shop": "Магазин",
