@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 type HttpMethod =
   | "GET"
   | "POST"
@@ -41,18 +39,28 @@ class RequestService {
       strippedOptions = rest;
     }
 
+    let cookies;
+    if (process.env.NEXTAUTH_URL) {
+      // Checking whether called from server, or client component
+      // because NEXTAUTH_URL is undefined if called on client
+      cookies = (await import("next/headers")).cookies().toString();
+    } else {
+      cookies = null;
+    }
+
+    const canHaveBody = method !== "GET" && options?.body;
     const reqOptions: RequestInit = {
       method,
       headers: {
-        cookie: cookies().toString(),
-        ...(options?.body && { "Content-Type": "application/json" }),
+        ...(cookies && { cookie: cookies }),
+        ...(canHaveBody && { "Content-Type": "application/json" }),
         ...options?.headers,
       },
-      ...(options?.body && { body: JSON.stringify(options.body) }),
+      ...(canHaveBody && { body: JSON.stringify(options.body) }),
       ...strippedOptions,
     };
 
-    return await fetch(this.baseURL + url, reqOptions);
+    return await fetch(this.baseURL ? this.baseURL + url : url, reqOptions);
   }
 }
 
