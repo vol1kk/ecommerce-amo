@@ -1,10 +1,10 @@
 "use client";
+import React, { ReactNode } from "react";
 
 import cn from "@/utils/cn";
-import Link from "@/components/common/Link";
-import React, { ReactNode } from "react";
-import { usePathname } from "next/navigation";
 import { locales } from "@/i18n";
+import Link from "@/components/common/Link";
+import { usePathname } from "@/utils/intlHooks";
 
 type SidebarItemProps = {
   name: string;

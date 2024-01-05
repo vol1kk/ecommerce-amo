@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <ActiveLink
                   href={category.href}
                   className="relative flex w-full items-center gap-4 rounded-r-md p-2 px-3"
-                  classNameActive="bg-accent before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-purple-700"
+                  classNameActive="bg-accent before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-purple-700 text-boldColor [&_svg>path]:stroke-boldColor"
                 >
                   {category.icon}
                   {t(category.name)}
