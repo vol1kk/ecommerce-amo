@@ -1,17 +1,17 @@
 "use client";
 
-import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 import {
   Details,
   hideDetails,
   useDetailsForm,
 } from "@/components/client/UserDetails";
+import { useTranslations } from "next-intl";
 
 type DetailsPhoneProps = {
   number: string;
-  tl: BaseTL;
 };
-export function DetailsPhone({ number, tl }: DetailsPhoneProps) {
+export function DetailsPhone({ number }: DetailsPhoneProps) {
+  const t = useTranslations("Account");
   const {
     error,
     isEditing,
@@ -25,22 +25,22 @@ export function DetailsPhone({ number, tl }: DetailsPhoneProps) {
   return (
     <Details>
       <Details.View
-        title={tl.title}
+        title={t("your_phone")}
         value={hiddenNumber}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
           isEditing={isEditing}
-          title={tl.changeTitle}
+          title={t("change_phone")}
           setIsEditing={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="phone"
-              placeholder={tl.placeholder}
+              placeholder={t("phone_placeholder")}
               defaultValue={phoneNumber}
             />
-            <Details.Submit tl={tl.submitTL} isEditable />
+            <Details.Submit isEditable />
           </form>
         </Details.Overlay>
       </Details.View>

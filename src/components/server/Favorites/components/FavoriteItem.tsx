@@ -32,7 +32,7 @@ export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
         </h2>
         <div className="w-fit text-sm sm:mx-auto">
           <FavoriteDetail title={t("size")} value={selectedItem.size} />
-          <FavoriteDetail title={t("color ")} value={selectedItem.color} />
+          <FavoriteDetail title={t("color")} value={selectedItem.color} />
         </div>
       </div>
       <span className="font-semibold">${item.price}</span>

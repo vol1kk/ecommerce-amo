@@ -1,20 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   Details,
   hideDetails,
   useDetailsForm,
 } from "@/components/client/UserDetails";
-import { DetailsSubmitTL } from "@/components/client/UserDetails/components/common/DetailsSubmit";
-import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 
 type DetailsEmailProps = {
   initialEmail: string;
   canEdit: boolean;
-  tl: BaseTL;
 };
 
-export function DetailsEmail({ initialEmail, canEdit, tl }: DetailsEmailProps) {
+export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
+  const t = useTranslations("Account");
   const {
     error,
     isEditing,
@@ -28,23 +28,23 @@ export function DetailsEmail({ initialEmail, canEdit, tl }: DetailsEmailProps) {
   return (
     <Details>
       <Details.View
-        title={tl.title}
+        title={t("your_email")}
         canEdit={canEdit}
         value={hiddenEmail}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title={tl.changeTitle}
+          title={t("change_email")}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="email"
-              placeholder={tl.placeholder}
+              placeholder={t("email_placeholder")}
               defaultValue={email}
             />
-            <Details.Submit tl={tl.submitTL} isEditable />
+            <Details.Submit isEditable />
           </form>
         </Details.Overlay>
       </Details.View>

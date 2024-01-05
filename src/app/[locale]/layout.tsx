@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import Providers from "@/layouts/Providers/Providers";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -12,19 +13,25 @@ export const metadata: Metadata = {
   description: "Keep it classy",
 };
 
+type RootLayoutProps = {
+  children: ReactNode;
+  params: { locale: string };
+};
+
 export default function RootLayout({
   children,
   params: { locale },
-}: {
-  children: ReactNode;
-  params: { locale: string };
-}) {
+}: RootLayoutProps) {
+  const messages = useMessages();
+
   return (
     <html lang={locale}>
       <body className={inter.className}>
         <Providers>
-          <div className="flex min-h-screen flex-col">{children}</div>
-          <div id="overlay" />
+          <NextIntlClientProvider messages={messages}>
+            <div className="flex min-h-screen flex-col">{children}</div>
+            <div id="overlay" />
+          </NextIntlClientProvider>
         </Providers>
       </body>
     </html>

@@ -1,20 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   Details,
   hideDetails,
   useDetailsForm,
 } from "@/components/client/UserDetails";
-import { DetailsSubmitTL } from "@/components/client/UserDetails/components/common/DetailsSubmit";
-import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 
 type DetailsNameProps = {
   firstName: string;
   lastName: string;
-  tl: Omit<BaseTL, "placeholder"> & { name: string; surname: string };
 };
 
-export function DetailsName({ firstName, lastName, tl }: DetailsNameProps) {
+export function DetailsName({ firstName, lastName }: DetailsNameProps) {
+  const t = useTranslations("Account");
   const {
     error,
     isEditing,
@@ -30,13 +30,13 @@ export function DetailsName({ firstName, lastName, tl }: DetailsNameProps) {
   return (
     <Details>
       <Details.View
-        title={tl.title}
+        title={t("fullname_title")}
         value={hiddenName}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
           isEditing={isEditing}
-          title={tl.changeTitle}
+          title={t("fullname_overlay")}
           setIsEditing={setIsEditing}
         >
           <form
@@ -47,24 +47,18 @@ export function DetailsName({ firstName, lastName, tl }: DetailsNameProps) {
           >
             <Details.Input
               name="name"
-              placeholder={tl.name}
+              placeholder={t("name_placeholder")}
               defaultValue={fullName.name}
             />
             <Details.Input
               name="surname"
-              placeholder={tl.surname}
+              placeholder={t("surname_placeholder")}
               defaultValue={fullName.surname}
             />
             {error?.fullName && (
               <span className="text-red-500">{error.fullName}</span>
             )}
-            <Details.Submit
-              isEditable
-              tl={{
-                editable: tl.submitTL.editable,
-                notEditable: tl.submitTL.notEditable,
-              }}
-            />
+            <Details.Submit isEditable />
           </form>
         </Details.Overlay>
       </Details.View>

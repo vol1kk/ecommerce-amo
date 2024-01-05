@@ -1,6 +1,7 @@
+import { useTranslations } from "next-intl";
+
 import { AvailableOAuthProviders } from "@/components/client/Auth";
 import OAuthForm from "@/components/client/Auth/components/OAuth/OAuthForm";
-import { useTranslations } from "next-intl";
 
 export function OAuthLogin() {
   const t = useTranslations("Account");
