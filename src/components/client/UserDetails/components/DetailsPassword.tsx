@@ -2,12 +2,15 @@
 
 import cn from "@/utils/cn";
 import { Details, useDetailsForm } from "@/components/client/UserDetails";
+import { BaseTL } from "@/app/[locale]/(auth)/account/page";
+import { useTranslations } from "next-intl";
 
 type DetailsPasswordProps = {
   canEdit: boolean;
 };
 
 export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
+  const t = useTranslations("Account");
   const { isEditing, setIsEditing, formAction, error } = useDetailsForm("");
 
   return (
@@ -15,11 +18,11 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
       <Details.View
         value="*****"
         canEdit={canEdit}
-        title="Your Password"
+        title={t("your_password")}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title="Password"
+          title={t("change_password")}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
         >
@@ -27,7 +30,7 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
             <Details.Input
               type="password"
               name="currentPass"
-              placeholder="Current Passwrod"
+              placeholder={t("password_current")}
               className={cn(error.password?.old && "border-2 border-red-500")}
             />
             {error.password?.old && (
@@ -38,13 +41,13 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
             <Details.Input
               type="password"
               name="newPass"
-              placeholder="New Password"
+              placeholder={t("password_new")}
               className={cn(error.password?.new && "border-2 border-red-500")}
             />
             <Details.Input
               type="password"
               name="repeatedPass"
-              placeholder="Repeat New Passwrod"
+              placeholder={t("password_repeat")}
               className={cn(error.password?.new && "border-2 border-red-500")}
             />
             {error.password?.new && (

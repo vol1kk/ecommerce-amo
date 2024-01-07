@@ -21,7 +21,7 @@ html, body {
 }
 
 .card__content--black {
-    @apply text-black [&>button]:border-black [&>svg>path]:stroke-black;
+    @apply text-black [&>button]:border-black [&_svg>path]:stroke-black;
 }
 
 .card__content--right {

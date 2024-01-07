@@ -5,9 +5,14 @@ import { itemStatusAction } from "@/components/server/Shop";
 type CardFavoriteProps = {
   id: string;
   isFavorite: boolean;
+  isAuthed: boolean;
 };
 
-export async function CardFavorite({ id, isFavorite }: CardFavoriteProps) {
+export async function CardFavorite({
+  id,
+  isFavorite,
+  isAuthed,
+}: CardFavoriteProps) {
   return (
     <form
       action={itemStatusAction.bind(undefined, {
@@ -15,7 +20,10 @@ export async function CardFavorite({ id, isFavorite }: CardFavoriteProps) {
         itemId: id,
       })}
     >
-      <button className="absolute right-4 top-4 rounded-full bg-white p-2">
+      <button
+        disabled={!isAuthed}
+        className="absolute right-4 top-4 rounded-full bg-white p-2 disabled:cursor-no-drop"
+      >
         <HeartIcon
           className={cn(isFavorite && "fill-red-500 [&>path]:stroke-red-500")}
         />

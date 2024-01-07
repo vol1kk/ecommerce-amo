@@ -8,8 +8,8 @@ export const FeaturedCategories: FeaturedCategory[] = [
     },
     content: {
       href: "/",
-      title: "High Coziness",
-      subtitle: "Low Price",
+      title: "cozy_title",
+      subtitle: "cozy_subtitle",
       discount: 50,
     },
   },
@@ -20,8 +20,8 @@ export const FeaturedCategories: FeaturedCategory[] = [
     },
     content: {
       href: "/",
-      title: "Breezy Summer Style",
-      subtitle: "Beyoung Presents",
+      title: "breezy_title",
+      subtitle: "breezy_subtitle",
       discount: 25,
     },
   },

@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   Details,
   hideDetails,
@@ -12,6 +14,7 @@ type DetailsEmailProps = {
 };
 
 export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
+  const t = useTranslations("Account");
   const {
     error,
     isEditing,
@@ -25,20 +28,20 @@ export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
   return (
     <Details>
       <Details.View
-        title="Your Email"
+        title={t("your_email")}
         canEdit={canEdit}
         value={hiddenEmail}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title="Email"
+          title={t("change_email")}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="email"
-              placeholder="Email"
+              placeholder={t("email_placeholder")}
               defaultValue={email}
             />
             <Details.Submit isEditable />

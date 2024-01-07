@@ -1,0 +1,121 @@
+{
+  "Item": {
+    "product": "Product",
+    "wishlist": "Wishlist",
+    "cart_add": "Add to Cart",
+    "cart_remove": "Remove from Cart",
+    "cart_unavailable": "Can't add to Cart",
+    "color": "Color",
+    "size": "Size",
+    "not_selected": "None",
+    "prod_details": "Product Details",
+    "price": "Price",
+    "shipping": "Shipping",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "delete": "Delete",
+    "summary": "Order Summary",
+    "shipping_address": "Shipping Address",
+    "billing_address": "Billing Address",
+    "payment_method": "Payment Method",
+    "place_order": "Place Order",
+    "checkout_proceed": "Proceed to Checkout",
+    "checkout_unavailable": "Some options aren't selected"
+  },
+  "Home": {
+    "categories": "Categories",
+    "shop": "Shop",
+    "men": "Men",
+    "women": "Women",
+    "combos": "Combos",
+    "search": "Search for your items",
+    "wishlist": "Wishlist",
+    "account": "Account",
+    "cart": "Cart",
+    "saving_zone": "Big Saving Zone",
+    "feedback": "Feedback",
+    "discount": "UP TO {discount}% OFF",
+    "shop_now": "Shop Now",
+    "explore_items": "Explore Items",
+    "Featured": {
+      "cozy_title": "High Coziness",
+      "cozy_subtitle": "Low Price",
+      "breezy_title": "Breezy Summer Style",
+      "breezy_subtitle": "Beyoung Presents"
+    },
+    "Discounted": {
+      "hawaii_title": "Hawaiian Shirts",
+      "hawaii_subtitle": "Dress up in summer vibe",
+      "printed_title": "Printed T-Shirts",
+      "printed_subtitle": "New Designs every Week",
+      "cargo_title": "Cargo Joggers",
+      "cargo_subtitle": "Move with style & comfort",
+      "urban_title": "Urban Shirts",
+      "urban_subtitle": "Live in Comfort",
+      "oversized_title": "Oversized T-Shirts",
+      "oversized_subtitle": "Street style Icon"
+    },
+    "Cards": {
+      "new_arrivals": "New Arrivals",
+      "joggers": "Knitted Joggers",
+      "full_sleeve": "Full Sleeves",
+      "active_shirts": "Active Shirts",
+      "urban_shirts": "Urban Shirts"
+    }
+  },
+  "Footer": {
+    "help": "Need Help",
+    "track": "Track Order",
+    "refunds": "Returns & Refunds",
+    "faq": "FAQs",
+    "career": "Career",
+    "more": "More Info",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "shipping": "Shipping Policy",
+    "contact": "Contact Us"
+  },
+  "Slides": {
+    "dress_category": "Dresses",
+    "dress_title": "Celebrating Pack",
+    "dress_subtitle": "stylish / cute / love",
+    "tops_category": "Tops",
+    "tops_title": "Summer Value Pack",
+    "tops_subtitle": "cool / colorful / comfy"
+  },
+  "Account": {
+    "info": "My Information",
+    "contact_details": "Contact Details",
+    "orders": "Orders",
+    "wishlist": "Wishlist",
+    "sign_out": "Sign Out",
+    "oauth_continue": "Continue with",
+    "or": "Or",
+    "show": "Show",
+    "hide": "Hide",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+
+    "name_placeholder": "Enter Name",
+    "surname_placeholder": "Enter Surname",
+    "fullname_title": "Your Name",
+    "fullname_overlay": "Change Full Name",
+
+    "email_placeholder": "Enter Email",
+    "your_email": "Your Email",
+    "change_email": "Change Email",
+
+    "phone_placeholder": "Enter Phone Number",
+    "your_phone": "Your Phone",
+    "change_phone": "Change Phone",
+
+    "your_password": "Your Password",
+    "change_password": "Change Password",
+    "password_current": "Enter Current Password",
+    "password_new": "Enter new Password",
+    "password_repeat": "Repeat new Password",
+
+    "submit_allowed": "Save",
+    "submit_disallowed": "Changing isn't allowed"
+  }
+}

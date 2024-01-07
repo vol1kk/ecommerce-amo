@@ -1,10 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
-import { usePathname } from "next/navigation";
 
 import cn from "@/utils/cn";
 import Link from "@/components/common/Link";
+import { usePathname } from "@/utils/intlHooks";
 
 type HeaderLinkProps = {
   href: string;

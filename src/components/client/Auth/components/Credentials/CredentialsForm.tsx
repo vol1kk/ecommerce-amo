@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import cn from "@/utils/cn";
 import Button from "@/components/common/Button";
@@ -20,6 +21,7 @@ export default function CredentialsForm({
   error,
   handleSubmit,
 }: CredentialsFormProps) {
+  const t = useTranslations("Account");
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -28,7 +30,7 @@ export default function CredentialsForm({
       className="[&>label>input]:w-full [&>label]:mb-3 [&>label]:inline-block [&>label]:w-full"
     >
       <label htmlFor="email">
-        <span className={labelClasses}>Email</span>
+        <span className={labelClasses}>{t("your_email")}</span>
         <input
           required
           id="email"
@@ -44,7 +46,7 @@ export default function CredentialsForm({
       </label>
       <label htmlFor="password">
         <div className="flex items-center justify-between">
-          <span className={labelClasses}>Password</span>
+          <span className={labelClasses}>{t("your_password")}</span>
           <Button
             onClick={() => setShowPassword(prev => !prev)}
             className="flex items-center gap-2 bg-transparent p-0 text-sm font-bold tracking-widest text-lightColor"
@@ -52,12 +54,12 @@ export default function CredentialsForm({
             {showPassword ? (
               <>
                 <HideIcon />
-                Hide
+                {t("hide")}
               </>
             ) : (
               <>
                 <ShowIcon />
-                Show
+                {t("show")}
               </>
             )}
           </Button>
@@ -81,7 +83,7 @@ export default function CredentialsForm({
         </div>
       )}
       <Button isSubmit={true} className="mt-2 w-full text-lg font-bold">
-        Sign {type === "login" ? "In" : "Up"}
+        {type === "login" ? t("sign_in") : t("sign_up")}
       </Button>
     </form>
   );

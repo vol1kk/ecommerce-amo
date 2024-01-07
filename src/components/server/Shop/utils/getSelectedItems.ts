@@ -1,8 +1,6 @@
-import { getServerSession } from "next-auth";
-
 import { SelectedItem } from "@/types";
-import { authOptions } from "@/lib/authOptions";
 import { SelectedItemsTag } from "@/components/server/Shop";
+import { apiService } from "@/services/RequestService";
 
 type SelectedItemTypes = "cart" | "wishlist" | undefined;
 type SelectedItemFullness = "full" | "half" | "bare" | undefined;
@@ -11,11 +9,6 @@ export async function getSelectedItems(
   type: SelectedItemTypes,
   fullness: SelectedItemFullness,
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    return [];
-  }
-
   const searchParams = new URLSearchParams();
   if (type) {
     searchParams.append("type", type);
@@ -25,19 +18,9 @@ export async function getSelectedItems(
     searchParams.append("fullness", fullness);
   }
 
-  const resp = await fetch(
-    `${
-      process.env.NEXTAUTH_URL
-    }/api/v1/items/selected?${searchParams.toString()}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session.user.accessToken}`,
-      },
-      next: {
-        tags: [SelectedItemsTag],
-      },
-    },
+  const resp = await apiService.get(
+    `/api/v1/items/selected?${searchParams.toString()}`,
+    { next: { tags: [SelectedItemsTag] } },
   );
 
   if (!resp.ok) throw new Error("Something went wrong");

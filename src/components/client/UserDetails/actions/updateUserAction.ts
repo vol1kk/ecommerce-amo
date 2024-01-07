@@ -1,18 +1,10 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
+import { apiService } from "@/services/RequestService";
 
 export async function updateUserAction(initialState: any, formData: FormData) {
-  const session = await getServerSession(authOptions);
-
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/user/update`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${session?.user.accessToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Object.fromEntries(formData)),
+  const res = await apiService.post("/api/v1/user/update", {
+    body: Object.fromEntries(formData),
   });
 
   return await res.json();

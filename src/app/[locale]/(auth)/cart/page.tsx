@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { Item } from "@/types";
 import Link from "@/components/common/Link";
 import Button from "@/components/common/Button";
@@ -12,6 +14,7 @@ import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDet
 const shippingFee = 5; // I don't have the fee field, so gotta pretend I have smth
 export default async function Page() {
   const items = await getSelectedItems("cart", "bare");
+  const t = await getTranslations("Item");
 
   if (items.length === 0) {
     return <CartEmpty />;
@@ -28,34 +31,42 @@ export default async function Page() {
 
   return (
     <main className="grid flex-1 grid-rows-[1fr,auto]">
-      <div>
+      <div className="mb-12">
         <table className="w-full border-collapse text-center">
           <thead className="bg-boldColor font-semibold uppercase tracking-wide text-white md-header:hidden [&_th]:p-5">
             <tr>
-              <th className="text-left">Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Subtotal</th>
-              <th>Action</th>
+              <th className="text-left">{t("product")}</th>
+              <th>{t("price")}</th>
+              <th>{t("quantity")}</th>
+              <th>{t("subtotal")}</th>
+              <th>{t("delete")}</th>
             </tr>
           </thead>
-          <tbody className="md-header:flex md-header:justify-center">
+          <tbody className="md-header:flex md-header:flex-col md-header:justify-center">
             {items.map(selectedItem => {
               const item = selectedItem.item as Item;
 
               return (
-                <tr className="relative [&_td]:p-5" key={item.id}>
-                  <td className="flex gap-3 text-left after:absolute after:inset-x-8 after:bottom-2 after:h-[1px] after:rounded-md after:bg-[#BEBCBD]">
+                <tr
+                  className="sm-l:[&_td]:p-2 sm-l:[&_td]:block sm-l:last:[&>td]:pb-5 relative mx-auto w-fit [&_td]:p-5"
+                  key={item.id}
+                >
+                  <td className="sm-l:flex-col flex gap-3 text-left after:absolute after:inset-x-8 after:bottom-2 after:h-[1px] after:rounded-md after:bg-[#BEBCBD]">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="aspect-square w-[7rem] rounded-md object-cover"
+                      className="sm-l:w-full aspect-square w-[7rem] rounded-md object-cover"
                     />
-                    <div>
-                      <h2 className="text-lg font-bold">{item.name}</h2>
-                      <FavoriteDetail title="Size" value={selectedItem.size} />
+                    <div className="sm-l:[&>div]:place-items-center">
+                      <h2 className="sm-l:text-center sm-l:mb-2 text-lg font-bold">
+                        {item.name}
+                      </h2>
                       <FavoriteDetail
-                        title="Color"
+                        title={t("size")}
+                        value={selectedItem.size}
+                      />
+                      <FavoriteDetail
+                        title={t("color")}
                         value={selectedItem.color}
                       />
                     </div>
@@ -84,25 +95,29 @@ export default async function Page() {
           <div>
             <div className="mb-4 font-semibold text-boldColor">
               <TypographyEqual
-                title="Sub Total"
+                title={t("subtotal")}
                 classNameValue="place-self-end"
                 value={`$${subTotal.toFixed(2)}`}
               />
               <TypographyEqual
-                title="Shipping"
+                title={t("shipping")}
                 classNameValue="place-self-end"
                 value={`$${shippingFee.toFixed(2)}`}
               />
             </div>
             <TypographyEqual
-              title="Grand Total"
+              title={t("summary")}
               value={`$${grandTotal}`}
-              className="relative mb-8 place-items-center font-bold text-boldColor after:absolute after:inset-x-0 after:-bottom-4 after:h-[1px] after:rounded-md after:bg-[#BEBCBD]"
+              classNameValue="place-self-end"
+              className="relative mb-8 font-bold text-boldColor after:absolute after:inset-x-0 after:-bottom-4 after:h-[1px] after:rounded-md after:bg-[#BEBCBD]"
             />
           </div>
           <Link href={CHECKOUT_PAGE}>
-            <Button className="bg-purple-600 px-12 font-semibold text-white">
-              {canProceed ? "Proceed to Checkout" : "Can't"}
+            <Button
+              disabled={!canProceed}
+              className="w-full bg-purple-600 px-12 font-semibold text-white disabled:cursor-no-drop"
+            >
+              {canProceed ? t("checkout_proceed") : t("checkout_unavailable")}
             </Button>
           </Link>
         </div>

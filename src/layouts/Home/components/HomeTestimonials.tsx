@@ -8,17 +8,19 @@ import { Testimonial, TTestimonial } from "@/components/common/Testimonial";
 import groupByThree from "@/layouts/Home/utils/groupByThree";
 
 type SectionTestimonialsProps = {
+  tl: string;
   testimonials: TTestimonial[];
 };
 
 export default function HomeTestimonials({
+  tl,
   testimonials,
 }: SectionTestimonialsProps) {
   const [group, setGroup] = useState(0);
   const groupedTestimonials = groupByThree(testimonials);
 
   return (
-    <Section name="Feedback">
+    <Section name={tl}>
       <div className="flex overflow-hidden">
         {groupedTestimonials.map((testimonials, groupInd) => (
           <div

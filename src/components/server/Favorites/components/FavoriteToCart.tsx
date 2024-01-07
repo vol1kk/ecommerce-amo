@@ -1,12 +1,14 @@
 import Button from "@/components/common/Button";
 import { itemStatusAction } from "@/components/server/Shop";
 import { SelectedItem } from "@/types";
+import { useTranslations } from "next-intl";
 
 type FavoriteToCartProps = {
   selectedItem: SelectedItem;
 };
 
 export function FavoriteToCart({ selectedItem }: FavoriteToCartProps) {
+  const t = useTranslations("Item");
   const { isInCart, itemId, size, color } = selectedItem;
 
   const canBuy = !!(size && color);
@@ -21,10 +23,10 @@ export function FavoriteToCart({ selectedItem }: FavoriteToCartProps) {
         className="w-full min-w-[180px] bg-purple-700 font-semibold text-white disabled:cursor-no-drop disabled:bg-purple-800"
       >
         {!canBuy
-          ? "Can't add to cart"
+          ? t("cart_unavailable")
           : isInCart
-            ? "Remove from Cart"
-            : "Add to Cart"}
+            ? t("cart_remove")
+            : t("cart_add")}
       </Button>
     </form>
   );

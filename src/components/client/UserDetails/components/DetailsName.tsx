@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   Details,
   hideDetails,
@@ -12,6 +14,7 @@ type DetailsNameProps = {
 };
 
 export function DetailsName({ firstName, lastName }: DetailsNameProps) {
+  const t = useTranslations("Account");
   const {
     error,
     isEditing,
@@ -27,13 +30,13 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
   return (
     <Details>
       <Details.View
-        title="Your Name"
+        title={t("fullname_title")}
         value={hiddenName}
         onClick={() => setIsEditing(true)}
       >
         <Details.Overlay
-          title="Name"
           isEditing={isEditing}
+          title={t("fullname_overlay")}
           setIsEditing={setIsEditing}
         >
           <form
@@ -44,12 +47,12 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
           >
             <Details.Input
               name="name"
-              placeholder="Name"
+              placeholder={t("name_placeholder")}
               defaultValue={fullName.name}
             />
             <Details.Input
               name="surname"
-              placeholder="Surname"
+              placeholder={t("surname_placeholder")}
               defaultValue={fullName.surname}
             />
             {error?.fullName && (
