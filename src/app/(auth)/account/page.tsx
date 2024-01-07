@@ -1,10 +1,9 @@
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 import { authOptions } from "@/lib/authOptions";
-import AccountDetails from "@/components/Account/components/AccountDetails";
-import { Details } from "@/components/UserDetails";
-import { redirect } from "next/navigation";
 import { SIGN_IN_PAGE } from "@/constants/routes";
+import { Details } from "@/components/client/UserDetails";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);

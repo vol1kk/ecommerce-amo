@@ -45,7 +45,7 @@ export default function OverlayPortal({
         role="dialog"
         className={cn(
           !isOpen && "invisible",
-          "fixed inset-0 z-30 overflow-y-auto",
+          "fixed inset-0 z-30 overflow-y-auto backdrop-blur-md",
           isOpen && className,
         )}
       >

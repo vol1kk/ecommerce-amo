@@ -1,5 +1,5 @@
-import { Auth } from "@/components/Auth";
 import Link from "@/components/common/Link";
+import { Auth } from "@/components/client/Auth";
 
 export default function Page() {
   return (

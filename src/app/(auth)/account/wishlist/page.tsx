@@ -1,9 +1,9 @@
 import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import Button from "@/components/common/Button";
-import { getSelectedItems } from "@/components/Shop";
 import { HeartIcon } from "@/components/common/Icons";
-import { FavoriteItem } from "@/components/Favorites";
+import { getSelectedItems } from "@/components/server/Shop";
+import { FavoriteItem } from "@/components/server/Favorites";
 
 export default async function Page() {
   const wishlistItem = await getSelectedItems("wishlist", "bare");
@@ -45,7 +45,7 @@ export default async function Page() {
 
   return (
     <section>
-      <h1 className="mb-4 text-2xl font-bold sm-x:text-center">Wishlist</h1>
+      <h1 className="mb-4 text-center text-2xl font-bold">Wishlist</h1>
       {content}
     </section>
   );

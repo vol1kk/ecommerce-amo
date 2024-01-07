@@ -1,4 +1,4 @@
-import { Auth } from "@/components/Auth";
+import { Auth } from "@/components/client/Auth";
 
 export default function Page() {
   return (

@@ -1,6 +1,6 @@
 import cn from "@/utils/cn";
-import { itemStatusAction } from "@/components/Shop";
 import { HeartIcon } from "@/components/common/Icons";
+import { itemStatusAction } from "@/components/server/Shop";
 
 type CardFavoriteProps = {
   id: string;
