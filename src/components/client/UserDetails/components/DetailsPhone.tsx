@@ -1,11 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
+import Modal from "@/components/common/Modal";
 import {
   Details,
   hideDetails,
   useDetailsForm,
 } from "@/components/client/UserDetails";
-import { useTranslations } from "next-intl";
 
 type DetailsPhoneProps = {
   number: string;
@@ -29,10 +31,10 @@ export function DetailsPhone({ number }: DetailsPhoneProps) {
         value={hiddenNumber}
         onClick={() => setIsEditing(true)}
       >
-        <Details.Overlay
-          isEditing={isEditing}
+        <Modal
+          isOpen={isEditing}
+          setIsOpen={setIsEditing}
           title={t("change_phone")}
-          setIsEditing={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
@@ -42,7 +44,7 @@ export function DetailsPhone({ number }: DetailsPhoneProps) {
             />
             <Details.Submit isEditable />
           </form>
-        </Details.Overlay>
+        </Modal>
       </Details.View>
     </Details>
   );

@@ -4,17 +4,8 @@ import { getTranslations } from "next-intl/server";
 
 import { authOptions } from "@/lib/authOptions";
 import { SIGN_IN_PAGE } from "@/constants/routes";
-import { Details, hideDetails } from "@/components/client/UserDetails";
-import { CrossIcon } from "@/components/common/Icons";
-import { Address } from "@/components/client/UserAddress";
-import AddressInitial from "@/components/client/UserAddress/components/AddressInitial";
-import Addresses from "@/components/client/UserAddress/components/Addresses";
-
-export type BaseTL = {
-  title: string;
-  placeholder: string;
-  changeTitle: string;
-};
+import { Details } from "@/components/client/UserDetails";
+import { Addresses } from "@/components/client/UserAddress";
 
 export default async function Page() {
   const t = await getTranslations("Account");

@@ -1,10 +1,10 @@
-import cn from "@/utils/cn";
-import { useTranslations } from "next-intl";
-import { deleteAddressAction } from "@/components/client/UserAddress/actions/deleteAddressAction";
 import { useFormState } from "react-dom";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
-import { TAddress } from "@/components/client/UserAddress";
+import { Dispatch, SetStateAction, useEffect } from "react";
+
+import cn from "@/utils/cn";
+import { deleteAddressAction, TAddress } from "@/components/client/UserAddress";
 
 type AddressActionsProps = {
   id: string | undefined;

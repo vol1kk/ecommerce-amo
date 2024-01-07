@@ -1,9 +1,10 @@
 "use client";
 
-import cn from "@/utils/cn";
-import { Details, useDetailsForm } from "@/components/client/UserDetails";
-import { BaseTL } from "@/app/[locale]/(auth)/account/page";
 import { useTranslations } from "next-intl";
+
+import cn from "@/utils/cn";
+import Modal from "@/components/common/Modal";
+import { Details, useDetailsForm } from "@/components/client/UserDetails";
 
 type DetailsPasswordProps = {
   canEdit: boolean;
@@ -21,10 +22,10 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
         title={t("your_password")}
         onClick={() => setIsEditing(true)}
       >
-        <Details.Overlay
+        <Modal
+          isOpen={isEditing}
+          setIsOpen={setIsEditing}
           title={t("change_password")}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
@@ -57,7 +58,7 @@ export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
             )}
             <Details.Submit isEditable />
           </form>
-        </Details.Overlay>
+        </Modal>
       </Details.View>
     </Details>
   );

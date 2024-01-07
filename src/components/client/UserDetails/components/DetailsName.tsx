@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import Modal from "@/components/common/Modal";
 import {
   Details,
   hideDetails,
@@ -30,14 +31,14 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
   return (
     <Details>
       <Details.View
-        title={t("fullname_title")}
         value={hiddenName}
+        title={t("fullname_title")}
         onClick={() => setIsEditing(true)}
       >
-        <Details.Overlay
-          isEditing={isEditing}
+        <Modal
+          isOpen={isEditing}
+          setIsOpen={setIsEditing}
           title={t("fullname_overlay")}
-          setIsEditing={setIsEditing}
         >
           <form
             className="grid gap-2"
@@ -60,7 +61,7 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
             )}
             <Details.Submit isEditable />
           </form>
-        </Details.Overlay>
+        </Modal>
       </Details.View>
     </Details>
   );
