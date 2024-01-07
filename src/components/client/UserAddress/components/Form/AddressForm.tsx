@@ -8,16 +8,16 @@ import {
   Address,
   TAddress,
   FormAddressAction,
-  AddressActionResponse,
 } from "@/components/client/UserAddress";
 
-type AddressFormProps = TAddress & {
-  action: FormAddressAction;
+type AddressFormProps = Partial<TAddress> & {
+  action: (payload: FormData) => void;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setAddresses: Dispatch<SetStateAction<TAddress[]>>;
 };
 
 export function AddressForm({
+  id,
   city,
   name,
   phone,
@@ -27,29 +27,9 @@ export function AddressForm({
   setIsOpen,
   setAddresses,
 }: AddressFormProps) {
-  const { data, update } = useSession();
-
-  const [state, formAction] = useFormState<
-    AddressActionResponse | null,
-    FormData
-  >(action, null);
-
-  useEffect(() => {
-    if (state?.ok) {
-      const currentAddresses = data?.user.address
-        ? [...data.user.address, state.data]
-        : [state.data];
-
-      setAddresses(currentAddresses);
-
-      update({ address: currentAddresses }).then(() => console.log(data));
-      setIsOpen(false);
-    }
-  }, [state]); // eslint-disable-line
-
   return (
     <form
-      action={formAction}
+      action={action}
       className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent"
     >
       <Address.Input
@@ -88,7 +68,7 @@ export function AddressForm({
         defaultValue={phone}
         placeholder="Enter Phone"
       />
-      <Address.Submit />
+      <Address.Submit id={id} />
     </form>
   );
 }

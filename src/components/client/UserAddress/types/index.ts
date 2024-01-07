@@ -1,29 +1,25 @@
 export type TAddress = {
-  id?: string;
-  name?: string;
-  city?: string;
-  phone?: string;
-  surname?: string;
-  address?: string;
+  id: string;
+  name: string;
+  city: string;
+  phone: string;
+  surname: string;
+  address: string;
+  tags: string[];
+  isDefault: boolean;
 };
 
 type AddressActionErrorResponse = {
   ok: false;
-  errors: {
-    name?: string;
-    surname?: string;
-    city?: string;
-    address?: string;
-    phone?: string;
-  };
+  errors: Partial<Omit<TAddress, "id">>;
 };
 
 type AddressActionSuccessResponse = {
   ok: true;
-  data: Partial<TAddress>;
+  data: TAddress;
 };
 
-export type AddressActionResponse =
+type AddressActionResponse =
   | AddressActionErrorResponse
   | AddressActionSuccessResponse;
 

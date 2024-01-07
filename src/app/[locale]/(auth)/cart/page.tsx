@@ -48,17 +48,17 @@ export default async function Page() {
 
               return (
                 <tr
-                  className="sm-l:[&_td]:p-2 sm-l:[&_td]:block sm-l:last:[&>td]:pb-5 relative mx-auto w-fit [&_td]:p-5"
+                  className="relative mx-auto w-fit sm-l:last:[&>td]:pb-5 [&_td]:p-5 sm-l:[&_td]:block sm-l:[&_td]:p-2"
                   key={item.id}
                 >
-                  <td className="sm-l:flex-col flex gap-3 text-left after:absolute after:inset-x-8 after:bottom-2 after:h-[1px] after:rounded-md after:bg-[#BEBCBD]">
+                  <td className="flex gap-3 text-left after:absolute after:inset-x-8 after:bottom-2 after:h-[1px] after:rounded-md after:bg-[#BEBCBD] sm-l:flex-col">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="sm-l:w-full aspect-square w-[7rem] rounded-md object-cover"
+                      className="aspect-square w-[7rem] rounded-md object-cover sm-l:w-full"
                     />
                     <div className="sm-l:[&>div]:place-items-center">
-                      <h2 className="sm-l:text-center sm-l:mb-2 text-lg font-bold">
+                      <h2 className="text-lg font-bold sm-l:mb-2 sm-l:text-center">
                         {item.name}
                       </h2>
                       <FavoriteDetail

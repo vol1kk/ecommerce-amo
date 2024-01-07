@@ -20,6 +20,10 @@ class RequestService {
     return await this._makeRequest(url, "PATCH", options);
   }
 
+  async put(url: string, options?: RequestBodyType) {
+    return await this._makeRequest(url, "PUT", options);
+  }
+
   async post(url: string, options?: RequestBodyType) {
     return await this._makeRequest(url, "POST", options);
   }

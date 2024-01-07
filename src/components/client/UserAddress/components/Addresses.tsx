@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Modal from "@/components/common/Modal";
 import { CrossIcon } from "@/components/common/Icons";
@@ -10,6 +10,8 @@ import {
   TAddress,
   createAddressAction,
 } from "@/components/client/UserAddress";
+import { useSession } from "next-auth/react";
+import { useFormState } from "react-dom";
 
 type AddressesProps = {
   title: string;
@@ -19,6 +21,22 @@ type AddressesProps = {
 export default function Addresses({ title, initialAddresses }: AddressesProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [addresses, setAddresses] = useState(initialAddresses);
+
+  const { data, update } = useSession();
+  const [state, formAction] = useFormState(createAddressAction, null);
+
+  useEffect(() => {
+    if (state?.ok) {
+      const currentAddresses = data?.user.address
+        ? [...data.user.address, state.data]
+        : [state.data];
+
+      setAddresses(currentAddresses);
+
+      update();
+      setIsOpen(false);
+    }
+  }, [state]); // eslint-disable-line
 
   return (
     <section className="mb-8">
@@ -45,19 +63,15 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
                 {address.address}, {address.city}
               </p>
             </div>
-            <Address.Tags tags={["Home"]} isDefault={true} />
-            <Address.Actions
-              id={address.id}
-              isDefault={true}
-              setAddresses={setAddresses}
-            />
+            <Address.Tags tags={["Home"]} isDefault={address.isDefault} />
+            <Address.Actions address={address} setAddresses={setAddresses} />
           </Address>
         ))}
       </div>
       <Modal title="Add Address" isOpen={isOpen} setIsOpen={setIsOpen}>
         <Address.Form
+          action={formAction}
           setIsOpen={setIsOpen}
-          action={createAddressAction}
           setAddresses={setAddresses}
         />
       </Modal>

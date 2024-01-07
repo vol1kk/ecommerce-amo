@@ -69,15 +69,17 @@ model Comment {
 }
 
 model Address {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   surname    String
   city       String
   address    String
   postalCode String
   phone      String
-  user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String? @db.ObjectId
+  isDefault  Boolean? @default(false)
+  tags       String[]
+  user       User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String?  @db.ObjectId
 }
 
 // Necessary for Next auth
