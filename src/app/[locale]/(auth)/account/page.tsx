@@ -4,7 +4,11 @@ import { getTranslations } from "next-intl/server";
 
 import { authOptions } from "@/lib/authOptions";
 import { SIGN_IN_PAGE } from "@/constants/routes";
-import { Details } from "@/components/client/UserDetails";
+import { Details, hideDetails } from "@/components/client/UserDetails";
+import { CrossIcon } from "@/components/common/Icons";
+import { Address } from "@/components/client/UserAddress";
+import AddressInitial from "@/components/client/UserAddress/components/AddressInitial";
+import Addresses from "@/components/client/UserAddress/components/Addresses";
 
 export type BaseTL = {
   title: string;
@@ -13,8 +17,8 @@ export type BaseTL = {
 };
 
 export default async function Page() {
-  const session = await getServerSession(authOptions);
   const t = await getTranslations("Account");
+  const session = await getServerSession(authOptions);
 
   if (!session?.user) {
     redirect(SIGN_IN_PAGE);
@@ -24,9 +28,8 @@ export default async function Page() {
 
   return (
     <div>
-      <h1 className="mb-1 text-2xl font-bold text-boldColor">{t("info")}</h1>
       <section>
-        <h2 className="mb-2 text-xl font-semibold text-boldColor">
+        <h2 className="mb-2 text-2xl font-semibold text-boldColor">
           {t("contact_details")}
         </h2>
         <Details.Name
@@ -40,6 +43,10 @@ export default async function Page() {
         <Details.Phone number={session.user.phone || ""} />
         <Details.Password canEdit={canEdit} />
       </section>
+      <Addresses
+        title={t("address_details")}
+        initialAddresses={session.user.address}
+      />
     </div>
   );
 }

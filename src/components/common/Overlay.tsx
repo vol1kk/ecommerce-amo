@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  MouseEvent,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
 import { createPortal } from "react-dom";
+import { ReactNode, useEffect, useState } from "react";
 
 import cn from "@/utils/cn";
 
@@ -18,11 +11,7 @@ type OverlayProps = {
   className?: string;
 };
 
-export default function OverlayPortal({
-  isOpen,
-  children,
-  className,
-}: OverlayProps) {
+export default function Overlay({ isOpen, children, className }: OverlayProps) {
   const [overlay, setOverlay] = useState<Element | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 

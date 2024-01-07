@@ -31,6 +31,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
+          include: { address: true },
         });
 
         if (!user || !user?.password) {
@@ -63,14 +64,21 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (account?.type === "oauth") {
+        const address = await prisma.address.findMany({
+          where: { userId: account.userId },
+        });
+
         token.provider = account?.provider;
-        token = { ...user, ...token };
+        token = { ...user, ...token, address };
         token.accessToken = generateJWT(user.id, token.email!);
       }
 
       if (trigger === "update") {
         const updatedUser = await prisma.user.findUnique({
           where: { id: token.id },
+          include: {
+            address: true,
+          },
         });
 
         token = { ...token, ...updatedUser };

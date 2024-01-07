@@ -1,4 +1,5 @@
 import NextAuth, { DefaultSession } from "next-auth";
+import { Address } from "@/components/client/UserAddress/components/Form/AddressForm";
 
 declare module "next-auth" {
   /**
@@ -18,6 +19,7 @@ declare module "next-auth" {
       surname: string | null;
       phone: string | null;
       provider: string;
+      address: Address[];
       accessToken: string;
     } & DefaultSession["user"];
   }
@@ -26,6 +28,7 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     id: string;
+    address: Address[];
     surname: string | null;
     phone: string | null;
     provider: string;

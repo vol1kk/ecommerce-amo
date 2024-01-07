@@ -47,7 +47,7 @@ export function useDetailsForm<T>(initialData: T) {
         setState(formState.data);
       }
 
-      update(formState.data);
+      update();
       setIsEditing(false);
     } else {
       setError(formState?.error || initialErrors);

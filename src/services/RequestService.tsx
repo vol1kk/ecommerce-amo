@@ -24,6 +24,10 @@ class RequestService {
     return await this._makeRequest(url, "POST", options);
   }
 
+  async delete(url: string, options?: RequestBodyType) {
+    return await this._makeRequest(url, "DELETE", options);
+  }
+
   async get(url: string, options?: RequestBodyType) {
     return await this._makeRequest(url, "GET", options);
   }
@@ -60,7 +64,8 @@ class RequestService {
       ...strippedOptions,
     };
 
-    return await fetch(this.baseURL ? this.baseURL + url : url, reqOptions);
+    const URL = this.baseURL ? this.baseURL + url : url;
+    return await fetch(URL, reqOptions);
   }
 }
 
