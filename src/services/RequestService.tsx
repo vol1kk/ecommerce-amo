@@ -1,3 +1,7 @@
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "@/lib/authOptions";
+
 type HttpMethod =
   | "GET"
   | "POST"
@@ -18,10 +22,6 @@ class RequestService {
 
   async patch(url: string, options?: RequestBodyType) {
     return await this._makeRequest(url, "PATCH", options);
-  }
-
-  async put(url: string, options?: RequestBodyType) {
-    return await this._makeRequest(url, "PUT", options);
   }
 
   async post(url: string, options?: RequestBodyType) {
@@ -47,20 +47,23 @@ class RequestService {
       strippedOptions = rest;
     }
 
-    let cookies;
+    let token;
     if (process.env.NEXTAUTH_URL) {
-      // Checking whether called from server, or client component
-      // because NEXTAUTH_URL is undefined if called on client
-      cookies = (await import("next/headers")).cookies().toString();
+      const session = await getServerSession(authOptions);
+      token = session?.user.accessToken;
     } else {
-      cookies = null;
+      const authHeader = (options?.headers as { authorization?: string })
+        .authorization;
+
+      const values = authHeader?.split(" ") || [];
+      token = values[1];
     }
 
     const canHaveBody = method !== "GET" && options?.body;
     const reqOptions: RequestInit = {
       method,
       headers: {
-        ...(cookies && { cookie: cookies }),
+        authorization: `Bearer ${token}`,
         ...(canHaveBody && { "Content-Type": "application/json" }),
         ...options?.headers,
       },
@@ -76,3 +79,5 @@ class RequestService {
 export const apiService = new RequestService(
   process.env.NEXTAUTH_URL as string,
 );
+
+export const httpService = new RequestService("http://localhost:3001");

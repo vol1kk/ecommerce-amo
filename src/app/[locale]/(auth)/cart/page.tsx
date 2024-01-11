@@ -13,7 +13,7 @@ import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDet
 
 const shippingFee = 5; // I don't have the fee field, so gotta pretend I have smth
 export default async function Page() {
-  const items = await getSelectedItems("cart", "bare");
+  const items = await getSelectedItems("cart");
   const t = await getTranslations("Item");
 
   if (items.length === 0) {

@@ -1,19 +1,9 @@
 "use server";
 
-import { apiService } from "@/services/RequestService";
+import { apiService, httpService } from "@/services/RequestService";
 
 export async function deleteAddressAction(id: string | undefined) {
-  const res = await apiService.delete(`/api/v1/address/${id}`);
-
-  if (!res.ok) {
-    return {
-      ok: false,
-      error: {
-        status: res.status,
-        text: res.statusText,
-      },
-    };
-  }
+  const res = await httpService.delete(`/addresses/${id}`);
 
   return {
     ok: true,

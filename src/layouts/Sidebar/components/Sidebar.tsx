@@ -4,12 +4,12 @@ import cn from "@/utils/cn";
 import { SidebarCategories } from "@/layouts/Sidebar";
 import SidebarItem from "@/layouts/Sidebar/components/SidebarItem";
 
-type NavbarProps = {
+type SidebarProps = {
   t: (str: string) => string;
   className?: string;
 };
 
-export default function Sidebar({ t, className }: NavbarProps) {
+export default function Sidebar({ t, className }: SidebarProps) {
   return (
     <nav>
       <ul

@@ -24,14 +24,15 @@ export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
     setIsEditing,
   } = useDetailsForm(initialEmail);
 
-  const hiddenEmail = hideDetails(email, "email");
+  // const hiddenEmail = hideDetails(email, "email");
 
+  // TODO: hidden Email doesn't work
   return (
     <Details>
       <Details.View
         title={t("your_email")}
         canEdit={canEdit}
-        value={hiddenEmail}
+        value={email}
         onClick={() => setIsEditing(true)}
       >
         <Modal

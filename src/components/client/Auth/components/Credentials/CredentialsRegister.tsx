@@ -8,8 +8,11 @@ import {
   RegisterResponse,
   getFormCredentials,
 } from "@/components/client/Auth";
+import { httpService } from "@/services/RequestService";
+import { useSession } from "next-auth/react";
 
 export function CredentialsRegister() {
+  const { data } = useSession();
   const { handleLogin, setError, error } = useCredentialsLogin();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -46,19 +49,13 @@ export function CredentialsRegister() {
       return;
     }
 
-    const resp = await fetch("/api/v1/register", {
-      method: "POST",
+    // TODO: errors from server?
+    await httpService.post("/auth/register", {
       headers: {
-        "Content-Type": "application/json",
+        authorization: `Bearer ${data?.user.accessToken}`,
       },
-      body: JSON.stringify(credentials),
+      body: credentials,
     });
-
-    const registerResult = (await resp.json()) as RegisterResponse;
-    if (!registerResult.success) {
-      setError(registerResult.error);
-      return;
-    }
 
     await handleLogin(e);
   }

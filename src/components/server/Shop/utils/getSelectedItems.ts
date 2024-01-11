@@ -1,29 +1,21 @@
 import { SelectedItem } from "@/types";
+import { httpService } from "@/services/RequestService";
 import { SelectedItemsTag } from "@/components/server/Shop";
-import { apiService } from "@/services/RequestService";
 
-type SelectedItemTypes = "cart" | "wishlist" | undefined;
-type SelectedItemFullness = "full" | "half" | "bare" | undefined;
+type SelectedItemTypes = "all" | "cart" | "wishlist";
 
-export async function getSelectedItems(
-  type: SelectedItemTypes,
-  fullness: SelectedItemFullness,
-) {
+export async function getSelectedItems(type: SelectedItemTypes) {
   const searchParams = new URLSearchParams();
+
   if (type) {
     searchParams.append("type", type);
   }
 
-  if (fullness) {
-    searchParams.append("fullness", fullness);
-  }
+  const resp = await httpService.get(`/selected?${searchParams.toString()}`, {
+    next: { tags: [SelectedItemsTag] },
+  });
 
-  const resp = await apiService.get(
-    `/api/v1/items/selected?${searchParams.toString()}`,
-    { next: { tags: [SelectedItemsTag] } },
-  );
-
-  if (!resp.ok) throw new Error("Something went wrong");
+  if (!resp.ok) throw new Error(resp.statusText);
 
   return (await resp.json()) as Promise<SelectedItem[]>;
 }

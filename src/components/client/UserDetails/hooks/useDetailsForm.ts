@@ -5,10 +5,6 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import { updateUserAction } from "@/components/client/UserDetails";
-import {
-  UpdateResponse,
-  UpdateResponseError,
-} from "@/app/api/v1/user/update/route";
 
 const initialErrors = {
   fullName: "",
@@ -18,17 +14,19 @@ const initialErrors = {
     old: "",
     new: "",
   },
-} satisfies UpdateResponseError["error"];
+}; // satisfies UpdateResponseError["error"];
+
+// TODO: Response types
 
 export function useDetailsForm<T>(initialData: T) {
   const { update } = useSession();
-  const [formState, formAction] = useFormState<UpdateResponse | null, FormData>(
-    updateUserAction,
-    null,
-  );
+
+  // <UpdateResponse | null, FormData>
+  const [formState, formAction] = useFormState(updateUserAction, null);
   const [isEditing, setIsEditing] = useState(false);
-  const [error, setError] =
-    useState<UpdateResponseError["error"]>(initialErrors);
+
+  // <UpdateResponseError["error"]>
+  const [error, setError] = useState(initialErrors);
 
   const [state, setState] = useState(initialData);
 

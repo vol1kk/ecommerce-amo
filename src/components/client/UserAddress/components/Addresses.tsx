@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import Modal from "@/components/common/Modal";
 import { CrossIcon } from "@/components/common/Icons";
@@ -12,6 +12,7 @@ import {
 } from "@/components/client/UserAddress";
 import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
+import { httpService } from "@/services/RequestService";
 
 type AddressesProps = {
   title: string;
@@ -23,7 +24,10 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
   const [addresses, setAddresses] = useState(initialAddresses);
 
   const { data, update } = useSession();
-  const [state, formAction] = useFormState(createAddressAction, null);
+  const [state, formAction] = useFormState(
+    createAddressAction.bind(undefined, data?.user.accessToken),
+    null,
+  );
 
   useEffect(() => {
     if (state?.ok) {
@@ -52,7 +56,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
         </button>
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-        {addresses.map((address, ind) => (
+        {addresses?.map((address, ind) => (
           <Address key={ind}>
             <h3 className="text-xl font-bold">
               {address.name} {address.surname}
@@ -71,6 +75,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
       <Modal title="Add Address" isOpen={isOpen} setIsOpen={setIsOpen}>
         <Address.Form
           action={formAction}
+          // onSubmit={submitHandler}
           setIsOpen={setIsOpen}
           setAddresses={setAddresses}
         />

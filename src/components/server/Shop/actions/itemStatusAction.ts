@@ -20,8 +20,9 @@ export async function itemStatusAction({
   const session = await getServerSession(authOptions);
   if (!session?.user) return;
 
-  const selectedItems = await getSelectedItems(undefined, "bare");
+  const selectedItems = await getSelectedItems("all");
 
+  // TODO: Change to Nest.js
   const existingFavoriteItem = selectedItems.find(fav => fav.itemId === itemId);
   const action = type === "wishlist" ? "isInWishlist" : "isInCart";
 

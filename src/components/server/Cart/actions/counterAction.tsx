@@ -3,7 +3,7 @@
 import { revalidateTag } from "next/cache";
 import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
 import { SelectedItemsTag } from "@/components/server/Shop";
-import { apiService } from "@/services/RequestService";
+import { apiService, httpService } from "@/services/RequestService";
 
 const AllowedActions = ["increase", "decrease"];
 
@@ -15,7 +15,7 @@ export default async function counterAction(
   const action = getFormDataStr(formData, "action");
 
   if (!AllowedActions.includes(action)) {
-    throw new Error("Unsupported action passeds");
+    throw new Error("Unsupported action passed");
   }
 
   let newQuantity;
@@ -28,7 +28,7 @@ export default async function counterAction(
     if (currState > 1) newQuantity = currState - 1;
   }
 
-  const res = await apiService.patch(`/api/v1/items/selected/${id}`, {
+  await httpService.patch(`/selected/${id}`, {
     body: {
       quantity: newQuantity,
     },
