@@ -10,7 +10,6 @@ import { FavoriteItem } from "@/components/server/Favorites";
 export default async function Page() {
   const t = await getTranslations("Item");
   const wishlistItem = await getSelectedItems("wishlist");
-  console.log(wishlistItem);
 
   let content;
   if (wishlistItem.length === 0) {

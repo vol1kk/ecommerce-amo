@@ -16,7 +16,6 @@ export default async function Page({ searchParams }: ItemPageProps) {
 
   const items = await getItems(category);
   const favoriteItems = await getSelectedItems("wishlist");
-  console.log(favoriteItems);
 
   if (items.length === 0) {
     return (

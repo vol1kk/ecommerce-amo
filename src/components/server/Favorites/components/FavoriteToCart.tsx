@@ -1,7 +1,8 @@
-import Button from "@/components/common/Button";
-import { itemStatusAction } from "@/components/server/Shop";
-import { SelectedItem } from "@/types";
 import { useTranslations } from "next-intl";
+
+import { SelectedItem } from "@/types";
+import Button from "@/components/common/Button";
+import toggleCartAction from "@/components/server/Shop/actions/toggleCartAction";
 
 type FavoriteToCartProps = {
   selectedItem: SelectedItem;
@@ -14,7 +15,7 @@ export function FavoriteToCart({ selectedItem }: FavoriteToCartProps) {
   const canBuy = !!(size && color);
   return (
     <form
-      action={itemStatusAction.bind(undefined, { type: "cart", itemId })}
+      action={toggleCartAction.bind(undefined, itemId)}
       className="sm:justify-self-stretch"
     >
       <Button
