@@ -1,6 +1,6 @@
 "use server";
 
-import { apiService, httpService } from "@/services/RequestService";
+import { httpService } from "@/services/RequestService";
 import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
 
 export async function updateAddressAction(state: any, formData: FormData) {

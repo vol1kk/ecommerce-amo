@@ -10,19 +10,17 @@ import {
 } from "@/components/client/UserDetails";
 
 type DetailsPhoneProps = {
+  id: string;
   number: string;
 };
-export function DetailsPhone({ number }: DetailsPhoneProps) {
+export function DetailsPhone({ id, number }: DetailsPhoneProps) {
   const t = useTranslations("Account");
-  const {
-    error,
-    isEditing,
-    formAction,
-    state: phoneNumber,
-    setIsEditing,
-  } = useDetailsForm(number);
+  const { error, isEditing, formAction, state, setIsEditing } = useDetailsForm(
+    { number },
+    id,
+  );
 
-  const hiddenNumber = hideDetails(phoneNumber, "number");
+  const hiddenNumber = hideDetails(state.number, "number");
 
   return (
     <Details>
@@ -40,7 +38,7 @@ export function DetailsPhone({ number }: DetailsPhoneProps) {
             <Details.Input
               name="phone"
               placeholder={t("phone_placeholder")}
-              defaultValue={phoneNumber}
+              defaultValue={state.number}
             />
             <Details.Submit isEditable />
           </form>

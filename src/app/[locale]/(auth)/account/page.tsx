@@ -24,15 +24,20 @@ export default async function Page() {
           {t("contact_details")}
         </h2>
         <Details.Name
+          id={session?.user.id}
           firstName={session.user.name || ""}
           lastName={session.user.surname || ""}
         />
         <Details.Email
+          id={session?.user.id}
           canEdit={canEdit}
           initialEmail={session.user.email || ""}
         />
-        <Details.Phone number={session.user.phone || ""} />
-        <Details.Password canEdit={canEdit} />
+        <Details.Phone
+          id={session?.user.id}
+          number={session.user.phone || ""}
+        />
+        <Details.Password id={session?.user.id} canEdit={canEdit} />
       </section>
       <Addresses
         title={t("address_details")}

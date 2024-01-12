@@ -1,9 +1,13 @@
 "use server";
 
-import { apiService } from "@/services/RequestService";
+import { httpService } from "@/services/RequestService";
 
-export async function updateUserAction(initialState: any, formData: FormData) {
-  const res = await apiService.post("/api/v1/user/update", {
+export async function updateUserAction(
+  id: string,
+  initialState: any,
+  formData: FormData,
+) {
+  const res = await httpService.patch(`/users/${id}`, {
     body: Object.fromEntries(formData),
   });
 

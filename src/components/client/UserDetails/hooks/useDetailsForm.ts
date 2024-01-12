@@ -18,11 +18,14 @@ const initialErrors = {
 
 // TODO: Response types
 
-export function useDetailsForm<T>(initialData: T) {
+export function useDetailsForm<T>(initialData: T, id: string) {
   const { update } = useSession();
 
   // <UpdateResponse | null, FormData>
-  const [formState, formAction] = useFormState(updateUserAction, null);
+  const [formState, formAction] = useFormState(
+    updateUserAction.bind(undefined, id),
+    null,
+  );
   const [isEditing, setIsEditing] = useState(false);
 
   // <UpdateResponseError["error"]>
@@ -37,14 +40,14 @@ export function useDetailsForm<T>(initialData: T) {
   }, [isEditing]);
 
   useEffect(() => {
-    if (formState?.success) {
-      const formStateValues = Object.values(formState.data);
-      if (formStateValues.length === 1) {
-        setState(formStateValues[0] as any);
-      } else {
-        setState(formState.data);
+    if (formState) {
+      const updatedData = {} as { [K in keyof T]: T[K] };
+
+      for (const key in initialData) {
+        updatedData[key] = formState[key];
       }
 
+      setState(updatedData);
       update();
       setIsEditing(false);
     } else {
