@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { useFormState } from "react-dom";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 import Modal from "@/components/common/Modal";
 import { CrossIcon } from "@/components/common/Icons";
@@ -10,9 +12,6 @@ import {
   TAddress,
   createAddressAction,
 } from "@/components/client/UserAddress";
-import { useSession } from "next-auth/react";
-import { useFormState } from "react-dom";
-import { httpService } from "@/services/RequestService";
 
 type AddressesProps = {
   title: string;
@@ -75,7 +74,6 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
       <Modal title="Add Address" isOpen={isOpen} setIsOpen={setIsOpen}>
         <Address.Form
           action={formAction}
-          // onSubmit={submitHandler}
           setIsOpen={setIsOpen}
           setAddresses={setAddresses}
         />

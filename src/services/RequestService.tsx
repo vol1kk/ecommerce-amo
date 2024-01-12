@@ -59,7 +59,6 @@ class RequestService {
       token = values[1];
     }
 
-
     const canHaveBody = method !== "GET" && options?.body;
     const reqOptions: RequestInit = {
       method,

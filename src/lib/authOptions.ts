@@ -1,15 +1,11 @@
 import { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import prisma from "@/lib/prisma";
 import { SIGN_IN_PAGE } from "@/constants/routes";
-import generateJWT from "@/utils/generateJWT";
 import { httpService } from "@/services/RequestService";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
@@ -48,17 +44,15 @@ export const authOptions: NextAuthOptions = {
         token = { ...user, ...token };
       }
 
-      // TODO: Add support to oauth
-      // if (account?.type === "oauth") {
-      //   // const res = await httpService.post("/auth/oauth");
-      //   const address = await prisma.address.findMany({
-      //     where: { userId: account.userId },
-      //   });
-      //
-      //   token.provider = account?.provider;
-      //   token = { ...user, ...token, address };
-      //   token.accessToken = generateJWT(user.id, token.email!);
-      // }
+      if (account?.type === "oauth") {
+        const res = await httpService.post("/auth/oauth", {
+          body: {
+            token: token,
+            account: account,
+          },
+        });
+        return await res.json();
+      }
 
       if (trigger === "update") {
         const res = await httpService.get(`/users/${token.id}`);
