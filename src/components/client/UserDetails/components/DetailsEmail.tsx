@@ -22,7 +22,7 @@ export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
     id,
   );
 
-  // const hiddenEmail = hideDetails(email, "email");
+  const hiddenEmail = hideDetails(state.email, "email");
 
   // TODO: hidden Email doesn't work
   return (
@@ -30,7 +30,7 @@ export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
       <Details.View
         title={t("your_email")}
         canEdit={canEdit}
-        value={state.email}
+        value={hiddenEmail}
         onClick={() => setIsEditing(true)}
       >
         <Modal

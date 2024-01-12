@@ -120,6 +120,7 @@
     "password_repeat": "Повторіть пароль",
 
     "submit_allowed": "Зберігти",
-    "submit_disallowed": "Редагування заборонено"
+    "submit_disallowed": "Редагування заборонено",
+    "submit_pending": "Оновлення"
   }
 }
