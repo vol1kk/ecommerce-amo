@@ -22,7 +22,7 @@ export default function Header() {
         <HeaderSearch placeholder={searchTL} className="sm:hidden" />
         <HeaderActions className="flex gap-4 sm:hidden" />
         <HeaderBurger>
-          <Sidebar t={t} className="mb-4 !flex-col" />
+          <Sidebar className="mb-4 !flex-col" />
           <HeaderSearch placeholder={searchTL} className="mb-4" />
           <HeaderActions className="grid gap-2" />
         </HeaderBurger>

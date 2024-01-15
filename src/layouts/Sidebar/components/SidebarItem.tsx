@@ -5,6 +5,9 @@ import cn from "@/utils/cn";
 import { locales } from "@/i18n";
 import Link from "@/components/common/Link";
 import { usePathname } from "@/utils/intlHooks";
+import { useSearchParams } from "next/navigation";
+import { ITEM_PAGE } from "@/constants/routes";
+import { useTranslations } from "next-intl";
 
 type SidebarItemProps = {
   name: string;
@@ -13,29 +16,26 @@ type SidebarItemProps = {
 };
 
 export default function SidebarItem({ name, href, icon }: SidebarItemProps) {
-  // TODO: Fix active link highlight
+  const t = useTranslations("Home");
 
-  // const pathname = usePathname();
-  // const parsedPath = pathname.replace(
-  //   new RegExp(locales.map(l => l + "/").join("|"), "g"),
-  //   "",
-  // );
-  // const isPathShop = parsedPath === "/shop";
-  // const isSelected = href === parsedPath;
+  const category = useSearchParams().get("category");
+
+  const isShop = category === null && href === ITEM_PAGE;
+  const isSelected = name === category;
 
   return (
     <li
       key={name}
       className={cn(
         "group relative origin-center rounded-md bg-accent px-4 py-2 after:absolute after:-bottom-[5px] after:left-0 after:h-[2px] after:w-full after:scale-0 after:bg-boldColor after:transition-transform after:duration-200 hover:text-boldColor hover:after:scale-100",
-        // isSelected && "font-semibold text-boldColor",
-        // isPathShop && isSelected && "[&_svg>path]:stroke-boldColor",
-        // !isPathShop && isSelected && "[&_svg]:fill-boldColor",
+        (isSelected || isShop) && "font-semibold text-boldColor",
+        isShop && "[&_svg>path]:stroke-boldColor",
+        !isShop && isSelected && "[&_svg]:fill-boldColor",
       )}
     >
       <Link href={href} className="flex items-center gap-2">
         {icon}
-        {name}
+        {t(name)}
       </Link>
     </li>
   );
