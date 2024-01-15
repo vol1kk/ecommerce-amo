@@ -4,7 +4,7 @@ import { Item } from "@/types";
 import Link from "@/components/common/Link";
 import Button from "@/components/common/Button";
 import { CHECKOUT_PAGE } from "@/constants/routes";
-import { getSelectedItems } from "@/components/server/Shop";
+import { ItemService } from "@/services/ItemService";
 import TypographyEqual from "@/components/common/TypographyEqual";
 import CartEmpty from "@/components/server/Cart/components/CartEmpty";
 import CartDelete from "@/components/server/Cart/components/CartDelete";
@@ -13,7 +13,7 @@ import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDet
 
 const shippingFee = 5; // I don't have the fee field, so gotta pretend I have smth
 export default async function Page() {
-  const items = await getSelectedItems("cart");
+  const items = await ItemService.getSelectedItems("cart");
   const t = await getTranslations("Item");
 
   if (items.length === 0) {

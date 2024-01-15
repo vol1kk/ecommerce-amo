@@ -121,6 +121,7 @@
 
     "submit_allowed": "Зберігти",
     "submit_disallowed": "Редагування заборонено",
-    "submit_pending": "Оновлення"
+    "submit_pending": "Оновлення",
+    "something_wrong": "Щось пішло не так! Спробуйте ще раз"
   }
 }

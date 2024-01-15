@@ -2,60 +2,40 @@
 
 import { FormEvent } from "react";
 
+import getZodErrors from "@/utils/getZodErrors";
+import { AuthService } from "@/services/AuthService";
 import CredentialsForm from "@/components/client/Auth/components/Credentials/CredentialsForm";
 import {
   useCredentialsLogin,
-  RegisterResponse,
   getFormCredentials,
 } from "@/components/client/Auth";
-import { httpService } from "@/services/RequestService";
-import { useSession } from "next-auth/react";
 
+// TODO: Show proper errors
 export function CredentialsRegister() {
-  const { data } = useSession();
   const { handleLogin, setError, error } = useCredentialsLogin();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const credentials = getFormCredentials(e.currentTarget);
 
-    if (!credentials.email && !credentials.password) {
+    const res = await AuthService.register(credentials);
+
+    // If user with this email already exists
+    if ("statusCode" in res && res.statusCode === 409) {
       setError({
-        email: true,
-        password: true,
-        text: "Both fields must be filled!",
+        email: "email_exists",
       });
 
       return;
     }
 
-    if (!credentials.email) {
-      setError({
-        password: false,
-        email: true,
-        text: "E-Mail must be filled!",
-      });
-
+    // If passed body was invalid
+    const errors = getZodErrors(res.errors);
+    if (errors) {
+      setError(errors);
       return;
     }
-
-    if (!credentials.password) {
-      setError({
-        email: false,
-        password: true,
-        text: "Password must be filled!",
-      });
-
-      return;
-    }
-
-    // TODO: errors from server?
-    await httpService.post("/auth/register", {
-      headers: {
-        authorization: `Bearer ${data?.user.accessToken}`,
-      },
-      body: credentials,
-    });
 
     await handleLogin(e);
   }

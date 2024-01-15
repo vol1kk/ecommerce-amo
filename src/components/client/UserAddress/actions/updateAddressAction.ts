@@ -1,6 +1,6 @@
 "use server";
 
-import { httpService } from "@/services/RequestService";
+import { AddressService } from "@/services/AddressService";
 import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
 
 export async function updateAddressAction(state: any, formData: FormData) {
@@ -9,11 +9,7 @@ export async function updateAddressAction(state: any, formData: FormData) {
   // TODO: smh zod doesn't delete id in UpdateAddressDto
   formData.delete("id");
 
-  const resp = await httpService.patch(`/addresses/${id}`, {
-    body: Object.fromEntries(formData),
-  });
-
-  const res = await resp.json();
+  const res = await AddressService.update(id, Object.fromEntries(formData));
 
   return {
     ok: true,

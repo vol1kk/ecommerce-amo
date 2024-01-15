@@ -2,8 +2,8 @@ import Link from "@/components/common/Link";
 import Button from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
 import Section from "@/components/common/Section";
+import { ItemService } from "@/services/ItemService";
 import { ITEM_PAGE, SHOP_PAGE } from "@/constants/routes";
-import { getItems, getSelectedItems } from "@/components/server/Shop";
 
 type ItemPageProps = {
   searchParams: {
@@ -14,8 +14,8 @@ type ItemPageProps = {
 export default async function Page({ searchParams }: ItemPageProps) {
   const category = searchParams.category;
 
-  const items = await getItems(category);
-  const favoriteItems = await getSelectedItems("wishlist");
+  const items = await ItemService.getItems(category);
+  const favoriteItems = await ItemService.getSelectedItems("wishlist");
 
   if (items.length === 0) {
     return (

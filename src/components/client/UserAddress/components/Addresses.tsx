@@ -23,10 +23,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
   const [addresses, setAddresses] = useState(initialAddresses);
 
   const { data, update } = useSession();
-  const [state, formAction] = useFormState(
-    createAddressAction.bind(undefined, data?.user.accessToken),
-    null,
-  );
+  const [state, formAction] = useFormState(createAddressAction, null);
 
   useEffect(() => {
     if (state?.ok) {

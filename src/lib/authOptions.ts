@@ -3,7 +3,8 @@ import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { SIGN_IN_PAGE } from "@/constants/routes";
-import { httpService } from "@/services/RequestService";
+import { AuthService } from "@/services/AuthService";
+import { UserService } from "@/services/UserService";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -25,15 +26,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const resp = await httpService.post("/auth/login", {
-          body: credentials,
-        });
-
-        if (!resp.ok) {
-          throw new Error("Something went wrong during login");
-        }
-
-        return await resp.json();
+        return await AuthService.login(credentials);
       },
     }),
   ],
@@ -45,18 +38,11 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (account?.type === "oauth") {
-        const res = await httpService.post("/auth/oauth", {
-          body: {
-            token: token,
-            account: account,
-          },
-        });
-        return await res.json();
+        token = await AuthService.oauthLogin({ token, account });
       }
 
       if (trigger === "update") {
-        const res = await httpService.get(`/users/${token.id}`);
-        const updatedUser = await res.json();
+        const updatedUser = await UserService.findOne(token.id);
         token = Object.assign(token, updatedUser);
       }
 

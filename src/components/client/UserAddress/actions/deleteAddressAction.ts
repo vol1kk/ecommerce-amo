@@ -1,12 +1,12 @@
 "use server";
 
-import { httpService } from "@/services/RequestService";
+import { AddressService } from "@/services/AddressService";
 
-export async function deleteAddressAction(id: string | undefined) {
-  const res = await httpService.delete(`/addresses/${id}`);
+export async function deleteAddressAction(id: string) {
+  const res = await AddressService.deleteById(id);
 
   return {
     ok: true,
-    data: await res.json(),
+    data: res,
   };
 }

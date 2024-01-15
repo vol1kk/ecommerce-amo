@@ -1,27 +1,23 @@
 "use server";
 
-import { httpService } from "@/services/RequestService";
-import { SelectedItem } from "@/types";
 import { revalidateTag } from "next/cache";
+
+import { ItemService } from "@/services/ItemService";
 import { SelectedItemsTag } from "@/components/server/Shop";
 
 export default async function toggleWishlistAction(id: string) {
-  const resp = await httpService.get(`/selected/${id}`);
-  const existingItem = (await resp.json()) as SelectedItem | null;
+  const existingItem = await ItemService.getSelectedItem(id);
 
   if (existingItem) {
-    await httpService.patch(`/selected/${id}`, {
-      body: {
-        itemId: id,
-        isInWishlist: !existingItem.isInWishlist,
-      },
+    // TODO: refactor (?), 'cuz no need to duplicate itemId and params/:id
+    await ItemService.updateSelectedItem(id, {
+      itemId: id,
+      isInWishlist: !existingItem.isInWishlist,
     });
   } else {
-    await httpService.post(`/selected`, {
-      body: {
-        itemId: id,
-        isInWishlist: true,
-      },
+    await ItemService.createSelected({
+      itemId: id,
+      isInWishlist: true,
     });
   }
 

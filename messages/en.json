@@ -121,6 +121,7 @@
 
     "submit_allowed": "Save",
     "submit_disallowed": "Changing isn't allowed",
-    "submit_updating": "Updating"
+    "submit_updating": "Updating",
+    "something_wrong": "Something went wrong! Please, try again!"
   }
 }

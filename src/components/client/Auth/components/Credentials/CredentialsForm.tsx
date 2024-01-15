@@ -1,18 +1,16 @@
-"use client";
-
 import { FormEvent, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import cn from "@/utils/cn";
 import Button from "@/components/common/Button";
-import { CredentialsError } from "@/components/client/Auth/types";
+import { AuthError } from "@/components/client/Auth";
 import { HideIcon, ShowIcon } from "@/components/common/Icons";
 
 const labelClasses = "inline-block mb-2 font-bold uppercase tracking-wide";
 
 type CredentialsFormProps = {
+  error: AuthError;
   type: "login" | "register";
-  error: CredentialsError;
   handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
@@ -23,6 +21,8 @@ export default function CredentialsForm({
 }: CredentialsFormProps) {
   const t = useTranslations("Account");
   const [showPassword, setShowPassword] = useState(false);
+
+  const isError = !!(error?.email || error?.password);
 
   return (
     <form
@@ -40,7 +40,7 @@ export default function CredentialsForm({
           placeholder="me@example.com"
           className={cn(
             "w-full rounded-md border-2 border-black px-4 py-2",
-            error.email && "border-red-500",
+            error?.email && "border-red-500",
           )}
         />
       </label>
@@ -73,16 +73,16 @@ export default function CredentialsForm({
           type={showPassword ? "text" : "password"}
           className={cn(
             "w-full rounded-md border-2 border-black px-4 py-2",
-            error.password && "border-red-500",
+            error?.password && "border-red-500",
           )}
         />
       </label>
-      {error.text && (
+      {isError && (
         <div className="text-bold w-full text-center text-red-500">
-          {error.text}
+          {t("something_wrong")}
         </div>
       )}
-      <Button isSubmit={true} className="mt-2 w-full text-lg font-bold">
+      <Button isSubmit className="mt-2 w-full text-lg font-bold">
         {type === "login" ? t("sign_in") : t("sign_up")}
       </Button>
     </form>

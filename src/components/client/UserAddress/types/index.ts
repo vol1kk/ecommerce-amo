@@ -24,7 +24,6 @@ type AddressActionResponse =
   | AddressActionSuccessResponse;
 
 export type FormAddressAction = (
-  token: string | undefined,
   state: AddressActionResponse | null,
   payload: FormData,
 ) => AddressActionResponse | Promise<AddressActionResponse>;
