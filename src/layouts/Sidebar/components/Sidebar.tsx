@@ -1,10 +1,6 @@
-import React from "react";
-
 import cn from "@/utils/cn";
 import { SidebarCategories } from "@/layouts/Sidebar";
 import SidebarItem from "@/layouts/Sidebar/components/SidebarItem";
-import { useSearchParams } from "next/navigation";
-import { ITEM_PAGE } from "@/constants/routes";
 
 type SidebarProps = {
   className?: string;
