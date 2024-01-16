@@ -1,4 +1,4 @@
-import { Item, SelectedItem } from "@/types";
+import { Item, SelectedItem, WithRequired } from "@/types";
 import { RequestService } from "@/services/RequestService";
 import { SelectedItemsTag } from "@/components/server/Shop";
 
@@ -8,7 +8,7 @@ export class ItemService extends RequestService {
   static itemsUrl = this.baseUrl + "/items";
   static selectedItemsUrl = this.baseUrl + "/selected";
 
-  static async createSelected(body: any) {
+  static async createSelected(body: WithRequired<SelectedItem, "itemId">) {
     const res = await RequestService.post(this.selectedItemsUrl, { body });
 
     return res.json();
