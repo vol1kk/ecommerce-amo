@@ -46,9 +46,13 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
         </h2>
         <button
           onClick={() => setIsOpen(true)}
-          className="rounded-full bg-purple-700 p-3 [&>svg>path]:stroke-white"
+          className="group rounded-full bg-purple-700 p-3 [&>svg>path]:stroke-white"
         >
-          <CrossIcon className="rotate-45" width={22} height={22} />
+          <CrossIcon
+            className="rotate-45 transition-transform group-hover:rotate-12"
+            width={22}
+            height={22}
+          />
         </button>
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
@@ -64,7 +68,10 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
               </p>
             </div>
             <Address.Tags tags={["Home"]} isDefault={address.isDefault} />
-            <Address.Actions address={address} setAddresses={setAddresses} />
+            <Address.Actions>
+              <Address.Delete id={address.id} setAddresses={setAddresses} />
+              <Address.Update address={address} setAddresses={setAddresses} />
+            </Address.Actions>
           </Address>
         ))}
       </div>

@@ -7,7 +7,6 @@ import { DetailsView } from "@/components/client/UserDetails/components/common/D
 import { DetailsPassword } from "@/components/client/UserDetails/components/DetailsPassword";
 import { DetailsInput } from "@/components/client/UserDetails/components/common/DetailsInput";
 import { DetailsSubmit } from "@/components/client/UserDetails/components/common/DetailsSubmit";
-import { DetailsOverlay } from "@/components/client/UserDetails/components/common/DetailsOverlay";
 
 export default function Details({ children }: { children: ReactNode }) {
   return (
@@ -23,5 +22,4 @@ Details.Email = DetailsEmail;
 Details.Phone = DetailsPhone;
 Details.Input = DetailsInput;
 Details.Submit = DetailsSubmit;
-Details.Overlay = DetailsOverlay;
 Details.Password = DetailsPassword;

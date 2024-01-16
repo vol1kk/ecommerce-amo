@@ -24,7 +24,6 @@ export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
 
   const hiddenEmail = hideDetails(state.email, "email");
 
-  // TODO: hidden Email doesn't work
   return (
     <Details>
       <Details.View

@@ -10,7 +10,6 @@ import {
   getFormCredentials,
 } from "@/components/client/Auth";
 
-// TODO: Show proper errors
 export function CredentialsRegister() {
   const { handleLogin, setError, error } = useCredentialsLogin();
 
@@ -41,6 +40,11 @@ export function CredentialsRegister() {
   }
 
   return (
-    <CredentialsForm type="register" error={error} handleSubmit={onSubmit} />
+    <CredentialsForm
+      type="register"
+      error={error}
+      setError={setError}
+      handleSubmit={onSubmit}
+    />
   );
 }

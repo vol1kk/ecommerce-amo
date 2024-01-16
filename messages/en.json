@@ -122,6 +122,9 @@
     "submit_allowed": "Save",
     "submit_disallowed": "Changing isn't allowed",
     "submit_updating": "Updating",
-    "something_wrong": "Something went wrong! Please, try again!"
+
+    "something_wrong": "Something went wrong!",
+    "invalid_email": "Email isn't valid!",
+    "min_length": "Password must be longer!"
   }
 }

@@ -1,7 +1,12 @@
+"use client";
+
+import { FormEvent } from "react";
+
 import { Address, TAddress } from "@/components/client/UserAddress";
 
 type AddressFormProps = Partial<TAddress> & {
   action?: (payload: FormData) => void;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 };
 
 export function AddressForm({
@@ -12,10 +17,12 @@ export function AddressForm({
   action,
   surname,
   address,
+  onSubmit,
 }: AddressFormProps) {
   return (
     <form
       action={action}
+      onSubmit={onSubmit}
       className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent"
     >
       <Address.Input
