@@ -10,11 +10,12 @@ import {
 } from "@/components/client/UserDetails";
 
 type DetailsNameProps = {
+  id: string;
   firstName: string;
   lastName: string;
 };
 
-export function DetailsName({ firstName, lastName }: DetailsNameProps) {
+export function DetailsName({ id, firstName, lastName }: DetailsNameProps) {
   const t = useTranslations("Account");
   const {
     error,
@@ -22,10 +23,13 @@ export function DetailsName({ firstName, lastName }: DetailsNameProps) {
     formAction,
     setIsEditing,
     state: fullName,
-  } = useDetailsForm({
-    name: firstName,
-    surname: lastName,
-  });
+  } = useDetailsForm(
+    {
+      name: firstName,
+      surname: lastName,
+    },
+    id,
+  );
 
   const hiddenName = hideDetails(JSON.stringify(fullName), "name");
   return (

@@ -1,25 +1,21 @@
+import { getServerSession } from "next-auth";
+
 import cn from "@/utils/cn";
+import { authOptions } from "@/lib/authOptions";
 import { HeartIcon } from "@/components/common/Icons";
-import { itemStatusAction } from "@/components/server/Shop";
+import toggleWishlistAction from "@/components/server/Shop/actions/toggleWishlistAction";
 
 type CardFavoriteProps = {
   id: string;
   isFavorite: boolean;
-  isAuthed: boolean;
 };
 
-export async function CardFavorite({
-  id,
-  isFavorite,
-  isAuthed,
-}: CardFavoriteProps) {
+export async function CardFavorite({ id, isFavorite }: CardFavoriteProps) {
+  const session = await getServerSession(authOptions);
+  const isAuthed = !!session;
+
   return (
-    <form
-      action={itemStatusAction.bind(undefined, {
-        type: "wishlist",
-        itemId: id,
-      })}
-    >
+    <form action={toggleWishlistAction.bind(undefined, id)}>
       <button
         disabled={!isAuthed}
         className="absolute right-4 top-4 rounded-full bg-white p-2 disabled:cursor-no-drop"

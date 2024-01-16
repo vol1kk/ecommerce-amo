@@ -1,6 +1,8 @@
 "use client";
 
+import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 import Modal from "@/components/common/Modal";
 import { CrossIcon } from "@/components/common/Icons";
@@ -10,8 +12,6 @@ import {
   TAddress,
   createAddressAction,
 } from "@/components/client/UserAddress";
-import { useSession } from "next-auth/react";
-import { useFormState } from "react-dom";
 
 type AddressesProps = {
   title: string;
@@ -52,7 +52,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
         </button>
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-        {addresses.map((address, ind) => (
+        {addresses?.map((address, ind) => (
           <Address key={ind}>
             <h3 className="text-xl font-bold">
               {address.name} {address.surname}

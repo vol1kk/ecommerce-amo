@@ -2,61 +2,38 @@
 
 import { FormEvent } from "react";
 
+import getZodErrors from "@/utils/getZodErrors";
+import { AuthService } from "@/services/AuthService";
 import CredentialsForm from "@/components/client/Auth/components/Credentials/CredentialsForm";
 import {
   useCredentialsLogin,
-  RegisterResponse,
   getFormCredentials,
 } from "@/components/client/Auth";
 
+// TODO: Show proper errors
 export function CredentialsRegister() {
   const { handleLogin, setError, error } = useCredentialsLogin();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const credentials = getFormCredentials(e.currentTarget);
 
-    if (!credentials.email && !credentials.password) {
+    const res = await AuthService.register(credentials);
+
+    // If user with this email already exists
+    if ("statusCode" in res && res.statusCode === 409) {
       setError({
-        email: true,
-        password: true,
-        text: "Both fields must be filled!",
+        email: "email_exists",
       });
 
       return;
     }
 
-    if (!credentials.email) {
-      setError({
-        password: false,
-        email: true,
-        text: "E-Mail must be filled!",
-      });
-
-      return;
-    }
-
-    if (!credentials.password) {
-      setError({
-        email: false,
-        password: true,
-        text: "Password must be filled!",
-      });
-
-      return;
-    }
-
-    const resp = await fetch("/api/v1/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-
-    const registerResult = (await resp.json()) as RegisterResponse;
-    if (!registerResult.success) {
-      setError(registerResult.error);
+    // If passed body was invalid
+    const errors = getZodErrors(res.errors);
+    if (errors) {
+      setError(errors);
       return;
     }
 

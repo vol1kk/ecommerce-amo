@@ -4,12 +4,12 @@ import Link from "@/components/common/Link";
 import { SHOP_PAGE } from "@/constants/routes";
 import Button from "@/components/common/Button";
 import { HeartIcon } from "@/components/common/Icons";
-import { getSelectedItems } from "@/components/server/Shop";
 import { FavoriteItem } from "@/components/server/Favorites";
+import { ItemService } from "@/services/ItemService";
 
 export default async function Page() {
   const t = await getTranslations("Item");
-  const wishlistItem = await getSelectedItems("wishlist", "bare");
+  const wishlistItem = await ItemService.getSelectedItems("wishlist");
 
   let content;
   if (wishlistItem.length === 0) {

@@ -1,20 +1,13 @@
 "use server";
 
-import { apiService } from "@/services/RequestService";
+import { AddressService } from "@/services/AddressService";
 import { FormAddressAction } from "@/components/client/UserAddress/types";
 
 export const createAddressAction: FormAddressAction = async function (
   state,
   formData,
 ) {
-  const res = await apiService.post("/api/v1/address", {
-    body: Object.fromEntries(formData),
-  });
+  const res = await AddressService.create(Object.fromEntries(formData));
 
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  }
-
-  const data = await res.json();
-  return { ok: true, data };
+  return { ok: true, data: res };
 };

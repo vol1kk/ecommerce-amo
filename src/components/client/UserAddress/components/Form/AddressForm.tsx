@@ -1,17 +1,12 @@
 "use client";
 
-import { useFormState } from "react-dom";
-import { useSession } from "next-auth/react";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, FormEvent, SetStateAction } from "react";
 
-import {
-  Address,
-  TAddress,
-  FormAddressAction,
-} from "@/components/client/UserAddress";
+import { Address, TAddress } from "@/components/client/UserAddress";
 
 type AddressFormProps = Partial<TAddress> & {
-  action: (payload: FormData) => void;
+  action?: (payload: FormData) => void;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setAddresses: Dispatch<SetStateAction<TAddress[]>>;
 };
@@ -24,12 +19,12 @@ export function AddressForm({
   action,
   surname,
   address,
-  setIsOpen,
-  setAddresses,
+  onSubmit,
 }: AddressFormProps) {
   return (
     <form
       action={action}
+      onSubmit={onSubmit}
       className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent"
     >
       <Address.Input

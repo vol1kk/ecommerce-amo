@@ -7,15 +7,14 @@ import { FormEvent, useState } from "react";
 import { HOME_PAGE } from "@/constants/routes";
 import { getFormCredentials } from "@/components/client/Auth";
 
-const initialError = {
-  text: "",
-  email: false,
-  password: false,
-};
+export type AuthError = {
+  email?: string;
+  password?: string;
+} | null;
 
 export function useCredentialsLogin() {
   const router = useRouter();
-  const [error, setError] = useState(initialError);
+  const [error, setError] = useState<AuthError>(null);
 
   async function handleLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,10 +31,10 @@ export function useCredentialsLogin() {
       router.push(HOME_PAGE);
     } else {
       form.reset();
-      setError(prev => ({
-        ...prev,
-        text: "Invalid credentials! Please try again.",
-      }));
+      setError({
+        email: "invalid_email",
+        password: "invalid_password",
+      });
     }
   }
 

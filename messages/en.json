@@ -120,6 +120,8 @@
     "password_repeat": "Repeat new Password",
 
     "submit_allowed": "Save",
-    "submit_disallowed": "Changing isn't allowed"
+    "submit_disallowed": "Changing isn't allowed",
+    "submit_updating": "Updating",
+    "something_wrong": "Something went wrong! Please, try again!"
   }
 }

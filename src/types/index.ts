@@ -41,13 +41,6 @@ type Comment = {
   rating: number;
 };
 
-export type ProtectedRequest = {
-  verified: {
-    id: string;
-    email: string;
-  };
-} & Request;
-
 type CustomButtonProps = {
   isSubmit?: boolean;
 };

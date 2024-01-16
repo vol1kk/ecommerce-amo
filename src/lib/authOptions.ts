@@ -1,15 +1,12 @@
-import bcrypt from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import prisma from "@/lib/prisma";
 import { SIGN_IN_PAGE } from "@/constants/routes";
-import generateJWT from "@/utils/generateJWT";
+import { AuthService } from "@/services/AuthService";
+import { UserService } from "@/services/UserService";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
@@ -29,30 +26,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-          include: { address: true },
-        });
-
-        if (!user || !user?.password) {
-          return null;
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user?.password || "",
-        );
-
-        if (!isPasswordValid) {
-          return null;
-        }
-
-        const accessToken = generateJWT(user.id, credentials.email);
-        const { password, ...userRest } = Object.assign(user, {
-          accessToken,
-        });
-
-        return userRest;
+        return await AuthService.login(credentials);
       },
     }),
   ],
@@ -64,24 +38,12 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (account?.type === "oauth") {
-        const address = await prisma.address.findMany({
-          where: { userId: account.userId },
-        });
-
-        token.provider = account?.provider;
-        token = { ...user, ...token, address };
-        token.accessToken = generateJWT(user.id, token.email!);
+        token = await AuthService.oauthLogin({ token, account });
       }
 
       if (trigger === "update") {
-        const updatedUser = await prisma.user.findUnique({
-          where: { id: token.id },
-          include: {
-            address: true,
-          },
-        });
-
-        token = { ...token, ...updatedUser };
+        const updatedUser = await UserService.findOne(token.id);
+        token = Object.assign(token, updatedUser);
       }
 
       return token;

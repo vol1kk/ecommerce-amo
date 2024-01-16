@@ -10,22 +10,21 @@ import {
 } from "@/components/client/UserDetails";
 
 type DetailsEmailProps = {
+  id: string;
   initialEmail: string;
   canEdit: boolean;
 };
 
-export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
+export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
   const t = useTranslations("Account");
-  const {
-    error,
-    isEditing,
-    formAction,
-    state: email,
-    setIsEditing,
-  } = useDetailsForm(initialEmail);
+  const { error, isEditing, formAction, state, setIsEditing } = useDetailsForm(
+    { email: initialEmail },
+    id,
+  );
 
-  const hiddenEmail = hideDetails(email, "email");
+  const hiddenEmail = hideDetails(state.email, "email");
 
+  // TODO: hidden Email doesn't work
   return (
     <Details>
       <Details.View
@@ -43,7 +42,7 @@ export function DetailsEmail({ initialEmail, canEdit }: DetailsEmailProps) {
             <Details.Input
               name="email"
               placeholder={t("email_placeholder")}
-              defaultValue={email}
+              defaultValue={state.email}
             />
             <Details.Submit isEditable />
           </form>

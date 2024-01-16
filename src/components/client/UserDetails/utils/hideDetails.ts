@@ -1,8 +1,8 @@
 export default function hideDetails(data: string, type: string) {
   switch (type) {
     case "email": {
-      const [name, domain] = data.split("@");
-      const [beforeDot, afterDot] = domain.split(".");
+      const [name, domain] = data?.split("@");
+      const [beforeDot, afterDot] = domain?.split(".");
 
       const hiddenName = name.slice(0, 3).padEnd(10, "*");
       const hiddenDomain =

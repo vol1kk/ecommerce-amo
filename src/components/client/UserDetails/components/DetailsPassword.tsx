@@ -7,12 +7,13 @@ import Modal from "@/components/common/Modal";
 import { Details, useDetailsForm } from "@/components/client/UserDetails";
 
 type DetailsPasswordProps = {
+  id: string;
   canEdit: boolean;
 };
 
-export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
+export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
   const t = useTranslations("Account");
-  const { isEditing, setIsEditing, formAction, error } = useDetailsForm("");
+  const { isEditing, setIsEditing, formAction, error } = useDetailsForm("", id);
 
   return (
     <Details>

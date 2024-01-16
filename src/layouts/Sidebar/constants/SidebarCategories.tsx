@@ -1,33 +1,33 @@
-import { SHOP_PAGE } from "@/constants/routes";
+import { ITEM_PAGE } from "@/constants/routes";
 import {
-  CartIcon,
   ManIcon,
-  UnisexIcon,
+  CartIcon,
   WomanIcon,
+  UnisexIcon,
 } from "@/components/common/Icons";
 
 const genderClasses = "group-hover:fill-boldColor";
 
 export const SidebarCategories = [
   {
-    name: "Shop",
+    name: "shop",
     icon: <CartIcon className="group-hover:[&>path]:stroke-boldColor" />,
-    href: `${SHOP_PAGE}`,
+    href: ITEM_PAGE,
   },
   {
-    name: "Men",
+    name: "men",
     icon: <ManIcon className={genderClasses} />,
-    href: `${SHOP_PAGE}/men`,
+    href: `${ITEM_PAGE}?category=men`,
   },
   {
-    name: "Women",
+    name: "women",
     icon: <WomanIcon className={genderClasses} />,
-    href: `${SHOP_PAGE}/women`,
+    href: `${ITEM_PAGE}?category=women`,
   },
   {
-    name: "Combos",
+    name: "combos",
     icon: <UnisexIcon className={genderClasses} />,
-    href: `${SHOP_PAGE}/combos`,
+    href: `${ITEM_PAGE}?category=combos`,
   },
 ] as const;
 

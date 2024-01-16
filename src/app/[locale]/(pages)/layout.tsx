@@ -18,7 +18,7 @@ export default function Layout(props: { children: ReactNode }) {
           <h2 className="mb-2  text-center text-lg font-bold text-boldColor">
             {t("categories")}
           </h2>
-          <Sidebar t={t} />
+          <Sidebar />
         </aside>
         {props.children}
       </div>

@@ -5,10 +5,6 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import { updateUserAction } from "@/components/client/UserDetails";
-import {
-  UpdateResponse,
-  UpdateResponseError,
-} from "@/app/api/v1/user/update/route";
 
 const initialErrors = {
   fullName: "",
@@ -18,17 +14,22 @@ const initialErrors = {
     old: "",
     new: "",
   },
-} satisfies UpdateResponseError["error"];
+}; // satisfies UpdateResponseError["error"];
 
-export function useDetailsForm<T>(initialData: T) {
+// TODO: Response types
+
+export function useDetailsForm<T>(initialData: T, id: string) {
   const { update } = useSession();
-  const [formState, formAction] = useFormState<UpdateResponse | null, FormData>(
-    updateUserAction,
+
+  // <UpdateResponse | null, FormData>
+  const [formState, formAction] = useFormState(
+    updateUserAction.bind(undefined, id),
     null,
   );
   const [isEditing, setIsEditing] = useState(false);
-  const [error, setError] =
-    useState<UpdateResponseError["error"]>(initialErrors);
+
+  // <UpdateResponseError["error"]>
+  const [error, setError] = useState(initialErrors);
 
   const [state, setState] = useState(initialData);
 
@@ -39,14 +40,14 @@ export function useDetailsForm<T>(initialData: T) {
   }, [isEditing]);
 
   useEffect(() => {
-    if (formState?.success) {
-      const formStateValues = Object.values(formState.data);
-      if (formStateValues.length === 1) {
-        setState(formStateValues[0] as any);
-      } else {
-        setState(formState.data);
+    if (formState) {
+      const updatedData = {} as { [K in keyof T]: T[K] };
+
+      for (const key in initialData) {
+        updatedData[key] = formState[key];
       }
 
+      setState(updatedData);
       update();
       setIsEditing(false);
     } else {

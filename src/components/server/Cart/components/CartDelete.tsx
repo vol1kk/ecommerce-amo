@@ -1,5 +1,5 @@
 import { TrashIcon } from "@/components/common/Icons";
-import { itemStatusAction } from "@/components/server/Shop";
+import toggleCartAction from "@/components/server/Shop/actions/toggleCartAction";
 
 type CartDeleteProps = {
   id: string;
@@ -7,10 +7,7 @@ type CartDeleteProps = {
 
 export default function CartDelete({ id }: CartDeleteProps) {
   return (
-    <form
-      action={itemStatusAction.bind(undefined, { type: "cart", itemId: id })}
-      className="mx-auto"
-    >
+    <form action={toggleCartAction.bind(undefined, id)} className="mx-auto">
       <button type="submit">
         <TrashIcon />
       </button>

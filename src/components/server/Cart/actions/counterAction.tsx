@@ -1,12 +1,14 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
+
+import { ItemService } from "@/services/ItemService";
 import { SelectedItemsTag } from "@/components/server/Shop";
-import { apiService } from "@/services/RequestService";
+import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
 
 const AllowedActions = ["increase", "decrease"];
 
+// TODO: Make counter client + use useDebounce to update ui fast
 export default async function counterAction(
   id: string,
   currState: number,
@@ -15,7 +17,7 @@ export default async function counterAction(
   const action = getFormDataStr(formData, "action");
 
   if (!AllowedActions.includes(action)) {
-    throw new Error("Unsupported action passeds");
+    throw new Error("Unsupported action passed");
   }
 
   let newQuantity;
@@ -28,10 +30,8 @@ export default async function counterAction(
     if (currState > 1) newQuantity = currState - 1;
   }
 
-  const res = await apiService.patch(`/api/v1/items/selected/${id}`, {
-    body: {
-      quantity: newQuantity,
-    },
+  await ItemService.updateSelectedItem(id, {
+    quantity: newQuantity,
   });
 
   revalidateTag(SelectedItemsTag);

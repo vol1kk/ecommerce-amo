@@ -1,26 +1,15 @@
 "use server";
 
-import { apiService } from "@/services/RequestService";
-import extractUpdateData from "@/components/client/UserAddress/utils/extractUpdateData";
+import { AddressService } from "@/services/AddressService";
+import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
 
 export async function updateAddressAction(state: any, formData: FormData) {
-  const { id, body } = extractUpdateData(formData);
+  const id = getFormDataStr(formData, "id");
 
-  const resp = await apiService.patch(`/api/v1/address/${id}`, {
-    body,
-  });
+  // TODO: smh zod doesn't delete id in UpdateAddressDto
+  formData.delete("id");
 
-  if (!resp.ok) {
-    return {
-      ok: false,
-      error: {
-        status: resp.status,
-        text: resp.statusText,
-      },
-    };
-  }
-
-  const res = await resp.json();
+  const res = await AddressService.update(id, Object.fromEntries(formData));
 
   return {
     ok: true,

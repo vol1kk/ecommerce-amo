@@ -73,20 +73,21 @@ export function AddressActions({
         >
           {t("edit")}
         </button>
-        {!address.isDefault && (
-          <form action={updateAction}>
-            <button
-              name="setDefault"
-              value={JSON.stringify({
-                id: address.id,
-                isDefault: !address.isDefault,
-              })}
-              type="submit"
-            >
-              {t("set_default")}
-            </button>
-          </form>
-        )}
+        {/* TODO: Make this not goofy */}
+        {/*{!address.isDefault && (*/}
+        {/*  <form action={updateAction}>*/}
+        {/*    <button*/}
+        {/*      name="setDefault"*/}
+        {/*      value={JSON.stringify({*/}
+        {/*        id: address.id,*/}
+        {/*        isDefault: !address.isDefault,*/}
+        {/*      })}*/}
+        {/*      type="submit"*/}
+        {/*    >*/}
+        {/*      {t("set_default")}*/}
+        {/*    </button>*/}
+        {/*  </form>*/}
+        {/*)}*/}
       </div>
       <Modal title="Edit Address" isOpen={isOpen} setIsOpen={setIsOpen}>
         <Address.Form
