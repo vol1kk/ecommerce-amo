@@ -23,7 +23,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
   const [addresses, setAddresses] = useState(initialAddresses);
 
   const { data, update } = useSession();
-  const [state, formAction] = useFormState(createAddressAction, null);
+  const [state, createAction] = useFormState(createAddressAction, null);
 
   useEffect(() => {
     if (state?.ok) {
@@ -69,11 +69,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
         ))}
       </div>
       <Modal title="Add Address" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Address.Form
-          action={formAction}
-          setIsOpen={setIsOpen}
-          setAddresses={setAddresses}
-        />
+        <Address.Form action={createAction} />
       </Modal>
     </section>
   );

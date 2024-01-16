@@ -1,5 +1,5 @@
 import { CrossIcon } from "@/components/common/Icons";
-import toggleWishlistAction from "@/components/server/Shop/actions/toggleWishlistAction";
+import { toggleWishlistAction } from "@/components/server/Favorites";
 
 type FavoriteRemoveProps = {
   id: string;

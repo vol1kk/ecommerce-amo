@@ -90,12 +90,7 @@ export function AddressActions({
         {/*)}*/}
       </div>
       <Modal title="Edit Address" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Address.Form
-          {...address}
-          setIsOpen={setIsOpen}
-          action={updateAction}
-          setAddresses={setAddresses}
-        />
+        <Address.Form {...address} action={updateAction} />
       </Modal>
     </>
   );
