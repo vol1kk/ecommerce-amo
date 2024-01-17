@@ -84,6 +84,14 @@
     "tops_subtitle": "cool / colorful / comfy"
   },
   "Account": {
+    "password": "Current Password",
+    "new_password": "New Password",
+    "delete": "Delete",
+
+    "password_not_match": "Password don't match",
+    "invalid_pass": "Invalid password",
+
+    "not_selected": "None",
     "info": "My Information",
     "contact_details": "Contact Details",
     "address_details": "Address",
@@ -121,7 +129,37 @@
 
     "submit_allowed": "Save",
     "submit_disallowed": "Changing isn't allowed",
-    "submit_updating": "Updating",
-    "something_wrong": "Something went wrong! Please, try again!"
+    "submit_pending": "Updating",
+
+    "something_wrong": "Something went wrong!",
+    "invalid_email": "Email isn't valid!",
+    "min_length": "Password must be longer!"
+  },
+  "Address": {
+    "edit": "Edit",
+    "submit": "Save",
+    "submit_pending": "Updating",
+
+    "address_create": "Create Address",
+    "address_update": "Change Address",
+
+
+    "name": "Name",
+    "name_placeholder": "Enter Name",
+
+    "surname": "Surname",
+    "surname_placeholder": "Enter Surname",
+
+    "city": "City",
+    "city_placeholder": "Enter City",
+
+    "street": "Street",
+    "street_placeholder": "Enter Street",
+
+    "postal": "Postal Code",
+    "postal_placeholder": "Enter Postal Code",
+
+    "phone": "Phone Number",
+    "phone_placeholder": "Enter Phone"
   }
 }

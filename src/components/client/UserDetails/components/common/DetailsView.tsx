@@ -1,6 +1,7 @@
 import { MouseEvent, ReactNode } from "react";
 
 import { EditIcon } from "@/components/common/Icons";
+import { useTranslations } from "next-intl";
 
 type DetailsValue = {
   title: string;
@@ -17,11 +18,14 @@ export function DetailsView({
   children,
   canEdit = true,
 }: DetailsValue) {
+  const t = useTranslations("Account");
   return (
     <div className="grid grid-cols-[1fr,auto] gap-2 sm:grid-cols-1 sm:justify-items-center">
       <div className="font-semibold">
         <h3 className="text-lightColor sm:text-center">{title}</h3>
-        <span className="text-xl text-boldColor">{value || "None"}</span>
+        <span className="text-xl text-boldColor">
+          {value || t("not_selected")}
+        </span>
         {children}
       </div>
       <button

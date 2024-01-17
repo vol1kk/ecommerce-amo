@@ -4,54 +4,54 @@ import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
+import getZodErrors, { ZodErrorType } from "@/utils/getZodErrors";
 import { updateUserAction } from "@/components/client/UserDetails";
 
-const initialErrors = {
-  fullName: "",
-  email: "",
-  phone: "",
-  password: {
-    old: "",
-    new: "",
-  },
-}; // satisfies UpdateResponseError["error"];
+type UpdateFailed = {
+  statusCode: number;
+  message: string;
+  errors: ZodErrorType[];
+};
 
-// TODO: Response types
-
-export function useDetailsForm<T>(initialData: T, id: string) {
+export function useDetailsForm<T extends Record<string, any>>(
+  initialData: T,
+  id: string,
+) {
   const { update } = useSession();
-
-  // <UpdateResponse | null, FormData>
-  const [formState, formAction] = useFormState(
-    updateUserAction.bind(undefined, id),
-    null,
-  );
-  const [isEditing, setIsEditing] = useState(false);
-
-  // <UpdateResponseError["error"]>
-  const [error, setError] = useState(initialErrors);
-
   const [state, setState] = useState(initialData);
+  const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState<Record<keyof T, string> | null>(null);
+
+  const [formState, formAction] = useFormState<
+    T | UpdateFailed | null,
+    FormData
+  >(updateUserAction.bind(undefined, id), null);
 
   useEffect(() => {
-    if (!isEditing) {
-      setError(initialErrors);
-    }
+    if (!isEditing) setError(null);
   }, [isEditing]);
 
   useEffect(() => {
-    if (formState) {
-      const updatedData = {} as { [K in keyof T]: T[K] };
+    if (!formState) return;
+
+    // Handling if error comes from Nest.js api
+    if ("statusCode" in formState && formState.statusCode === 400) {
+      const errors = getZodErrors(formState?.errors) || {};
+      setError(errors as Record<keyof T, string> | null);
+    } else if ("id" in formState) {
+      // Updating state only with values, which where initially passed
+      // since patch returns whole user, rather than only updated fields
+      const updatedFields = {} as Record<any, any>;
 
       for (const key in initialData) {
-        updatedData[key] = formState[key];
+        const typedKey = key as keyof typeof initialData;
+
+        const existingField = formState[typedKey];
+        if (existingField) updatedFields[typedKey] = existingField;
       }
 
-      setState(updatedData);
-      update();
-      setIsEditing(false);
-    } else {
-      setError(formState?.error || initialErrors);
+      setState(updatedFields);
+      update().then(() => setIsEditing(false));
     }
   }, [formState]);
 

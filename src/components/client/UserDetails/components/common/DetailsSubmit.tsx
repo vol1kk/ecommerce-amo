@@ -24,7 +24,7 @@ export function DetailsSubmit({ isEditable }: DetailsSubmitProps) {
               className="animate-spin fill-white text-purple-700"
             />
           )}
-          {isEditable && pending && t("submit_updating")}
+          {isEditable && pending && t("submit_pending")}
           {isEditable && !pending && t("submit_allowed")}
           {!isEditable && t("submit_disallowed")}
         </span>

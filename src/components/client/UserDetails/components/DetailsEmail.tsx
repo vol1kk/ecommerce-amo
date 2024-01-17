@@ -8,12 +8,15 @@ import {
   hideDetails,
   useDetailsForm,
 } from "@/components/client/UserDetails";
+import { useEffect } from "react";
 
 type DetailsEmailProps = {
   id: string;
   initialEmail: string;
   canEdit: boolean;
 };
+
+const errorClasses = "text-bold mt-1 w-full text-center text-red-500";
 
 export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
   const t = useTranslations("Account");
@@ -24,7 +27,6 @@ export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
 
   const hiddenEmail = hideDetails(state.email, "email");
 
-  // TODO: hidden Email doesn't work
   return (
     <Details>
       <Details.View
@@ -44,6 +46,11 @@ export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
               placeholder={t("email_placeholder")}
               defaultValue={state.email}
             />
+            {error?.email && (
+              <span className="text-bold mt-1 w-full text-center text-red-500">
+                {t(error.email)}
+              </span>
+            )}
             <Details.Submit isEditable />
           </form>
         </Modal>
