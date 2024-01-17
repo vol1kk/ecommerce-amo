@@ -1,67 +1,81 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 import { Address, TAddress } from "@/components/client/UserAddress";
+import Button from "@/components/common/Button";
+import { useTranslations } from "next-intl";
 
 type AddressFormProps = Partial<TAddress> & {
-  action?: (payload: FormData) => void;
-  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
+  t: (key: string) => string;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
 export function AddressForm({
+  t,
   id,
   city,
   name,
   phone,
-  action,
   surname,
   address,
   onSubmit,
 }: AddressFormProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   return (
     <form
-      action={action}
-      onSubmit={onSubmit}
+      onSubmit={async e => {
+        setIsSubmitting(true);
+        await onSubmit(e);
+        setIsSubmitting(false);
+      }}
       className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent"
     >
       <Address.Input
-        name="Name"
+        name={t("name")}
         id="name"
         defaultValue={name}
-        placeholder="Enter Name"
+        placeholder={t("name_placeholder")}
       />
       <Address.Input
         id="surname"
-        name="Surname"
+        name={t("surname")}
         defaultValue={surname}
-        placeholder="Enter Surname"
+        placeholder={t("surname_placeholder")}
       />
       <Address.Input
         id="city"
-        name="City"
+        name={t("city")}
         defaultValue={city}
-        placeholder="Enter City"
+        placeholder={t("city_placeholder")}
       />
       <Address.Input
         id="address"
-        name="Address"
+        name={t("street")}
         defaultValue={address}
-        placeholder="Enter Address"
+        placeholder={t("street_placeholder")}
       />
       <Address.Input
-        name="Postal Code"
+        name={t("postal")}
         id="postalCode"
         defaultValue={phone}
-        placeholder="Enter Postal Code"
+        placeholder={t("postal_placeholder")}
       />
       <Address.Input
-        name="Phone"
+        name={t("phone")}
         id="phone"
         defaultValue={phone}
-        placeholder="Enter Phone"
+        placeholder={t("phone_placeholder")}
       />
-      <Address.Submit id={id} />
+      <Button
+        name="id"
+        value={id}
+        type="submit"
+        className="col-span-2 bg-purple-700 text-center font-bold text-white lg:col-auto"
+      >
+        {isSubmitting ? t("submit_pending") : t("submit")}
+      </Button>
     </form>
   );
 }

@@ -1,17 +1,14 @@
 "use client";
 
-import { useFormState } from "react-dom";
-import { useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import Modal from "@/components/common/Modal";
 import { CrossIcon } from "@/components/common/Icons";
+import { AddressService } from "@/services/AddressService";
 import { hideDetails } from "@/components/client/UserDetails";
-import {
-  Address,
-  TAddress,
-  createAddressAction,
-} from "@/components/client/UserAddress";
+import { Address, TAddress } from "@/components/client/UserAddress";
+import { useTranslations } from "next-intl";
 
 type AddressesProps = {
   title: string;
@@ -19,24 +16,23 @@ type AddressesProps = {
 };
 
 export default function Addresses({ title, initialAddresses }: AddressesProps) {
+  const t = useTranslations("Address");
+
   const [isOpen, setIsOpen] = useState(false);
   const [addresses, setAddresses] = useState(initialAddresses);
 
-  const { data, update } = useSession();
-  const [state, createAction] = useFormState(createAddressAction, null);
+  const { update } = useSession();
 
-  useEffect(() => {
-    if (state?.ok) {
-      const currentAddresses = data?.user.address
-        ? [...data.user.address, state.data]
-        : [state.data];
+  async function handleAddressCreation(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-      setAddresses(currentAddresses);
+    const createdAddress = await AddressService.create(
+      Object.fromEntries(new FormData(e.currentTarget)),
+    );
 
-      update();
-      setIsOpen(false);
-    }
-  }, [state]); // eslint-disable-line
+    setAddresses(prev => [...prev, createdAddress]);
+    update().then(() => setIsOpen(false));
+  }
 
   return (
     <section className="mb-8">
@@ -75,8 +71,8 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
           </Address>
         ))}
       </div>
-      <Modal title="Add Address" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Address.Form action={createAction} />
+      <Modal title={t("address_create")} isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Address.Form t={t} onSubmit={handleAddressCreation} />
       </Modal>
     </section>
   );

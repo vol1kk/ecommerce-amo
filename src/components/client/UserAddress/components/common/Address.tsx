@@ -6,7 +6,6 @@ import { AddressInput } from "@/components/client/UserAddress/components/Form/Ad
 import { AddressDelete } from "@/components/client/UserAddress/components/common/AddressDelete";
 import { AddressUpdate } from "@/components/client/UserAddress/components/common/AddressUpdate";
 import { AddressActions } from "@/components/client/UserAddress/components/common/AddressActions";
-import { AddressFormSubmit } from "@/components/client/UserAddress/components/Form/AddressFormSubmit";
 
 type AddressProps = {
   children: ReactNode;
@@ -22,4 +21,3 @@ Address.Input = AddressInput;
 Address.Delete = AddressDelete;
 Address.Update = AddressUpdate;
 Address.Actions = AddressActions;
-Address.Submit = AddressFormSubmit;

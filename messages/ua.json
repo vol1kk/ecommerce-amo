@@ -126,5 +126,31 @@
     "something_wrong": "Дідько! Щось пішло не так",
     "invalid_email": "Невірна поштова адреса!",
     "min_length": "Пароль повинен бути довшим!"
+  },
+  "Address": {
+    "submit": "Зберігти",
+    "submit_pending": "Оновлення",
+
+    "address_create": "Додати адресу",
+    "address_update": "Змінити адресу",
+
+
+    "name": "Ім'я",
+    "name_placeholder": "Введіть ім'я",
+
+    "surname": "Прізвище",
+    "surname_placeholder": "Введіть прізвище",
+
+    "city": "Місто",
+    "city_placeholder": "Введіть місто",
+
+    "street": "Вулиця",
+    "street_placeholder": "Введіть вулицю",
+
+    "postal": "Поштовий індекс",
+    "postal_placeholder": "Введіть індекс",
+
+    "phone": "Номер телефону",
+    "phone_placeholder": "Введіть телефон"
   }
 }

@@ -126,5 +126,31 @@
     "something_wrong": "Something went wrong!",
     "invalid_email": "Email isn't valid!",
     "min_length": "Password must be longer!"
+  },
+  "Address": {
+    "submit": "Save",
+    "submit_pending": "Updating",
+
+    "address_create": "Create Address",
+    "address_update": "Change Address",
+
+
+    "name": "Name",
+    "name_placeholder": "Enter Name",
+
+    "surname": "Surname",
+    "surname_placeholder": "Enter Surname",
+
+    "city": "City",
+    "city_placeholder": "Enter City",
+
+    "street": "Street",
+    "street_placeholder": "Enter Street",
+
+    "postal": "Postal Code",
+    "postal_placeholder": "Enter Postal Code",
+
+    "phone": "Phone Number",
+    "phone_placeholder": "Enter Phone"
   }
 }
