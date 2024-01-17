@@ -84,6 +84,14 @@
     "contact": "Зв'язатись з нами"
   },
   "Account": {
+    "password": "Поточний пароль",
+    "new_password": "Новий пароль",
+    "delete": "Видалити",
+
+    "password_not_match": "Паролі не співпадають",
+    "invalid_pass": "Невірний пароль",
+
+    "not_selected": "Немає",
     "info": "Інформація",
     "contact_details": "Контактні Дані",
     "address_details": "Адреса",
@@ -128,6 +136,7 @@
     "min_length": "Пароль повинен бути довшим!"
   },
   "Address": {
+    "edit": "Редагувати",
     "submit": "Зберігти",
     "submit_pending": "Оновлення",
 

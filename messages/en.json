@@ -84,6 +84,14 @@
     "tops_subtitle": "cool / colorful / comfy"
   },
   "Account": {
+    "password": "Current Password",
+    "new_password": "New Password",
+    "delete": "Delete",
+
+    "password_not_match": "Password don't match",
+    "invalid_pass": "Invalid password",
+
+    "not_selected": "None",
     "info": "My Information",
     "contact_details": "Contact Details",
     "address_details": "Address",
@@ -121,13 +129,14 @@
 
     "submit_allowed": "Save",
     "submit_disallowed": "Changing isn't allowed",
-    "submit_updating": "Updating",
+    "submit_pending": "Updating",
 
     "something_wrong": "Something went wrong!",
     "invalid_email": "Email isn't valid!",
     "min_length": "Password must be longer!"
   },
   "Address": {
+    "edit": "Edit",
     "submit": "Save",
     "submit_pending": "Updating",
 

@@ -10,9 +10,16 @@ export class UserService extends RequestService {
   }
 
   static async update(id: string, body: Partial<Session["user"]>) {
-    const resp = await this.patch(`${this.serviceUrl}/${id}`, {
-      body,
-    });
+    let resp;
+    if ("currentPass" in body) {
+      resp = await this.patch(`${this.serviceUrl}/password/${id}`, {
+        body,
+      });
+    } else {
+      resp = await this.patch(`${this.serviceUrl}/${id}`, {
+        body,
+      });
+    }
 
     return resp.json();
   }

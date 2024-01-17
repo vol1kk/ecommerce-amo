@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 
 import Modal from "@/components/common/Modal";
@@ -8,7 +9,6 @@ import { CrossIcon } from "@/components/common/Icons";
 import { AddressService } from "@/services/AddressService";
 import { hideDetails } from "@/components/client/UserDetails";
 import { Address, TAddress } from "@/components/client/UserAddress";
-import { useTranslations } from "next-intl";
 
 type AddressesProps = {
   title: string;
@@ -17,11 +17,10 @@ type AddressesProps = {
 
 export default function Addresses({ title, initialAddresses }: AddressesProps) {
   const t = useTranslations("Address");
+  const { update } = useSession();
 
   const [isOpen, setIsOpen] = useState(false);
   const [addresses, setAddresses] = useState(initialAddresses);
-
-  const { update } = useSession();
 
   async function handleAddressCreation(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

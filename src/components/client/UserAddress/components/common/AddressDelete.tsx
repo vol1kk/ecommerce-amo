@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { AddressService } from "@/services/AddressService";
 import { TAddress } from "@/components/client/UserAddress";
+import { useTranslations } from "next-intl";
 
 type AddressDeleteProps = {
   id: string;
@@ -12,6 +13,7 @@ type AddressDeleteProps = {
 };
 
 export function AddressDelete({ id, setAddresses }: AddressDeleteProps) {
+  const t = useTranslations("Account");
   const { update } = useSession();
 
   async function handleAddressDelete() {
@@ -29,7 +31,7 @@ export function AddressDelete({ id, setAddresses }: AddressDeleteProps) {
       className="text-red-500"
       onClick={handleAddressDelete}
     >
-      Delete
+      {t("delete")}
     </button>
   );
 }

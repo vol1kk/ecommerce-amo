@@ -1,4 +1,4 @@
-type ZodErrorType = {
+export type ZodErrorType = {
   path: string[];
   message: string;
 };

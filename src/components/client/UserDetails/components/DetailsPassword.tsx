@@ -13,7 +13,10 @@ type DetailsPasswordProps = {
 
 export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
   const t = useTranslations("Account");
-  const { isEditing, setIsEditing, formAction, error } = useDetailsForm("", id);
+  const { isEditing, setIsEditing, formAction, error } = useDetailsForm(
+    { currentPass: "", repeatedPass: "", newPass: "" },
+    id,
+  );
 
   return (
     <Details>
@@ -29,32 +32,33 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
           title={t("change_password")}
         >
           <form className="grid gap-2" action={formAction}>
+            <span className="text-center font-bold">{t("password")}</span>
             <Details.Input
               type="password"
               name="currentPass"
               placeholder={t("password_current")}
-              className={cn(error.password?.old && "border-2 border-red-500")}
             />
-            {error.password?.old && (
+            {error?.currentPass && (
               <span className="text-center font-semibold text-red-500">
-                {error.password?.old}
+                {t(error.currentPass)}
               </span>
             )}
+            <span className="text-center font-bold">{t("new_password")}</span>
             <Details.Input
               type="password"
               name="newPass"
               placeholder={t("password_new")}
-              className={cn(error.password?.new && "border-2 border-red-500")}
+              className={cn(error?.repeatedPass && "border-2 border-red-500")}
             />
             <Details.Input
               type="password"
               name="repeatedPass"
               placeholder={t("password_repeat")}
-              className={cn(error.password?.new && "border-2 border-red-500")}
+              className={cn(error?.repeatedPass && "border-2 border-red-500")}
             />
-            {error.password?.new && (
+            {error?.repeatedPass && (
               <span className="text-center font-semibold text-red-500">
-                {error.password?.new}
+                {t(error.repeatedPass)}
               </span>
             )}
             <Details.Submit isEditable />
