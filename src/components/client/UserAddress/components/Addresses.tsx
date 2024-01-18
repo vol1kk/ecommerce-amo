@@ -9,6 +9,8 @@ import { CrossIcon } from "@/components/common/Icons";
 import { AddressService } from "@/services/AddressService";
 import { hideDetails } from "@/components/client/UserDetails";
 import { Address, TAddress } from "@/components/client/UserAddress";
+import getZodErrors from "@/utils/getZodErrors";
+import { FormErrors } from "@/components/client/UserAddress/components/Form/AddressForm";
 
 type AddressesProps = {
   title: string;
@@ -21,6 +23,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [addresses, setAddresses] = useState(initialAddresses);
+  const [errors, setErrors] = useState<FormErrors | null>(null);
 
   async function handleAddressCreation(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,8 +32,44 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
       Object.fromEntries(new FormData(e.currentTarget)),
     );
 
-    setAddresses(prev => [...prev, createdAddress]);
-    update().then(() => setIsOpen(false));
+    if ("statusCode" in createdAddress) {
+      setErrors(getZodErrors(createdAddress.errors));
+    } else {
+      setAddresses(prev => [...prev, createdAddress]);
+      update().then(() => setIsOpen(false));
+    }
+  }
+
+  let content;
+  if (addresses.length > 0) {
+    content = (
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
+        {addresses?.map((address, ind) => (
+          <Address key={ind}>
+            <h3 className="text-xl font-bold">
+              {address.name} {address.surname}
+            </h3>
+            <div>
+              <p>{hideDetails(address.phone, "number")}</p>
+              <p>
+                {address.address}, {address.city}
+              </p>
+            </div>
+            <Address.Tags tags={["Home"]} isDefault={address.isDefault} />
+            <Address.Actions>
+              <Address.Delete id={address.id} setAddresses={setAddresses} />
+              <Address.Update address={address} setAddresses={setAddresses} />
+            </Address.Actions>
+          </Address>
+        ))}
+      </div>
+    );
+  } else {
+    content = (
+      <h2 className="text-center text-2xl font-semibold">
+        No addresses added <span className="font-bold">:(</span>
+      </h2>
+    );
   }
 
   return (
@@ -50,32 +89,13 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
           />
         </button>
       </div>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-        {addresses?.map((address, ind) => (
-          <Address key={ind}>
-            <h3 className="text-xl font-bold">
-              {address.name} {address.surname}
-            </h3>
-            <div>
-              <p>{hideDetails("380961234567", "number")}</p>
-              <p>
-                {address.address}, {address.city}
-              </p>
-            </div>
-            <Address.Tags tags={["Home"]} isDefault={address.isDefault} />
-            <Address.Actions>
-              <Address.Delete id={address.id} setAddresses={setAddresses} />
-              <Address.Update address={address} setAddresses={setAddresses} />
-            </Address.Actions>
-          </Address>
-        ))}
-      </div>
+      {content}
       <Modal
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         title={t("overlay.address_create")}
       >
-        <Address.Form onSubmit={handleAddressCreation} />
+        <Address.Form errors={errors} onSubmit={handleAddressCreation} />
       </Modal>
     </section>
   );

@@ -1,9 +1,10 @@
+import { ValidationFailed } from "@/types";
 import { RequestService } from "@/services/RequestService";
 import { TAddress } from "@/components/client/UserAddress";
 
 export class AddressService extends RequestService {
   static serviceUrl = this.baseUrl + "/addresses";
-  static async create(body: any) {
+  static async create(body: any): Promise<TAddress | ValidationFailed> {
     const resp = await this.post(this.serviceUrl, {
       body,
     });

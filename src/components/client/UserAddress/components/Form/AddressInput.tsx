@@ -3,6 +3,7 @@ import cn from "@/utils/cn";
 
 type AddressInputProps = {
   name: string;
+  hasError?: boolean;
   classNameLabel?: string;
 } & HTMLProps<HTMLInputElement>;
 
@@ -10,6 +11,7 @@ export function AddressInput({
   id,
   type,
   name,
+  hasError,
   className,
   classNameLabel,
   ...props
@@ -21,7 +23,11 @@ export function AddressInput({
         type={type}
         name={id}
         id={id}
-        className={cn("block w-full rounded-md bg-accent px-4 py-2", className)}
+        className={cn(
+          "block w-full rounded-md bg-accent px-4 py-2",
+          hasError && "border-2 border-red-500",
+          className,
+        )}
         {...props}
       />
     </label>
