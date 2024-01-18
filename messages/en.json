@@ -79,6 +79,10 @@
   },
 
   "Errors": {
+    "empty_cart": "Your cart is empty and sad :(",
+    "empty_cart_subtitle": "Add something to make it happy!",
+    "empty_cart_back": "Continue Shopping",
+
     "something_wrong": "Something went wrong!",
     "invalid_email": "Email isn't valid!",
     "min_length": "Password must be longer!",

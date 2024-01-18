@@ -79,6 +79,10 @@
   },
 
   "Errors": {
+    "empty_cart": "Ваша корзина сумує :(",
+    "empty_cart_subtitle": "Додайте щось і повеселішає!",
+    "empty_cart_back": "За покупками!",
+
     "something_wrong": "Дідько! Щось пішло не так!",
     "invalid_email": "Пошта не вірна!",
     "invalid_pass": "Невірний пароль",
