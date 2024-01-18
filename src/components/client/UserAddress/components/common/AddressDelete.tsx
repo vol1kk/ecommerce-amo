@@ -13,7 +13,7 @@ type AddressDeleteProps = {
 };
 
 export function AddressDelete({ id, setAddresses }: AddressDeleteProps) {
-  const t = useTranslations("Account");
+  const t = useTranslations("General");
   const { update } = useSession();
 
   async function handleAddressDelete() {

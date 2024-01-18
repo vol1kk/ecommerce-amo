@@ -18,7 +18,8 @@ export function DetailsView({
   children,
   canEdit = true,
 }: DetailsValue) {
-  const t = useTranslations("Account");
+  const t = useTranslations("General");
+
   return (
     <div className="grid grid-cols-[1fr,auto] gap-2 sm:grid-cols-1 sm:justify-items-center">
       <div className="font-semibold">

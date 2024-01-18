@@ -12,7 +12,9 @@ type DetailsPasswordProps = {
 };
 
 export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
-  const t = useTranslations("Account");
+  const t = useTranslations("Forms");
+  const te = useTranslations("Errors") as (key: string) => string;
+
   const { isEditing, setIsEditing, formAction, error } = useDetailsForm(
     { currentPass: "", repeatedPass: "", newPass: "" },
     id,
@@ -23,27 +25,27 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
       <Details.View
         value="*****"
         canEdit={canEdit}
-        title={t("your_password")}
+        title={t("prefixed.password")}
         onClick={() => setIsEditing(true)}
       >
         <Modal
           isOpen={isEditing}
           setIsOpen={setIsEditing}
-          title={t("change_password")}
+          title={t("overlay.change_password")}
         >
           <form className="grid gap-2" action={formAction}>
             <span className="text-center font-bold">{t("password")}</span>
             <Details.Input
               type="password"
               name="currentPass"
-              placeholder={t("password_current")}
+              placeholder={t("password")}
             />
             {error?.currentPass && (
               <span className="text-center font-semibold text-red-500">
-                {t(error.currentPass)}
+                {te(error.currentPass)}
               </span>
             )}
-            <span className="text-center font-bold">{t("new_password")}</span>
+            <span className="text-center font-bold">{t("password_new")}</span>
             <Details.Input
               type="password"
               name="newPass"
@@ -58,7 +60,7 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
             />
             {error?.repeatedPass && (
               <span className="text-center font-semibold text-red-500">
-                {t(error.repeatedPass)}
+                {te(error.repeatedPass)}
               </span>
             )}
             <Details.Submit isEditable />

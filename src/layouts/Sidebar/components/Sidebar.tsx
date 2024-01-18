@@ -14,7 +14,7 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ className }: SidebarProps) {
-  const t = useTranslations("Home");
+  const t = useTranslations("General");
 
   const path = usePathname();
   const queryCategory = useSearchParams().get("category");

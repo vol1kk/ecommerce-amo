@@ -9,7 +9,7 @@ type AddressTagsProps = {
 };
 
 export function AddressTags({ className, tags, isDefault }: AddressTagsProps) {
-  const t = useTranslations("Account");
+  const t = useTranslations("Forms");
 
   const tagClasses = "rounded-md border-[1px] border-lightColor px-4 py-1";
 

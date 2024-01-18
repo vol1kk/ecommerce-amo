@@ -1,45 +1,48 @@
 import { DiscountedItem } from "@/layouts/Home";
 
-export const DiscountedUpper: [DiscountedItem, DiscountedItem, DiscountedItem] =
-  [
-    {
-      image: {
-        src: "/saving/hawaii.jpg",
-        className: "card__hawaii__image",
-      },
-      content: {
-        title: "hawaii_title",
-        subtitle: "hawaii_subtitle",
-        discount: 50,
-      },
-      isLimited: false,
+export const DiscountedUpper = [
+  {
+    image: {
+      src: "/saving/hawaii.jpg",
+      className: "card__hawaii__image",
     },
-    {
-      image: {
-        src: "/saving/printed.jpg",
-      },
-      content: {
-        title: "printed_title",
-        subtitle: "printed_subtitle",
-        discount: 40,
-      },
-      isLimited: true,
+    content: {
+      title: "hawaii_title",
+      className: "",
+      subtitle: "hawaii_subtitle",
+      discount: 50,
     },
-    {
-      image: {
-        src: "/saving/joggers.jpg",
-      },
-      content: {
-        title: "cargo_title",
-        className: "card__content--black card__content--right",
-        subtitle: "cargo_subtitle",
-        discount: 60,
-      },
-      isLimited: false,
+    isLimited: false,
+  },
+  {
+    image: {
+      src: "/saving/printed.jpg",
+      className: "",
     },
-  ];
+    content: {
+      title: "printed_title",
+      className: "",
+      subtitle: "printed_subtitle",
+      discount: 40,
+    },
+    isLimited: true,
+  },
+  {
+    image: {
+      src: "/saving/joggers.jpg",
+      className: "",
+    },
+    content: {
+      title: "cargo_title",
+      className: "card__content--black card__content--right",
+      subtitle: "cargo_subtitle",
+      discount: 60,
+    },
+    isLimited: false,
+  },
+] as const satisfies DiscountedItem[];
 
-export const DiscountedBottom: [DiscountedItem, DiscountedItem] = [
+export const DiscountedBottom = [
   {
     image: {
       src: "/saving/urban-shirts.jpg",
@@ -60,4 +63,4 @@ export const DiscountedBottom: [DiscountedItem, DiscountedItem] = [
       discount: 60,
     },
   },
-];
+] as const satisfies DiscountedItem[];

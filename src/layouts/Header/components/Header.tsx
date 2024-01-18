@@ -9,7 +9,7 @@ import { Sidebar } from "@/layouts/Sidebar";
 import SidebarLocale from "@/layouts/Sidebar/components/SidebarLocale";
 
 export default function Header() {
-  const t = useTranslations("Home");
+  const t = useTranslations("General");
 
   const searchTL = t("search");
 

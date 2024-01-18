@@ -8,7 +8,7 @@ import { FavoriteItem } from "@/components/server/Favorites";
 import { ItemService } from "@/services/ItemService";
 
 export default async function Page() {
-  const t = await getTranslations("Item");
+  const t = await getTranslations("General");
   const wishlistItem = await ItemService.getSelectedItems("wishlist");
 
   let content;

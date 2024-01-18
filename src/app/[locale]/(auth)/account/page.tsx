@@ -8,7 +8,7 @@ import { Details } from "@/components/client/UserDetails";
 import { Addresses } from "@/components/client/UserAddress";
 
 export default async function Page() {
-  const t = await getTranslations("Account");
+  const t = await getTranslations("General");
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {

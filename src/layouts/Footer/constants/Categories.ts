@@ -1,6 +1,6 @@
 import { FooterCategory } from "@/layouts/Footer/types";
 
-export const HelpCategory: FooterCategory = {
+export const HelpCategory = {
   name: "help",
   links: [
     {
@@ -20,9 +20,9 @@ export const HelpCategory: FooterCategory = {
       href: "/",
     },
   ],
-};
+} as const satisfies FooterCategory;
 
-export const InfoCategory: FooterCategory = {
+export const InfoCategory = {
   name: "more",
   links: [
     {
@@ -38,4 +38,4 @@ export const InfoCategory: FooterCategory = {
       href: "/",
     },
   ],
-};
+} as const satisfies FooterCategory;

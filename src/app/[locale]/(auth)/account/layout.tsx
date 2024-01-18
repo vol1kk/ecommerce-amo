@@ -7,7 +7,7 @@ import { ACCOUNT_PAGE, ORDERS_PAGE, WISHLIST_PAGE } from "@/constants/routes";
 import { useTranslations } from "next-intl";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const t = useTranslations("Account");
+  const t = useTranslations("General");
 
   return (
     <main className="grid flex-1 grid-cols-[1fr,_4fr] gap-4 px-12 py-3 lg:grid-cols-1 [&>section]:py-1">
@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             ))}
             <li className="text-color justify-center text-base text-red-500 lg:justify-start lg:px-3 [&_svg>path]:fill-red-500">
               <Auth.SignOut
-                name={t("sign_out")}
+                name={t("logout")}
                 className="flex items-center gap-4"
               />
             </li>

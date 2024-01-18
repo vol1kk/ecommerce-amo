@@ -16,9 +16,8 @@ type DetailsNameProps = {
 };
 
 export function DetailsName({ id, firstName, lastName }: DetailsNameProps) {
-  const t = useTranslations("Account");
+  const t = useTranslations("Forms");
   const {
-    error,
     isEditing,
     formAction,
     setIsEditing,
@@ -36,13 +35,13 @@ export function DetailsName({ id, firstName, lastName }: DetailsNameProps) {
     <Details>
       <Details.View
         value={hiddenName}
-        title={t("fullname_title")}
+        title={t("prefixed.name")}
         onClick={() => setIsEditing(true)}
       >
         <Modal
           isOpen={isEditing}
           setIsOpen={setIsEditing}
-          title={t("fullname_overlay")}
+          title={t("overlay.fullname_overlay")}
         >
           <form
             className="grid gap-2"
@@ -52,17 +51,14 @@ export function DetailsName({ id, firstName, lastName }: DetailsNameProps) {
           >
             <Details.Input
               name="name"
-              placeholder={t("name_placeholder")}
+              placeholder={t("placeholder.name")}
               defaultValue={fullName.name}
             />
             <Details.Input
               name="surname"
-              placeholder={t("surname_placeholder")}
+              placeholder={t("placeholder.surname")}
               defaultValue={fullName.surname}
             />
-            {error?.fullName && (
-              <span className="text-red-500">{error.fullName}</span>
-            )}
             <Details.Submit isEditable />
           </form>
         </Modal>

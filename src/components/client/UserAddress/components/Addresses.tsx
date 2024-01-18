@@ -16,7 +16,7 @@ type AddressesProps = {
 };
 
 export default function Addresses({ title, initialAddresses }: AddressesProps) {
-  const t = useTranslations("Address");
+  const t = useTranslations("Forms");
   const { update } = useSession();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -70,8 +70,12 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
           </Address>
         ))}
       </div>
-      <Modal title={t("address_create")} isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Address.Form t={t} onSubmit={handleAddressCreation} />
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title={t("overlay.address_create")}
+      >
+        <Address.Form onSubmit={handleAddressCreation} />
       </Modal>
     </section>
   );
