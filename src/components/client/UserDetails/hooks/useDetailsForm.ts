@@ -2,7 +2,6 @@
 
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 
 import getZodErrors, { ZodErrorType } from "@/utils/getZodErrors";
 import { updateUserAction } from "@/components/client/UserDetails";
@@ -17,7 +16,6 @@ export function useDetailsForm<T extends Record<string, any>>(
   initialData: T,
   id: string,
 ) {
-  const { update } = useSession();
   const [state, setState] = useState(initialData);
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState<Record<keyof T, string> | null>(null);
@@ -51,7 +49,7 @@ export function useDetailsForm<T extends Record<string, any>>(
       }
 
       setState(updatedFields);
-      update().then(() => setIsEditing(false));
+      setIsEditing(false);
     }
   }, [formState]);
 

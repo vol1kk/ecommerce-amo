@@ -17,6 +17,7 @@ type AddressesProps = {
   initialAddresses: TAddress[];
 };
 
+// TODO: Migrate to server actions back, 'cuz revalidateTag
 export default function Addresses({ title, initialAddresses }: AddressesProps) {
   const t = useTranslations("Forms");
   const { update } = useSession();
