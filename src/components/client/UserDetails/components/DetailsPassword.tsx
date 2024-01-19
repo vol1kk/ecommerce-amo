@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
 import FormButton from "@/components/common/FormButton";
 import { Details, useUpdateUser } from "@/components/client/UserDetails";
 
@@ -35,9 +36,9 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
         >
           <form className="grid gap-2" action={formAction}>
             <span className="text-center font-bold">{t("password")}</span>
-            <Details.Input
+            <Input
               type="password"
-              name="currentPass"
+              id="currentPass"
               hasError={!!errors?.currentPass}
               placeholder={t("password")}
             />
@@ -47,15 +48,15 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
               </span>
             )}
             <span className="text-center font-bold">{t("password_new")}</span>
-            <Details.Input
+            <Input
               type="password"
-              name="newPass"
+              id="newPass"
               hasError={!!errors?.newPass}
               placeholder={t("password_new")}
             />
-            <Details.Input
+            <Input
               type="password"
-              name="repeatedPass"
+              id="repeatedPass"
               hasError={!!errors?.repeatedPass}
               placeholder={t("password_repeat")}
             />

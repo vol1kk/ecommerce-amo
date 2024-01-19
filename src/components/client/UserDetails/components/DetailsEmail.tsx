@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
 import FormButton from "@/components/common/FormButton";
 import {
   Details,
@@ -39,8 +40,8 @@ export function DetailsEmail({ id, email, canEdit }: DetailsEmailProps) {
           setIsOpen={setIsOpen}
         >
           <form className="grid gap-2" action={formAction}>
-            <Details.Input
-              name="email"
+            <Input
+              id="email"
               defaultValue={email}
               hasError={!!formErrors?.email}
               placeholder={t("placeholder.email")}

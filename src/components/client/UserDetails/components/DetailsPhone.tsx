@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
 import FormButton from "@/components/common/FormButton";
 import {
   Details,
@@ -34,10 +35,10 @@ export function DetailsPhone({ id, number }: DetailsPhoneProps) {
           title={t("overlay.change_phone")}
         >
           <form className="grid gap-2" action={formAction}>
-            <Details.Input
-              name="phone"
-              placeholder={t("placeholder.phone")}
+            <Input
+              id="phone"
               defaultValue={number}
+              placeholder={t("placeholder.phone")}
             />
             <FormButton isEditable />
           </form>

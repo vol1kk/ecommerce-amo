@@ -1,12 +1,8 @@
 import { useTranslations } from "next-intl";
 
-import Button from "@/components/common/Button";
-import {
-  Address,
-  TAddress,
-  AddressFormError,
-} from "@/components/client/UserAddress";
+import Input from "@/components/common/Input";
 import FormButton from "@/components/common/FormButton";
+import { TAddress, AddressFormError } from "@/components/client/UserAddress";
 
 type AddressFormProps = Partial<TAddress> & {
   errors?: AddressFormError | null;
@@ -27,50 +23,56 @@ export function AddressForm({
   return (
     <form
       action={action}
-      className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent"
+      className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent [&>label>span]:font-semibold"
     >
-      <Address.Input
-        name={t("name")}
+      <Input
         id="name"
         defaultValue={name}
         hasError={!!errors?.name}
         placeholder={t("placeholder.name")}
-      />
-      <Address.Input
+      >
+        {t("name")}
+      </Input>
+      <Input
         id="surname"
-        name={t("surname")}
         defaultValue={surname}
         hasError={!!errors?.surname}
         placeholder={t("placeholder.surname")}
-      />
-      <Address.Input
+      >
+        <span>{t("surname")}</span>
+      </Input>
+      <Input
         id="city"
-        name={t("city")}
         defaultValue={city}
         hasError={!!errors?.city}
         placeholder={t("placeholder.city")}
-      />
-      <Address.Input
+      >
+        <span>{t("city")}</span>
+      </Input>
+      <Input
         id="address"
-        name={t("street")}
         defaultValue={address}
         hasError={!!errors?.address}
         placeholder={t("placeholder.street")}
-      />
-      <Address.Input
-        name={t("postalCode")}
+      >
+        {t("street")}
+      </Input>
+      <Input
         id="postalCode"
         defaultValue={phone}
         hasError={!!errors?.postalCode}
         placeholder={t("placeholder.postalCode")}
-      />
-      <Address.Input
-        name={t("phone")}
+      >
+        {t("postalCode")}
+      </Input>
+      <Input
         id="phone"
         defaultValue={phone}
         hasError={!!errors?.phone}
         placeholder={t("placeholder.phone")}
-      />
+      >
+        {t("phone")}
+      </Input>
       <FormButton className="col-span-2 lg:col-span-1" />
     </form>
   );

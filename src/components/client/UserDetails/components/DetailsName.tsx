@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
 import FormButton from "@/components/common/FormButton";
 import {
   Details,
@@ -36,15 +37,15 @@ export function DetailsName({ id, name, surname }: DetailsNameProps) {
           title={t("overlay.fullname_overlay")}
         >
           <form className="grid gap-2" action={formAction}>
-            <Details.Input
-              name="name"
-              placeholder={t("placeholder.name")}
+            <Input
+              id="name"
               defaultValue={name}
+              placeholder={t("placeholder.name")}
             />
-            <Details.Input
-              name="surname"
-              placeholder={t("placeholder.surname")}
+            <Input
+              id="surname"
               defaultValue={surname}
+              placeholder={t("placeholder.surname")}
             />
             <FormButton isEditable />
           </form>
