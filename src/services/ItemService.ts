@@ -8,7 +8,9 @@ export class ItemService extends RequestService {
   static itemsUrl = this.baseUrl + "/items";
   static selectedItemsUrl = this.baseUrl + "/selected";
 
-  static async createSelected(body: WithRequired<SelectedItem, "itemId">) {
+  static async createSelected(
+    body: WithRequired<SelectedItem, "itemId">,
+  ): Promise<SelectedItem> {
     const res = await RequestService.post(this.selectedItemsUrl, { body });
 
     return res.json();

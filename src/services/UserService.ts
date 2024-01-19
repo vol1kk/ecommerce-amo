@@ -5,7 +5,7 @@ export const UserSessionTag = "UserSessionTag";
 export class UserService extends RequestService {
   static serviceUrl = this.baseUrl + "/users";
 
-  static async findOne(id: string) {
+  static async findOne(id: string): Promise<User> {
     const resp = await this.get(`${this.serviceUrl}/${id}`);
     return resp.json();
   }
