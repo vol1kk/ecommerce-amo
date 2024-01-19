@@ -1,19 +1,12 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
+import { UserService, UserSessionTag } from "@/services/UserService";
+import { revalidateTag } from "next/cache";
 
-export async function updateUserAction(initialState: any, formData: FormData) {
-  const session = await getServerSession(authOptions);
+export async function updateUserAction(id: string, _: any, formData: FormData) {
+  const user = UserService.update(id, Object.fromEntries(formData));
 
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/user/update`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${session?.user.accessToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Object.fromEntries(formData)),
-  });
+  revalidateTag(UserSessionTag);
 
-  return await res.json();
+  return user;
 }

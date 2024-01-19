@@ -1,6 +1,6 @@
-import { FeaturedCategory } from "@/components/Homepage";
+import { FeaturedCategory } from "@/layouts/Home";
 
-export const FeaturedCategories: FeaturedCategory[] = [
+export const FeaturedCategories = [
   {
     image: {
       src: "/featured/card-cozy.jpg",
@@ -8,8 +8,8 @@ export const FeaturedCategories: FeaturedCategory[] = [
     },
     content: {
       href: "/",
-      title: "High Coziness",
-      subtitle: "Low Price",
+      title: "cozy_title",
+      subtitle: "cozy_subtitle",
       discount: 50,
     },
   },
@@ -20,9 +20,9 @@ export const FeaturedCategories: FeaturedCategory[] = [
     },
     content: {
       href: "/",
-      title: "Breezy Summer Style",
-      subtitle: "Beyoung Presents",
+      title: "breezy_title",
+      subtitle: "breezy_subtitle",
       discount: 25,
     },
   },
-];
+] as const satisfies FeaturedCategory[];

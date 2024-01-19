@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 import cn from "@/utils/cn";
-import { Slide } from "@/components/Homepage";
+import { Slide } from "@/layouts/Home";
 import Button from "@/components/common/Button";
-import { ChevronIcon } from "@/components/common/Icons/ChevronIcon";
+import { ChevronIcon } from "@/components/common/Icons";
 
 type SliderProps = {
   slides: Slide[];
 };
 
 export default function Slider({ slides }: SliderProps) {
+  const t = useTranslations("Slides") as (key: string) => string;
+  const tg = useTranslations("General");
+
   const [currSlide, setCurrSlide] = useState(0);
 
   const nextSlide = () =>
@@ -46,14 +50,14 @@ export default function Slider({ slides }: SliderProps) {
           />
           <div className="absolute left-[15%] top-1/2 -translate-y-1/2 font-bold text-white [&>*]:mb-10">
             <span className="inline-block text-2xl">
-              {slide.content.category}
+              {t(slide.content.category)}
             </span>
-            <h2 className="max-w-[300px] text-5xl">{slide.content.title}</h2>
+            <h2 className="max-w-[300px] text-5xl">{t(slide.content.title)}</h2>
             <h3 className="text-xl tracking-widest">
-              {slide.content.subtitle}
+              {t(slide.content.subtitle)}
             </h3>
 
-            <Button className="px-20 py-4 text-black">Shop Now</Button>
+            <Button className="px-20 py-4 text-black">{tg("shop_now")}</Button>
           </div>
         </div>
       ))}

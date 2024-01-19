@@ -1,9 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import cn from "@/utils/cn";
 import Link, { CustomLinkProps } from "@/components/common/Link";
+import { usePathname } from "@/utils/intlHooks";
 
 type ActiveLinkProps = {
   classNameActive?: string;

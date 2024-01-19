@@ -1,4 +1,6 @@
 import cn from "@/utils/cn";
+import TypographyEqual from "@/components/common/TypographyEqual";
+import { useTranslations } from "next-intl";
 
 type FavoriteDetailProps = {
   title: string;
@@ -6,12 +8,14 @@ type FavoriteDetailProps = {
 };
 
 export default function FavoriteDetail({ title, value }: FavoriteDetailProps) {
+  const t = useTranslations("General");
+
   return (
-    <div className="grid grid-cols-2 gap-2">
-      <span className="font-semibold">{title}:</span>
-      <span className={cn(!value && "font-semibold text-red-500")}>
-        {value || "None"}
-      </span>
-    </div>
+    <TypographyEqual
+      title={title}
+      value={value || t("not_selected")}
+      classNameTitle="font-semibold"
+      classNameValue={cn(!value && "font-semibold text-red-500")}
+    />
   );
 }

@@ -1,60 +1,73 @@
 "use client";
 
-import cn from "@/utils/cn";
-import { Details, useDetailsForm } from "@/components/client/UserDetails";
+import { useTranslations } from "next-intl";
+
+import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
+import FormButton from "@/components/common/FormButton";
+import { Details, useUpdateUser } from "@/components/client/UserDetails";
 
 type DetailsPasswordProps = {
+  id: string;
   canEdit: boolean;
 };
 
-export function DetailsPassword({ canEdit }: DetailsPasswordProps) {
-  const { isEditing, setIsEditing, formAction, error } = useDetailsForm("");
+export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
+  const t = useTranslations("Forms");
+  const te = useTranslations("Errors") as (key: string) => string;
+
+  const {
+    modal: [isOpen, setIsOpen],
+    form: [errors, formAction],
+  } = useUpdateUser<"currentPass" | "repeatedPass" | "newPass">(id);
 
   return (
     <Details>
       <Details.View
         value="*****"
         canEdit={canEdit}
-        title="Your Password"
-        onClick={() => setIsEditing(true)}
+        title={t("prefixed.password")}
+        onClick={() => setIsOpen(true)}
       >
-        <Details.Overlay
-          title="Password"
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title={t("overlay.change_password")}
         >
           <form className="grid gap-2" action={formAction}>
-            <Details.Input
+            <span className="text-center font-bold">{t("password")}</span>
+            <Input
               type="password"
-              name="currentPass"
-              placeholder="Current Passwrod"
-              className={cn(error.password?.old && "border-2 border-red-500")}
+              id="currentPass"
+              hasError={!!errors?.currentPass}
+              placeholder={t("password")}
             />
-            {error.password?.old && (
+            {errors?.currentPass && (
               <span className="text-center font-semibold text-red-500">
-                {error.password?.old}
+                {te(errors.currentPass)}
               </span>
             )}
-            <Details.Input
+            <span className="text-center font-bold">{t("password_new")}</span>
+            <Input
               type="password"
-              name="newPass"
-              placeholder="New Password"
-              className={cn(error.password?.new && "border-2 border-red-500")}
+              id="newPass"
+              hasError={!!errors?.newPass}
+              placeholder={t("password_new")}
             />
-            <Details.Input
+            <Input
               type="password"
-              name="repeatedPass"
-              placeholder="Repeat New Passwrod"
-              className={cn(error.password?.new && "border-2 border-red-500")}
+              id="repeatedPass"
+              hasError={!!errors?.repeatedPass}
+              placeholder={t("password_repeat")}
             />
-            {error.password?.new && (
+            {errors?.repeatedPass && (
               <span className="text-center font-semibold text-red-500">
-                {error.password?.new}
+                {te(errors.repeatedPass)}
               </span>
             )}
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
-        </Details.Overlay>
+        </Modal>
       </Details.View>
     </Details>
   );

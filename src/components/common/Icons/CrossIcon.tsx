@@ -13,7 +13,7 @@ export function CrossIcon(props?: SVGProps) {
       <path
         d="M15 1L1 15M15 15L1 1.00001"
         stroke="#3C4242"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeLinecap="round"
       />
     </svg>

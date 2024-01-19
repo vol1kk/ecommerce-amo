@@ -1,48 +1,57 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import {
-  MouseEvent,
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useEffect,
   useState,
 } from "react";
-import { createPortal } from "react-dom";
 
 import cn from "@/utils/cn";
 
 type OverlayProps = {
   children: ReactNode;
   isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   className?: string;
 };
 
-export default function OverlayPortal({
+export default function Overlay({
   isOpen,
   children,
   className,
+  setIsOpen,
 }: OverlayProps) {
   const [overlay, setOverlay] = useState<Element | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => setIsMounted(true), []);
+  const handleKeyDown = useCallback(
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setIsOpen(false);
+    },
+    [setIsOpen],
+  );
+
+  useEffect(() => setOverlay(document.querySelector("#overlay")), []);
 
   useEffect(() => {
-    if (isOpen) document.body.style.overflow = "hidden";
-    if (!isOpen) document.body.style.overflow = "auto";
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isMounted) {
-      setOverlay(document.querySelector("#overlay"));
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.addEventListener("keydown", handleKeyDown);
     }
-  }, [isMounted]);
+    if (!isOpen) {
+      document.body.style.overflow = "auto";
+      document.body.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [handleKeyDown, isOpen]);
 
   if (overlay && isOpen) {
     return createPortal(
       <div
         role="dialog"
+        onClick={() => setIsOpen(false)}
         className={cn(
           !isOpen && "invisible",
           "fixed inset-0 z-30 overflow-y-auto backdrop-blur-md",

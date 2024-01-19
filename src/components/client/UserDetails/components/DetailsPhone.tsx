@@ -1,46 +1,48 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
+import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
+import FormButton from "@/components/common/FormButton";
 import {
   Details,
-  hideDetails,
-  useDetailsForm,
+  hidePhone,
+  useUpdateUser,
 } from "@/components/client/UserDetails";
 
 type DetailsPhoneProps = {
+  id: string;
   number: string;
 };
-export function DetailsPhone({ number }: DetailsPhoneProps) {
+export function DetailsPhone({ id, number }: DetailsPhoneProps) {
+  const t = useTranslations("Forms");
   const {
-    error,
-    isEditing,
-    formAction,
-    state: phoneNumber,
-    setIsEditing,
-  } = useDetailsForm(number);
-
-  const hiddenNumber = hideDetails(phoneNumber, "number");
+    modal: [isOpen, setIsOpen],
+    form: [, formAction],
+  } = useUpdateUser(id);
 
   return (
     <Details>
       <Details.View
-        title="Your Phone"
-        value={hiddenNumber}
-        onClick={() => setIsEditing(true)}
+        title={t("prefixed.phone")}
+        value={hidePhone(number)}
+        onClick={() => setIsOpen(true)}
       >
-        <Details.Overlay
-          title="Phone"
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title={t("overlay.change_phone")}
         >
           <form className="grid gap-2" action={formAction}>
-            <Details.Input
-              name="phone"
-              placeholder="Phone Number"
-              defaultValue={phoneNumber}
+            <Input
+              id="phone"
+              defaultValue={number}
+              placeholder={t("placeholder.phone")}
             />
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
-        </Details.Overlay>
+        </Modal>
       </Details.View>
     </Details>
   );

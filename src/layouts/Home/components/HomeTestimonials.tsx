@@ -6,6 +6,7 @@ import cn from "@/utils/cn";
 import Section from "@/components/common/Section";
 import { Testimonial, TTestimonial } from "@/components/common/Testimonial";
 import groupByThree from "@/layouts/Home/utils/groupByThree";
+import { useTranslations } from "next-intl";
 
 type SectionTestimonialsProps = {
   testimonials: TTestimonial[];
@@ -14,11 +15,13 @@ type SectionTestimonialsProps = {
 export default function HomeTestimonials({
   testimonials,
 }: SectionTestimonialsProps) {
+  const t = useTranslations("General");
+
   const [group, setGroup] = useState(0);
   const groupedTestimonials = groupByThree(testimonials);
 
   return (
-    <Section name="Feedback">
+    <Section name={t("feedback")}>
       <div className="flex overflow-hidden">
         {groupedTestimonials.map((testimonials, groupInd) => (
           <div

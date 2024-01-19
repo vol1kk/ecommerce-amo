@@ -21,6 +21,7 @@ const config: Config = {
         "md-header": { max: "806px" },
         md: { max: "768px" },
         sm: { max: "640px" },
+        "sm-l": { max: "380px" },
         "sm-x": { max: "340px" },
       },
       maxWidth: {

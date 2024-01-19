@@ -1,45 +1,41 @@
 import { FooterCategory } from "@/layouts/Footer/types";
 
-export const HelpCategory: FooterCategory = {
-  name: "Need Help",
+export const HelpCategory = {
+  name: "help",
   links: [
     {
-      name: "Track Order",
+      name: "track",
       href: "/",
     },
     {
-      name: "Returns & Refunds",
+      name: "refunds",
       href: "/",
     },
     {
-      name: "FAQs",
+      name: "faq",
       href: "/",
     },
     {
-      name: "Career",
+      name: "career",
       href: "/",
     },
   ],
-};
+} as const satisfies FooterCategory;
 
-export const InfoCategory: FooterCategory = {
-  name: "More Info",
+export const InfoCategory = {
+  name: "more",
   links: [
     {
-      name: "Terms and Conditions",
+      name: "terms",
       href: "/",
     },
     {
-      name: "Privacy Policy",
+      name: "privacy",
       href: "/",
     },
     {
-      name: "Shipping Policy",
-      href: "/",
-    },
-    {
-      name: "Sitemap",
+      name: "shipping",
       href: "/",
     },
   ],
-};
+} as const satisfies FooterCategory;

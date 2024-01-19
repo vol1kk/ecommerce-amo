@@ -1,5 +1,5 @@
-import { itemStatusAction } from "@/components/server/Shop";
 import { CrossIcon } from "@/components/common/Icons";
+import { toggleWishlistAction } from "@/components/server/Favorites";
 
 type FavoriteRemoveProps = {
   id: string;
@@ -7,12 +7,7 @@ type FavoriteRemoveProps = {
 
 export function FavoriteRemove({ id }: FavoriteRemoveProps) {
   return (
-    <form
-      action={itemStatusAction.bind(undefined, {
-        type: "wishlist",
-        itemId: id,
-      })}
-    >
+    <form action={toggleWishlistAction.bind(undefined, id)}>
       <button type="submit">
         <CrossIcon />
       </button>
