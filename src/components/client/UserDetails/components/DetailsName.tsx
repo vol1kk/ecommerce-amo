@@ -19,7 +19,7 @@ export function DetailsName({ id, name, surname }: DetailsNameProps) {
   const t = useTranslations("Forms");
   const {
     modal: [isOpen, setIsOpen],
-    form: [formErrors, formAction],
+    form: [, formAction],
   } = useUpdateUser<"name" | "surname">(id);
 
   return (

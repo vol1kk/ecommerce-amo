@@ -1,77 +1,30 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { useSession } from "next-auth/react";
 
 import Modal from "@/components/common/Modal";
-import getZodErrors from "@/utils/getZodErrors";
+import { useAction } from "@/hooks/useAction";
 import { CrossIcon } from "@/components/common/Icons";
-import { AddressService } from "@/services/AddressService";
-import { hidePhone } from "@/components/client/UserDetails";
-import { AddressFormError } from "@/components/client/UserAddress/types";
-import { Address, TAddress } from "@/components/client/UserAddress";
+import {
+  Address,
+  TAddress,
+  createAddressAction,
+} from "@/components/client/UserAddress";
 
 type AddressesProps = {
   title: string;
-  initialAddresses: TAddress[];
+  children: ReactNode;
+  addresses: TAddress[];
 };
 
-// TODO: Migrate to server actions back, 'cuz revalidateTag
-export default function Addresses({ title, initialAddresses }: AddressesProps) {
+export default function Addresses({ title, children }: AddressesProps) {
   const t = useTranslations("Forms");
-  const { update } = useSession();
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [addresses, setAddresses] = useState(initialAddresses);
-  const [errors, setErrors] = useState<AddressFormError | null>(null);
-
-  async function handleAddressCreation(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const createdAddress = await AddressService.create(
-      Object.fromEntries(new FormData(e.currentTarget)),
-    );
-
-    if ("statusCode" in createdAddress) {
-      setErrors(getZodErrors(createdAddress.errors));
-    } else {
-      setAddresses(prev => [...prev, createdAddress]);
-      update().then(() => setIsOpen(false));
-    }
-  }
-
-  let content;
-  if (addresses.length > 0) {
-    content = (
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-        {addresses?.map((address, ind) => (
-          <Address key={ind}>
-            <h3 className="text-xl font-bold">
-              {address.name} {address.surname}
-            </h3>
-            <div>
-              <p>{hidePhone(address.phone)}</p>
-              <p>
-                {address.address}, {address.city}
-              </p>
-            </div>
-            <Address.Tags tags={["Home"]} isDefault={address.isDefault} />
-            <Address.Actions>
-              <Address.Delete id={address.id} setAddresses={setAddresses} />
-              <Address.Update address={address} setAddresses={setAddresses} />
-            </Address.Actions>
-          </Address>
-        ))}
-      </div>
-    );
-  } else {
-    content = (
-      <h2 className="text-center text-2xl font-semibold">
-        No addresses added <span className="font-bold">:(</span>
-      </h2>
-    );
-  }
+  const {
+    modal: [isOpen, setIsOpen],
+    form: [errors, formAction],
+  } = useAction<TAddress, keyof TAddress>(createAddressAction);
 
   return (
     <section className="mb-8">
@@ -90,13 +43,13 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
           />
         </button>
       </div>
-      {content}
+      {children}
       <Modal
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         title={t("overlay.address_create")}
       >
-        <Address.Form errors={errors} onSubmit={handleAddressCreation} />
+        <Address.Form action={formAction} errors={errors} />
       </Modal>
     </section>
   );

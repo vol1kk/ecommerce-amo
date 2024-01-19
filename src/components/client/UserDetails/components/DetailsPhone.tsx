@@ -17,7 +17,7 @@ export function DetailsPhone({ id, number }: DetailsPhoneProps) {
   const t = useTranslations("Forms");
   const {
     modal: [isOpen, setIsOpen],
-    form: [errors, formAction],
+    form: [, formAction],
   } = useUpdateUser(id);
 
   return (

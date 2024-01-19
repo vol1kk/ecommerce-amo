@@ -5,10 +5,11 @@ export type TAddress = {
   phone: string;
   surname: string;
   address: string;
+  postalCode: string;
   tags: string[];
   isDefault: boolean;
 };
 
 export type AddressFormError = {
   [K in keyof TAddress]?: string;
-} & { postalCode?: string };
+};

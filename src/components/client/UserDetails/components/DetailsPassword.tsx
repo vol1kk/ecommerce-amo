@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-import cn from "@/utils/cn";
 import Modal from "@/components/common/Modal";
 import { Details, useUpdateUser } from "@/components/client/UserDetails";
 
@@ -38,6 +37,7 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
             <Details.Input
               type="password"
               name="currentPass"
+              hasError={!!errors?.currentPass}
               placeholder={t("password")}
             />
             {errors?.currentPass && (
@@ -49,14 +49,14 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
             <Details.Input
               type="password"
               name="newPass"
+              hasError={!!errors?.newPass}
               placeholder={t("password_new")}
-              className={cn(errors?.repeatedPass && "border-2 border-red-500")}
             />
             <Details.Input
               type="password"
               name="repeatedPass"
+              hasError={!!errors?.repeatedPass}
               placeholder={t("password_repeat")}
-              className={cn(errors?.repeatedPass && "border-2 border-red-500")}
             />
             {errors?.repeatedPass && (
               <span className="text-center font-semibold text-red-500">

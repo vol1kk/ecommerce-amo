@@ -1,37 +1,31 @@
-"use client";
-
 import { useTranslations } from "next-intl";
-import { FormEvent, useState } from "react";
 
 import Button from "@/components/common/Button";
-import { AddressFormError } from "@/components/client/UserAddress/types";
-import { Address, TAddress } from "@/components/client/UserAddress";
+import {
+  Address,
+  TAddress,
+  AddressFormError,
+} from "@/components/client/UserAddress";
 
 type AddressFormProps = Partial<TAddress> & {
   errors?: AddressFormError | null;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  action: (payload: FormData) => void;
 };
 
 export function AddressForm({
-  id,
   city,
   name,
   phone,
   surname,
   address,
   errors,
-  onSubmit,
+  action,
 }: AddressFormProps) {
   const t = useTranslations("Forms");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
     <form
-      onSubmit={async e => {
-        setIsSubmitting(true);
-        await onSubmit(e);
-        setIsSubmitting(false);
-      }}
+      action={action}
       className="grid grid-cols-2 gap-4 lg:grid-cols-1 [&>label>input]:bg-accent"
     >
       <Address.Input
@@ -77,12 +71,11 @@ export function AddressForm({
         placeholder={t("placeholder.phone")}
       />
       <Button
-        name="id"
-        value={id}
         type="submit"
         className="col-span-2 bg-purple-700 text-center font-bold text-white lg:col-auto"
       >
-        {isSubmitting ? t("submit_pending") : t("submit_allowed")}
+        {t("submit_allowed")}
+        {/*{isSubmitting ? t("submit_pending") : t("submit_allowed")}*/}
       </Button>
     </form>
   );

@@ -41,6 +41,7 @@ export function DetailsEmail({ id, email, canEdit }: DetailsEmailProps) {
             <Details.Input
               name="email"
               defaultValue={email}
+              hasError={!!formErrors?.email}
               placeholder={t("placeholder.email")}
             />
             {formErrors?.email && (

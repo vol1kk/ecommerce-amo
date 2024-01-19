@@ -3,23 +3,28 @@ type ZodErrorType = {
   message: string;
 };
 
-type FlattenedObject = { [key: string]: string };
+export default function getErrors<T extends string>(data: any) {
+  if (!hasErrors(data) || !data.errors.every(e => isZodError(e))) return null;
 
-export default function getErrors<T extends string>(errors: any) {
-  if (!isZodError(errors)) return null;
+  return data.errors.reduce(
+    (obj, error) => {
+      const path = error.path.join(".");
+      obj[path] = error.message;
 
-  return errors.reduce((obj: FlattenedObject, error) => {
-    const path = error.path.join(".");
-    obj[path] = error.message;
-
-    return obj;
-  }, {}) as Record<T, string>;
+      return obj;
+    },
+    {} as Record<string, string>,
+  ) as Record<T, string>;
 }
 
-function isZodError(data: any): data is ZodErrorType[] {
+function isZodError(data: any[]): data is ZodErrorType[] {
   if (!isObject(data)) return false;
 
   return "path" in data && "message" in data;
+}
+
+function hasErrors(data: any): data is { errors: any[] } {
+  return isObject(data) && "errors" in data && Array.isArray(data.errors);
 }
 
 function isObject(value: any): value is object {
