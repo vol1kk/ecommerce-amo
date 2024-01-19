@@ -39,7 +39,7 @@ export default async function Page() {
               <th>{t("price")}</th>
               <th>{t("quantity")}</th>
               <th>{t("subtotal")}</th>
-              <th>{t("delete")}</th>
+              <th className="font-black">X</th>
             </tr>
           </thead>
           <tbody className="md-header:flex md-header:flex-col md-header:justify-center">

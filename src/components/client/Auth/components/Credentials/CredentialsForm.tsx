@@ -28,7 +28,10 @@ export default function CredentialsForm({
   setError,
   handleSubmit,
 }: CredentialsFormProps) {
-  const t = useTranslations("Account");
+  const t = useTranslations("Forms");
+  const tg = useTranslations("General");
+  const te = useTranslations("Errors") as (value: any) => string;
+
   const [showPassword, setShowPassword] = useState(false);
 
   function handleErrorReset(e: ChangeEvent<HTMLInputElement>) {
@@ -43,7 +46,7 @@ export default function CredentialsForm({
       className="[&>label>input]:w-full [&>label]:mb-2 [&>label]:inline-block [&>label]:w-full"
     >
       <label htmlFor="email">
-        <span className={labelClasses}>{t("your_email")}</span>
+        <span className={labelClasses}>{t("prefixed.email")}</span>
         <input
           required
           id="email"
@@ -57,11 +60,11 @@ export default function CredentialsForm({
             (error?.email || error?.general) && "border-red-500",
           )}
         />
-        {error?.email && <div className={errorClasses}>{t(error.email)}</div>}
+        {error?.email && <div className={errorClasses}>{te(error.email)}</div>}
       </label>
       <label htmlFor="password">
         <div className="flex items-center justify-between">
-          <span className={labelClasses}>{t("your_password")}</span>
+          <span className={labelClasses}>{t("prefixed.password")}</span>
           <Button
             onClick={() => setShowPassword(prev => !prev)}
             className="flex items-center gap-2 bg-transparent p-0 text-sm font-bold tracking-widest text-lightColor"
@@ -69,12 +72,12 @@ export default function CredentialsForm({
             {showPassword ? (
               <>
                 <HideIcon />
-                {t("hide")}
+                {tg("hide")}
               </>
             ) : (
               <>
                 <ShowIcon />
-                {t("show")}
+                {tg("show")}
               </>
             )}
           </Button>
@@ -93,14 +96,14 @@ export default function CredentialsForm({
           )}
         />
         {error?.password && (
-          <div className={errorClasses}>{t(error.password)}</div>
+          <div className={errorClasses}>{te(error.password)}</div>
         )}
         {error?.general && (
-          <div className={errorClasses}>{t(error.general)}</div>
+          <div className={errorClasses}>{te(error.general)}</div>
         )}
       </label>
       <Button isSubmit className="mt-2 w-full text-lg font-bold">
-        {type === "login" ? t("sign_in") : t("sign_up")}
+        {type === "login" ? tg("login") : tg("register")}
       </Button>
     </form>
   );

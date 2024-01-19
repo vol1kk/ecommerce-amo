@@ -53,6 +53,18 @@ type CustomButtonProps = {
   isSubmit?: boolean;
 };
 
+type ZodError = {
+  path: string[];
+  message: string;
+  minimum?: number;
+};
+
+export type ValidationFailed = {
+  errors: ZodError[];
+  message: string;
+  statusCode: number;
+};
+
 export type SVGProps = React.SVGProps<SVGSVGElement>;
 export type ButtonProps = ComponentPropsWithoutRef<"button"> &
   CustomButtonProps;

@@ -12,9 +12,9 @@ type SliderProps = {
   slides: Slide[];
 };
 
-export default function SliderClient({ slides }: SliderProps) {
-  const t = useTranslations("Slides");
-  const shopNow = useTranslations("Home")("shop_now");
+export default function Slider({ slides }: SliderProps) {
+  const t = useTranslations("Slides") as (key: string) => string;
+  const tg = useTranslations("General");
 
   const [currSlide, setCurrSlide] = useState(0);
 
@@ -57,7 +57,7 @@ export default function SliderClient({ slides }: SliderProps) {
               {t(slide.content.subtitle)}
             </h3>
 
-            <Button className="px-20 py-4 text-black">{shopNow}</Button>
+            <Button className="px-20 py-4 text-black">{tg("shop_now")}</Button>
           </div>
         </div>
       ))}

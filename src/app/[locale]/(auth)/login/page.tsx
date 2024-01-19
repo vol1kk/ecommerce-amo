@@ -7,7 +7,7 @@ import {
 } from "next-intl";
 
 export default function Page() {
-  const t = useTranslations("Account");
+  const t = useTranslations("General");
   const messages = useMessages();
 
   return (
@@ -22,7 +22,7 @@ export default function Page() {
           href="/register"
           className="mt-4 rounded-md bg-accent py-3 text-center font-bold"
         >
-          {t("sign_up")}
+          {t("register")}
         </Link>
       </Auth.Options>
     </Auth>

@@ -1,3 +1,5 @@
+import { NewArrival } from "@/layouts/Home";
+
 export const NewArrivals = [
   {
     src: "/new/joggers.jpg",
@@ -19,6 +21,6 @@ export const NewArrivals = [
     name: "urban_shirts",
     href: "/",
   },
-];
+] as const satisfies NewArrival[];
 
 export default NewArrivals;

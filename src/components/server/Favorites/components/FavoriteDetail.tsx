@@ -8,7 +8,7 @@ type FavoriteDetailProps = {
 };
 
 export default function FavoriteDetail({ title, value }: FavoriteDetailProps) {
-  const t = useTranslations("Item");
+  const t = useTranslations("General");
 
   return (
     <TypographyEqual

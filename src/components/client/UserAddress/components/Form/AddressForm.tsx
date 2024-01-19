@@ -5,22 +5,28 @@ import { FormEvent, useState } from "react";
 import { Address, TAddress } from "@/components/client/UserAddress";
 import Button from "@/components/common/Button";
 import { useTranslations } from "next-intl";
+import cn from "@/utils/cn";
+
+export type FormErrors = {
+  [K in keyof TAddress]?: string;
+} & { postalCode?: string };
 
 type AddressFormProps = Partial<TAddress> & {
-  t: (key: string) => string;
+  errors?: FormErrors | null;
   onSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
 export function AddressForm({
-  t,
   id,
   city,
   name,
   phone,
   surname,
   address,
+  errors,
   onSubmit,
 }: AddressFormProps) {
+  const t = useTranslations("Forms");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
@@ -36,37 +42,43 @@ export function AddressForm({
         name={t("name")}
         id="name"
         defaultValue={name}
-        placeholder={t("name_placeholder")}
+        hasError={!!errors?.name}
+        placeholder={t("placeholder.name")}
       />
       <Address.Input
         id="surname"
         name={t("surname")}
         defaultValue={surname}
-        placeholder={t("surname_placeholder")}
+        hasError={!!errors?.surname}
+        placeholder={t("placeholder.surname")}
       />
       <Address.Input
         id="city"
         name={t("city")}
         defaultValue={city}
-        placeholder={t("city_placeholder")}
+        hasError={!!errors?.city}
+        placeholder={t("placeholder.city")}
       />
       <Address.Input
         id="address"
         name={t("street")}
         defaultValue={address}
-        placeholder={t("street_placeholder")}
+        hasError={!!errors?.address}
+        placeholder={t("placeholder.street")}
       />
       <Address.Input
-        name={t("postal")}
+        name={t("postalCode")}
         id="postalCode"
         defaultValue={phone}
-        placeholder={t("postal_placeholder")}
+        hasError={!!errors?.postalCode}
+        placeholder={t("placeholder.postalCode")}
       />
       <Address.Input
         name={t("phone")}
         id="phone"
         defaultValue={phone}
-        placeholder={t("phone_placeholder")}
+        hasError={!!errors?.phone}
+        placeholder={t("placeholder.phone")}
       />
       <Button
         name="id"
@@ -74,7 +86,7 @@ export function AddressForm({
         type="submit"
         className="col-span-2 bg-purple-700 text-center font-bold text-white lg:col-auto"
       >
-        {isSubmitting ? t("submit_pending") : t("submit")}
+        {isSubmitting ? t("submit_pending") : t("submit_allowed")}
       </Button>
     </form>
   );

@@ -15,7 +15,7 @@ type AddressUpdateProps = {
 };
 
 export function AddressUpdate({ address, setAddresses }: AddressUpdateProps) {
-  const t = useTranslations("Address");
+  const t = useTranslations("General");
   const { update } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,7 +45,7 @@ export function AddressUpdate({ address, setAddresses }: AddressUpdateProps) {
     >
       {t("edit")}
       <Modal title="Edit Address" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Address.Form {...address} t={t} onSubmit={handleAddressUpdate} />
+        <Address.Form {...address} onSubmit={handleAddressUpdate} />
       </Modal>
     </button>
   );

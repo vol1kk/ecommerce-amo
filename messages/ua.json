@@ -1,68 +1,123 @@
 {
-  "Item": {
-    "product": "Товар",
-    "wishlist": "Вішлист",
-    "cart_add": "Додати в корзину",
-    "cart_remove": "Видалити з корзини",
-    "cart_unavailable": "Неможливо додати",
-    "color": "Колір",
-    "size": "Розмір",
-    "not_selected": "Необраний",
-    "prod_details": "Детальніше",
-    "price": "Ціна",
-    "shipping": "Доставка",
-    "quantity": "Кількість",
-    "subtotal": "Підсумок",
-    "delete": "Видалити",
-    "summary": "Загалом",
-    "shipping_address": "Адрес доставки",
-    "billing_address": "Платіжний адрес",
-    "payment_method": "Метод платежу",
-    "place_order": "Замовити",
-    "checkout_proceed": "Продовжити",
-    "checkout_unavailable": "Не всі опції обрано"
-  },
-  "Home": {
-    "categories": "Категорії",
-    "shop": "Магазин",
+  "General": {
+    "feedback": "Фідбек",
+    "shop_now": "Придбати зараз",
+    "explore_items": "Переглянути товари",
+    "saving_zone": "Зона знижок",
+    "discount": "ЗАОЩАДЖУЙ до {discount}%",
+    "login": "Увійти",
+    "register": "Зареєструватись",
+    "logout": "Вийти",
+    "show": "Показати",
+    "hide": "Приховати",
+    "cart": "Корзина",
+    "or": "Або",
+    "edit": "Редагувати",
     "men": "Чоловіки",
+    "shop": "Магазин",
     "women": "Жінки",
     "combos": "Унісекс",
-    "search": "Шукай що треба!",
+    "delete": "Видалити",
+    "orders": "Замовлення",
+    "account": "Профіль",
     "wishlist": "Вішлист",
-    "account": "Акаунт",
-    "cart": "Корзина",
-    "saving_zone": "Зона знижок",
-    "feedback": "Відгуки",
-    "discount": "ЗАОЩАДЖУЙ до {discount}%",
-    "shop_now": "Придбати зараз",
-    "explore_items": "Подивитись товари",
-    "Discounted": {
-      "hawaii_title": "Гавайські сорочки",
-      "hawaii_subtitle": "Одягайся по літньому",
-      "printed_title": "Прінтові футболки",
-      "printed_subtitle": "Нові дизайни щотижня!",
-      "cargo_title": "Джогери",
-      "cargo_subtitle": "Рухайся зі стилем та комфортом",
-      "urban_title": "Міські сорочки",
-      "urban_subtitle": "Живи у комфорті",
-      "oversized_title": "Оверсайзд футболки",
-      "oversized_subtitle": "Ікона вуличного одягу"
-    },
-    "Featured": {
-      "cozy_title": "Зручні",
-      "cozy_subtitle": "та недорогі",
-      "breezy_title": "Свіжість літа",
-      "breezy_subtitle": "від Beyoung"
-    },
-    "Cards": {
-      "new_arrivals": "Нові товари",
-      "joggers": "В'язані штани",
-      "full_sleeve": "Довгі рукава",
-      "active_shirts": "Спортивні футболки",
-      "urban_shirts": "Міські сорочки"
-    }
+    "not_selected": "Необраний",
+    "categories": "Категорії",
+    "info": "Про Мене",
+    "address_details": "Адреси",
+    "search": "Шукай що треба!",
+    "oauth_continue": "Увійти через {provider}",
+    "contact_details": "Контактні дані"
   },
+
+  "Forms": {
+    "name": "Ім'я",
+    "surname": "Прізвище",
+    "email": "Електронна адреса",
+    "phone": "Телефон",
+    "city": "Місто",
+    "street": "Вулиця",
+    "postalCode": "Поштовий індекс",
+    "password": "Пароль",
+    "password_new": "Новий пароль",
+    "password_repeat": "Повторіть пароль",
+
+    "prefixed": {
+      "name": "Ваше ім'я",
+      "phone": "Ваш телефон",
+      "password": "Ваш пароль",
+      "email": "Ваша пошта"
+    },
+
+    "placeholder": {
+      "name": "Введіть ім'я",
+      "surname": "Введіть прізвище",
+      "email": "Введіть пошту",
+      "phone": "Введіть телефон",
+      "city": "Введіть місто",
+      "street": "Введіть вулицю",
+      "postalCode": "Введіть поштовий індекс",
+      "password_new": "Введіть новий пароль",
+      "password_repeat": "Повторіть його"
+    },
+
+    "overlay": {
+      "change_phone": "Змінити телефон",
+      "change_email": "Змінити пошту",
+      "address_update": "Оновити адресу",
+      "address_create": "Створити адресу",
+      "change_password": "Змінити пароль",
+      "fullname_overlay": "Змінити ім'я"
+    },
+
+    "default": "Основна",
+    "set_default": "Зробити основною",
+
+    "submit_allowed": "Зберегти",
+    "submit_pending": "Оновлення",
+    "submit_disallowed": "Заборонено"
+  },
+
+  "Errors": {
+    "empty_cart": "Ваша корзина сумує :(",
+    "empty_cart_subtitle": "Додайте щось і повеселішає!",
+    "empty_cart_back": "За покупками!",
+
+    "something_wrong": "Дідько! Щось пішло не так!",
+    "invalid_email": "Пошта не вірна!",
+    "invalid_pass": "Невірний пароль",
+    "min_length": "Довше! Довше! Довше!",
+    "password_not_match": "Паролі не співпадають"
+  },
+
+  "Featured": {
+    "cozy_title": "Зручні",
+    "cozy_subtitle": "та недорогі",
+    "breezy_title": "Свіжість літа",
+    "breezy_subtitle": "від Beyoung"
+  },
+
+  "Discounted": {
+    "hawaii_title": "Гавайські сорочки",
+    "hawaii_subtitle": "Одягайся по літньому",
+    "printed_title": "Прінтові футболки",
+    "printed_subtitle": "Нові дизайни щотижня!",
+    "cargo_title": "Джогери",
+    "cargo_subtitle": "Рухайся зі стилем та комфортом",
+    "urban_title": "Міські сорочки",
+    "urban_subtitle": "Живи у комфорті",
+    "oversized_title": "Оверсайзд футболки",
+    "oversized_subtitle": "Ікона вуличного одягу"
+  },
+
+  "Cards": {
+    "new_arrivals": "Нові товари",
+    "joggers": "В'язані штани",
+    "full_sleeve": "Довгі рукава",
+    "active_shirts": "Спортивні футболки",
+    "urban_shirts": "Міські сорочки"
+  },
+
   "Slides": {
     "dress_category": "Плаття",
     "dress_title": "Святкові наряди",
@@ -71,6 +126,7 @@
     "tops_title": "Літній одяг",
     "tops_subtitle": "крутий / кольоровий / зручний"
   },
+
   "Footer": {
     "help": "Допомога",
     "track": "Відстежити замовлення",
@@ -83,83 +139,25 @@
     "shipping": "Політика доставки",
     "contact": "Зв'язатись з нами"
   },
-  "Account": {
-    "password": "Поточний пароль",
-    "new_password": "Новий пароль",
-    "delete": "Видалити",
 
-    "password_not_match": "Паролі не співпадають",
-    "invalid_pass": "Невірний пароль",
-
-    "not_selected": "Немає",
-    "info": "Інформація",
-    "contact_details": "Контактні Дані",
-    "address_details": "Адреса",
-    "orders": "Замовлення",
-    "wishlist": "Вішлист",
-    "sign_out": "Вийти",
-    "oauth_continue": "Увійти через",
-    "or": "Або",
-    "edit": "Редагувати",
-    "set_default": "Зробити основною",
-    "default": "Основна",
-    "show": "Показати",
-    "hide": "Приховати",
-    "sign_in": "Увійти",
-    "sign_up": "Зареєструватись",
-
-    "name_placeholder": "Введіть ім'я",
-    "surname_placeholder": "Введіть прізвище",
-    "fullname_title": "Ім'я",
-    "fullname_overlay": "Змінити ім'я",
-
-    "email_placeholder": "Введіть пошту",
-    "your_email": "Електронна Пошта",
-    "change_email": "Змінити пошту",
-
-    "phone_placeholder": "Введіть номер",
-    "your_phone": "Номер Телефону",
-    "change_phone": "Змінити номер",
-
-    "your_password": "Пароль",
-    "change_password": "Змінити Пароль",
-    "password_current": "Введіть поточний пароль",
-    "password_new": "Введіть новий пароль",
-    "password_repeat": "Повторіть пароль",
-
-    "submit_allowed": "Зберігти",
-    "submit_disallowed": "Редагування заборонено",
-    "submit_pending": "Оновлення",
-
-    "something_wrong": "Дідько! Щось пішло не так",
-    "invalid_email": "Невірна поштова адреса!",
-    "min_length": "Пароль повинен бути довшим!"
-  },
-  "Address": {
-    "edit": "Редагувати",
-    "submit": "Зберігти",
-    "submit_pending": "Оновлення",
-
-    "address_create": "Додати адресу",
-    "address_update": "Змінити адресу",
-
-
-    "name": "Ім'я",
-    "name_placeholder": "Введіть ім'я",
-
-    "surname": "Прізвище",
-    "surname_placeholder": "Введіть прізвище",
-
-    "city": "Місто",
-    "city_placeholder": "Введіть місто",
-
-    "street": "Вулиця",
-    "street_placeholder": "Введіть вулицю",
-
-    "postal": "Поштовий індекс",
-    "postal_placeholder": "Введіть індекс",
-
-    "phone": "Номер телефону",
-    "phone_placeholder": "Введіть телефон"
+  "Item": {
+    "size": "Розмір",
+    "color": "Колір",
+    "product": "Товар",
+    "price": "Ціна",
+    "quantity": "Кількість",
+    "cart_add": "Додати до корзини",
+    "cart_remove": "Видалити з корзини",
+    "prod_details": "Про товар",
+    "cart_unavailable": "Неможливо додати",
+    "shipping": "Доставка",
+    "subtotal": "Підсумок",
+    "summary": "Загалом",
+    "place_order": "Замовити",
+    "payment_method": "Метод платежу",
+    "billing_address": "Платіжний адрес",
+    "shipping_address": "Адрес доставки",
+    "checkout_proceed": "Продовжити",
+    "checkout_unavailable": "Не всі опції обрано"
   }
 }

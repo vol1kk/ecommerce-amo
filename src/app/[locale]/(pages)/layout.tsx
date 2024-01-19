@@ -8,7 +8,7 @@ import { Footer } from "@/layouts/Footer";
 import { Sidebar } from "@/layouts/Sidebar";
 
 export default function Layout(props: { children: ReactNode }) {
-  const t = useTranslations("Home");
+  const t = useTranslations("General");
 
   return (
     <>

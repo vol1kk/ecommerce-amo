@@ -19,7 +19,9 @@ type DetailsEmailProps = {
 const errorClasses = "text-bold mt-1 w-full text-center text-red-500";
 
 export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
-  const t = useTranslations("Account");
+  const t = useTranslations("Forms");
+  const te = useTranslations("Errors") as (key: string) => string;
+
   const { error, isEditing, formAction, state, setIsEditing } = useDetailsForm(
     { email: initialEmail },
     id,
@@ -30,25 +32,25 @@ export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
   return (
     <Details>
       <Details.View
-        title={t("your_email")}
+        title={t("prefixed.email")}
         canEdit={canEdit}
         value={hiddenEmail}
         onClick={() => setIsEditing(true)}
       >
         <Modal
-          title={t("change_email")}
+          title={t("overlay.change_email")}
           isOpen={isEditing}
           setIsOpen={setIsEditing}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="email"
-              placeholder={t("email_placeholder")}
+              placeholder={t("placeholder.email")}
               defaultValue={state.email}
             />
             {error?.email && (
               <span className="text-bold mt-1 w-full text-center text-red-500">
-                {t(error.email)}
+                {te(error.email)}
               </span>
             )}
             <Details.Submit isEditable />

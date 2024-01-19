@@ -12,7 +12,7 @@ type DetailsSubmitProps = {
 
 export function DetailsSubmit({ isEditable }: DetailsSubmitProps) {
   const { pending } = useFormStatus();
-  const t = useTranslations("Account");
+  const t = useTranslations("Forms");
 
   return (
     <div className="grid grid-cols-1 gap-2 font-semibold disabled:[&_button]:cursor-no-drop">

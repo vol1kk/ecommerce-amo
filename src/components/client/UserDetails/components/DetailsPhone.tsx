@@ -14,8 +14,8 @@ type DetailsPhoneProps = {
   number: string;
 };
 export function DetailsPhone({ id, number }: DetailsPhoneProps) {
-  const t = useTranslations("Account");
-  const { error, isEditing, formAction, state, setIsEditing } = useDetailsForm(
+  const t = useTranslations("Forms");
+  const { isEditing, formAction, state, setIsEditing } = useDetailsForm(
     { number },
     id,
   );
@@ -25,19 +25,19 @@ export function DetailsPhone({ id, number }: DetailsPhoneProps) {
   return (
     <Details>
       <Details.View
-        title={t("your_phone")}
+        title={t("prefixed.phone")}
         value={hiddenNumber}
         onClick={() => setIsEditing(true)}
       >
         <Modal
           isOpen={isEditing}
           setIsOpen={setIsEditing}
-          title={t("change_phone")}
+          title={t("overlay.change_phone")}
         >
           <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="phone"
-              placeholder={t("phone_placeholder")}
+              placeholder={t("placeholder.phone")}
               defaultValue={state.number}
             />
             <Details.Submit isEditable />

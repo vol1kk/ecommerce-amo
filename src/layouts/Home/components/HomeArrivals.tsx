@@ -1,16 +1,16 @@
 import { useTranslations } from "next-intl";
 
 import Link from "@/components/common/Link";
-import { NewArrival } from "@/layouts/Home";
+import { NewArrivals } from "@/layouts/Home";
 import { Card } from "@/components/common/Card";
 import Section from "@/components/common/Section";
 
 type SectionArrivalsProps = {
-  arrivals: NewArrival[];
+  arrivals: (typeof NewArrivals)[number][];
 };
 
 export default function HomeArrivals({ arrivals }: SectionArrivalsProps) {
-  const t = useTranslations("Home.Cards");
+  const t = useTranslations("Cards");
 
   return (
     <Section name={t("new_arrivals")}>
