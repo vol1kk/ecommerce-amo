@@ -1,11 +1,22 @@
 import { RequestService } from "@/services/RequestService";
 import { Session, User } from "next-auth";
 
+export const UserSessionTag = "UserSessionTag";
 export class UserService extends RequestService {
   static serviceUrl = this.baseUrl + "/users";
 
-  static async findOne(id: string) {
+  static async findOne(id: string): Promise<User> {
     const resp = await this.get(`${this.serviceUrl}/${id}`);
+    return resp.json();
+  }
+
+  static async findMe(): Promise<
+    Session["user"] & { accounts: { type: string } }
+  > {
+    const resp = await this.get(`${this.serviceUrl}/me`, {
+      next: { tags: [UserSessionTag] },
+    });
+
     return resp.json();
   }
 

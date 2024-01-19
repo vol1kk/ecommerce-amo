@@ -3,57 +3,55 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
+import FormButton from "@/components/common/FormButton";
 import {
   Details,
-  hideDetails,
-  useDetailsForm,
+  hideEmail,
+  useUpdateUser,
 } from "@/components/client/UserDetails";
-import { useEffect } from "react";
 
 type DetailsEmailProps = {
   id: string;
-  initialEmail: string;
+  email: string;
   canEdit: boolean;
 };
 
-const errorClasses = "text-bold mt-1 w-full text-center text-red-500";
-
-export function DetailsEmail({ id, initialEmail, canEdit }: DetailsEmailProps) {
+export function DetailsEmail({ id, email, canEdit }: DetailsEmailProps) {
   const t = useTranslations("Forms");
   const te = useTranslations("Errors") as (key: string) => string;
 
-  const { error, isEditing, formAction, state, setIsEditing } = useDetailsForm(
-    { email: initialEmail },
-    id,
-  );
-
-  const hiddenEmail = hideDetails(state.email, "email");
+  const {
+    modal: [isOpen, setIsOpen],
+    form: [formErrors, formAction],
+  } = useUpdateUser<"email">(id);
 
   return (
     <Details>
       <Details.View
         title={t("prefixed.email")}
         canEdit={canEdit}
-        value={hiddenEmail}
-        onClick={() => setIsEditing(true)}
+        value={hideEmail(email)}
+        onClick={() => setIsOpen(true)}
       >
         <Modal
           title={t("overlay.change_email")}
-          isOpen={isEditing}
-          setIsOpen={setIsEditing}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
         >
           <form className="grid gap-2" action={formAction}>
-            <Details.Input
-              name="email"
+            <Input
+              id="email"
+              defaultValue={email}
+              hasError={!!formErrors?.email}
               placeholder={t("placeholder.email")}
-              defaultValue={state.email}
             />
-            {error?.email && (
+            {formErrors?.email && (
               <span className="text-bold mt-1 w-full text-center text-red-500">
-                {te(error.email)}
+                {te(formErrors.email)}
               </span>
             )}
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
         </Modal>
       </Details.View>

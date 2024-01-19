@@ -1,12 +1,10 @@
 import { ReactNode } from "react";
 
+import { DetailsView } from "@/components/client/UserDetails/components/DetailsView";
 import { DetailsName } from "@/components/client/UserDetails/components/DetailsName";
 import { DetailsEmail } from "@/components/client/UserDetails/components/DetailsEmail";
 import { DetailsPhone } from "@/components/client/UserDetails/components/DetailsPhone";
-import { DetailsView } from "@/components/client/UserDetails/components/common/DetailsView";
 import { DetailsPassword } from "@/components/client/UserDetails/components/DetailsPassword";
-import { DetailsInput } from "@/components/client/UserDetails/components/common/DetailsInput";
-import { DetailsSubmit } from "@/components/client/UserDetails/components/common/DetailsSubmit";
 
 export default function Details({ children }: { children: ReactNode }) {
   return (
@@ -20,6 +18,4 @@ Details.View = DetailsView;
 Details.Name = DetailsName;
 Details.Email = DetailsEmail;
 Details.Phone = DetailsPhone;
-Details.Input = DetailsInput;
-Details.Submit = DetailsSubmit;
 Details.Password = DetailsPassword;

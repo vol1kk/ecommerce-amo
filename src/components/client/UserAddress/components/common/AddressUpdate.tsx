@@ -1,39 +1,27 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useSession } from "next-auth/react";
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 import cn from "@/utils/cn";
 import Modal from "@/components/common/Modal";
-import { AddressService } from "@/services/AddressService";
-import { Address, TAddress } from "@/components/client/UserAddress";
+import { useAction } from "@/hooks/useAction";
+import {
+  Address,
+  TAddress,
+  updateAddressAction,
+} from "@/components/client/UserAddress";
 
 type AddressUpdateProps = {
   address: TAddress;
-  setAddresses: Dispatch<SetStateAction<TAddress[]>>;
 };
 
-export function AddressUpdate({ address, setAddresses }: AddressUpdateProps) {
+export function AddressUpdate({ address }: AddressUpdateProps) {
   const t = useTranslations("General");
-  const { update } = useSession();
-  const [isOpen, setIsOpen] = useState(false);
 
-  async function handleAddressUpdate(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const updatedAddress = await AddressService.update(
-      address.id,
-      Object.fromEntries(formData),
-    );
-
-    setAddresses(addresses =>
-      addresses.map(a => (a.id === updatedAddress.id ? updatedAddress : a)),
-    );
-
-    update().then(() => setIsOpen(false));
-  }
+  const {
+    modal: [isOpen, setIsOpen],
+    form: [errors, formAction],
+  } = useAction(updateAddressAction.bind(undefined, address.id));
 
   return (
     <button
@@ -45,7 +33,7 @@ export function AddressUpdate({ address, setAddresses }: AddressUpdateProps) {
     >
       {t("edit")}
       <Modal title="Edit Address" isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Address.Form {...address} onSubmit={handleAddressUpdate} />
+        <Address.Form {...address} action={formAction} errors={errors} />
       </Modal>
     </button>
   );

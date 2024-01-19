@@ -5,25 +5,11 @@ export type TAddress = {
   phone: string;
   surname: string;
   address: string;
+  postalCode: string;
   tags: string[];
   isDefault: boolean;
 };
 
-type AddressActionErrorResponse = {
-  ok: false;
-  errors: Partial<Omit<TAddress, "id">>;
+export type AddressFormError = {
+  [K in keyof TAddress]?: string;
 };
-
-type AddressActionSuccessResponse = {
-  ok: true;
-  data: TAddress;
-};
-
-type AddressActionResponse =
-  | AddressActionErrorResponse
-  | AddressActionSuccessResponse;
-
-export type FormAddressAction = (
-  state: AddressActionResponse | null,
-  payload: FormData,
-) => AddressActionResponse | Promise<AddressActionResponse>;

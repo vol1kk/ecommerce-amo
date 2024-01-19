@@ -1,11 +1,12 @@
 "use server";
 
-import { UserService } from "@/services/UserService";
+import { UserService, UserSessionTag } from "@/services/UserService";
+import { revalidateTag } from "next/cache";
 
-export async function updateUserAction(
-  id: string,
-  initialState: any,
-  formData: FormData,
-) {
-  return UserService.update(id, Object.fromEntries(formData));
+export async function updateUserAction(id: string, _: any, formData: FormData) {
+  const user = UserService.update(id, Object.fromEntries(formData));
+
+  revalidateTag(UserSessionTag);
+
+  return user;
 }

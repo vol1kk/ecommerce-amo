@@ -1,5 +1,5 @@
 import { JWT } from "next-auth/jwt";
-import { Account } from "next-auth";
+import { Account, Session } from "next-auth";
 
 import { RequestService } from "@/services/RequestService";
 
@@ -19,12 +19,12 @@ export class AuthService extends RequestService {
       ? this.baseUrl + "/auth"
       : this.baseUrl + "/users";
 
-  static async register(body: AuthBody) {
+  static async register(body: AuthBody): Promise<Session["user"]> {
     const resp = await this.post(`${this.serviceUrl}/register`, { body });
     return resp.json();
   }
 
-  static async login(body: AuthBody) {
+  static async login(body: AuthBody): Promise<Session["user"]> {
     const resp = await this.post(`${this.serviceUrl}/login`, { body });
 
     if (!resp.ok) {
@@ -34,7 +34,7 @@ export class AuthService extends RequestService {
     return resp.json();
   }
 
-  static async oauthLogin(body: OAuthBody) {
+  static async oauthLogin(body: OAuthBody): Promise<Session["user"]> {
     const resp = await this.post(`${this.serviceUrl}/oauth`, { body });
     return resp.json();
   }
