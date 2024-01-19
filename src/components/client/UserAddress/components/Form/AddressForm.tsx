@@ -6,6 +6,7 @@ import {
   TAddress,
   AddressFormError,
 } from "@/components/client/UserAddress";
+import FormButton from "@/components/common/FormButton";
 
 type AddressFormProps = Partial<TAddress> & {
   errors?: AddressFormError | null;
@@ -70,13 +71,7 @@ export function AddressForm({
         hasError={!!errors?.phone}
         placeholder={t("placeholder.phone")}
       />
-      <Button
-        type="submit"
-        className="col-span-2 bg-purple-700 text-center font-bold text-white lg:col-auto"
-      >
-        {t("submit_allowed")}
-        {/*{isSubmitting ? t("submit_pending") : t("submit_allowed")}*/}
-      </Button>
+      <FormButton className="col-span-2 lg:col-span-1" />
     </form>
   );
 }

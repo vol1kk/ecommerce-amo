@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import FormButton from "@/components/common/FormButton";
 import { Details, useUpdateUser } from "@/components/client/UserDetails";
 
 type DetailsPasswordProps = {
@@ -63,7 +64,7 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
                 {te(errors.repeatedPass)}
               </span>
             )}
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
         </Modal>
       </Details.View>

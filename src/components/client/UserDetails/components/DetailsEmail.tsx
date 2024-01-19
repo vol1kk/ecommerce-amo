@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import FormButton from "@/components/common/FormButton";
 import {
   Details,
   hideEmail,
@@ -49,7 +50,7 @@ export function DetailsEmail({ id, email, canEdit }: DetailsEmailProps) {
                 {te(formErrors.email)}
               </span>
             )}
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
         </Modal>
       </Details.View>

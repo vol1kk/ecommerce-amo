@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import FormButton from "@/components/common/FormButton";
 import {
   Details,
   hideName,
@@ -45,7 +46,7 @@ export function DetailsName({ id, name, surname }: DetailsNameProps) {
               placeholder={t("placeholder.surname")}
               defaultValue={surname}
             />
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
         </Modal>
       </Details.View>
