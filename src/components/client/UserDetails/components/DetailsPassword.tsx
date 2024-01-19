@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 
 import cn from "@/utils/cn";
 import Modal from "@/components/common/Modal";
-import { Details, useDetailsForm } from "@/components/client/UserDetails";
+import { Details, useUpdateUser } from "@/components/client/UserDetails";
 
 type DetailsPasswordProps = {
   id: string;
@@ -15,10 +15,10 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
   const t = useTranslations("Forms");
   const te = useTranslations("Errors") as (key: string) => string;
 
-  const { isEditing, setIsEditing, formAction, error } = useDetailsForm(
-    { currentPass: "", repeatedPass: "", newPass: "" },
-    id,
-  );
+  const {
+    modal: [isOpen, setIsOpen],
+    form: [errors, formAction],
+  } = useUpdateUser<"currentPass" | "repeatedPass" | "newPass">(id);
 
   return (
     <Details>
@@ -26,11 +26,11 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
         value="*****"
         canEdit={canEdit}
         title={t("prefixed.password")}
-        onClick={() => setIsEditing(true)}
+        onClick={() => setIsOpen(true)}
       >
         <Modal
-          isOpen={isEditing}
-          setIsOpen={setIsEditing}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
           title={t("overlay.change_password")}
         >
           <form className="grid gap-2" action={formAction}>
@@ -40,9 +40,9 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
               name="currentPass"
               placeholder={t("password")}
             />
-            {error?.currentPass && (
+            {errors?.currentPass && (
               <span className="text-center font-semibold text-red-500">
-                {te(error.currentPass)}
+                {te(errors.currentPass)}
               </span>
             )}
             <span className="text-center font-bold">{t("password_new")}</span>
@@ -50,17 +50,17 @@ export function DetailsPassword({ id, canEdit }: DetailsPasswordProps) {
               type="password"
               name="newPass"
               placeholder={t("password_new")}
-              className={cn(error?.repeatedPass && "border-2 border-red-500")}
+              className={cn(errors?.repeatedPass && "border-2 border-red-500")}
             />
             <Details.Input
               type="password"
               name="repeatedPass"
               placeholder={t("password_repeat")}
-              className={cn(error?.repeatedPass && "border-2 border-red-500")}
+              className={cn(errors?.repeatedPass && "border-2 border-red-500")}
             />
-            {error?.repeatedPass && (
+            {errors?.repeatedPass && (
               <span className="text-center font-semibold text-red-500">
-                {te(error.repeatedPass)}
+                {te(errors.repeatedPass)}
               </span>
             )}
             <Details.Submit isEditable />

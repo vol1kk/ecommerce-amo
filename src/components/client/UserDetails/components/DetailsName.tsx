@@ -5,59 +5,45 @@ import { useTranslations } from "next-intl";
 import Modal from "@/components/common/Modal";
 import {
   Details,
-  hideDetails,
-  useDetailsForm,
+  hideName,
+  useUpdateUser,
 } from "@/components/client/UserDetails";
 
 type DetailsNameProps = {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
+  surname: string;
 };
 
-export function DetailsName({ id, firstName, lastName }: DetailsNameProps) {
+export function DetailsName({ id, name, surname }: DetailsNameProps) {
   const t = useTranslations("Forms");
   const {
-    isEditing,
-    formAction,
-    setIsEditing,
-    state: fullName,
-  } = useDetailsForm(
-    {
-      name: firstName,
-      surname: lastName,
-    },
-    id,
-  );
+    modal: [isOpen, setIsOpen],
+    form: [formErrors, formAction],
+  } = useUpdateUser<"name" | "surname">(id);
 
-  const hiddenName = hideDetails(JSON.stringify(fullName), "name");
   return (
     <Details>
       <Details.View
-        value={hiddenName}
+        value={hideName({ name, surname })}
         title={t("prefixed.name")}
-        onClick={() => setIsEditing(true)}
+        onClick={() => setIsOpen(true)}
       >
         <Modal
-          isOpen={isEditing}
-          setIsOpen={setIsEditing}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
           title={t("overlay.fullname_overlay")}
         >
-          <form
-            className="grid gap-2"
-            action={async formData => {
-              formAction(formData);
-            }}
-          >
+          <form className="grid gap-2" action={formAction}>
             <Details.Input
               name="name"
               placeholder={t("placeholder.name")}
-              defaultValue={fullName.name}
+              defaultValue={name}
             />
             <Details.Input
               name="surname"
               placeholder={t("placeholder.surname")}
-              defaultValue={fullName.surname}
+              defaultValue={surname}
             />
             <Details.Submit isEditable />
           </form>

@@ -14,7 +14,7 @@ export default async function Page() {
     redirect(SIGN_IN_PAGE);
   }
 
-  const canEdit = user.accounts.type !== "oauth";
+  const canEdit = user.accounts.type === "oauth";
 
   return (
     <div>
@@ -24,16 +24,16 @@ export default async function Page() {
         </h2>
         <Details.Name
           id={user.id}
-          firstName={user.name || ""}
-          lastName={user.surname || ""}
+          name={user.name || ""}
+          surname={user.surname || ""}
         />
         <Details.Email
           id={user.id}
-          canEdit={canEdit}
-          initialEmail={user.email || ""}
+          canEdit={!canEdit}
+          email={user.email || ""}
         />
         <Details.Phone id={user.id} number={user.phone || ""} />
-        <Details.Password id={user.id} canEdit={canEdit} />
+        <Details.Password id={user.id} canEdit={!canEdit} />
       </section>
       <Addresses title={t("address_details")} initialAddresses={user.address} />
     </div>

@@ -5,12 +5,12 @@ import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 
 import Modal from "@/components/common/Modal";
+import getZodErrors from "@/utils/getZodErrors";
 import { CrossIcon } from "@/components/common/Icons";
 import { AddressService } from "@/services/AddressService";
-import { hideDetails } from "@/components/client/UserDetails";
+import { hidePhone } from "@/components/client/UserDetails";
+import { AddressFormError } from "@/components/client/UserAddress/types";
 import { Address, TAddress } from "@/components/client/UserAddress";
-import getZodErrors from "@/utils/getZodErrors";
-import { FormErrors } from "@/components/client/UserAddress/components/Form/AddressForm";
 
 type AddressesProps = {
   title: string;
@@ -24,7 +24,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [addresses, setAddresses] = useState(initialAddresses);
-  const [errors, setErrors] = useState<FormErrors | null>(null);
+  const [errors, setErrors] = useState<AddressFormError | null>(null);
 
   async function handleAddressCreation(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,7 +51,7 @@ export default function Addresses({ title, initialAddresses }: AddressesProps) {
               {address.name} {address.surname}
             </h3>
             <div>
-              <p>{hideDetails(address.phone, "number")}</p>
+              <p>{hidePhone(address.phone)}</p>
               <p>
                 {address.address}, {address.city}
               </p>

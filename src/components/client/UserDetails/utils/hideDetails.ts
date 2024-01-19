@@ -1,44 +1,44 @@
-export default function hideDetails(data: string, type: string) {
-  switch (type) {
-    case "email": {
-      const [name, domain] = data?.split("@");
-      if (!name || !domain) {
-        return undefined;
-      }
+export function hideName(fullName: { name: string; surname: string }) {
+  const hiddenSurname = fullName.surname
+    .slice(0, 1)
+    .padEnd(fullName.surname.length + 5, "*");
 
-      const [beforeDot, afterDot] = domain?.split(".");
+  return `${fullName.name} ${fullName.surname && hiddenSurname}`.trim();
+}
 
-      const hiddenName = name.slice(0, 3).padEnd(10, "*");
-      const hiddenDomain =
-        beforeDot.slice(0, 1).padEnd(5, "*") +
-        "." +
-        "".padStart(afterDot.length, "*");
+export function hideEmail(email: string) {
+  if (!email) return;
 
-      return `${hiddenName}@${hiddenDomain}`;
-    }
+  const [name, domain] = email.split("@");
+  if (!name || !domain) return;
 
-    case "name": {
-      const fullName = JSON.parse(data) as { name: string; surname: string };
+  const [beforeDot, afterDot] = domain.split(".");
 
-      const hiddenSurname = fullName.surname
-        .slice(0, 1)
-        .padEnd(fullName.surname.length + 2, "*");
+  if (!beforeDot || !afterDot) return;
 
-      return `${fullName.name} ${fullName.surname && hiddenSurname}`.trim();
-    }
+  const VisibleSymbols = 3;
+  const beforeAt = name
+    .slice(0, VisibleSymbols)
+    .padEnd(name.length + VisibleSymbols, "*");
 
-    case "number": {
-      const parsedData = data.replaceAll("-", "");
+  const afterAt =
+    beforeDot.slice(0, 1).padEnd(5, "*") +
+    "." +
+    "".padStart(afterDot.length, "*");
 
-      const numberBeginning = parsedData.slice(0, 3);
-      const numberEnd = parsedData.slice(-2);
+  return `${beforeAt}@${afterAt}`;
+}
 
-      const hiddenBeginning = numberBeginning.padEnd(
-        parsedData.length - numberEnd.length,
-        "*",
-      );
+export function hidePhone(phoneNumber: string) {
+  const parsedData = phoneNumber.replace(/[+|-]/g, "");
 
-      return hiddenBeginning + numberEnd;
-    }
-  }
+  const numberBeginning = parsedData.slice(0, 6);
+  const numberEnd = parsedData.slice(-2);
+
+  const hiddenBeginning = numberBeginning.padEnd(
+    parsedData.length - numberEnd.length,
+    "*",
+  );
+
+  return hiddenBeginning + numberEnd;
 }

@@ -1,18 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
 
-import { Address, TAddress } from "@/components/client/UserAddress";
 import Button from "@/components/common/Button";
-import { useTranslations } from "next-intl";
-import cn from "@/utils/cn";
-
-export type FormErrors = {
-  [K in keyof TAddress]?: string;
-} & { postalCode?: string };
+import { AddressFormError } from "@/components/client/UserAddress/types";
+import { Address, TAddress } from "@/components/client/UserAddress";
 
 type AddressFormProps = Partial<TAddress> & {
-  errors?: FormErrors | null;
+  errors?: AddressFormError | null;
   onSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
