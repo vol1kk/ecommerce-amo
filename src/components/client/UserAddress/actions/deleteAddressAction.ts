@@ -1,12 +1,13 @@
 "use server";
 
 import { AddressService } from "@/services/AddressService";
+import { revalidateTag } from "next/cache";
+import { UserSessionTag } from "@/services/UserService";
 
 export async function deleteAddressAction(id: string) {
-  const res = await AddressService.deleteById(id);
+  const deletedAddress = await AddressService.deleteById(id);
 
-  return {
-    ok: true,
-    data: res,
-  };
+  revalidateTag(UserSessionTag);
+
+  return deletedAddress;
 }

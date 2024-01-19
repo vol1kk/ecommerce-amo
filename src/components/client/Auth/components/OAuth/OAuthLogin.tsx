@@ -4,7 +4,7 @@ import { AvailableOAuthProviders } from "@/components/client/Auth";
 import OAuthForm from "@/components/client/Auth/components/OAuth/OAuthForm";
 
 export function OAuthLogin() {
-  const t = useTranslations("Account");
+  const t = useTranslations("General");
 
   return (
     <div>

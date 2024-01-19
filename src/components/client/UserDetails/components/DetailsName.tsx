@@ -3,67 +3,51 @@
 import { useTranslations } from "next-intl";
 
 import Modal from "@/components/common/Modal";
+import Input from "@/components/common/Input";
+import FormButton from "@/components/common/FormButton";
 import {
   Details,
-  hideDetails,
-  useDetailsForm,
+  hideName,
+  useUpdateUser,
 } from "@/components/client/UserDetails";
 
 type DetailsNameProps = {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
+  surname: string;
 };
 
-export function DetailsName({ id, firstName, lastName }: DetailsNameProps) {
-  const t = useTranslations("Account");
+export function DetailsName({ id, name, surname }: DetailsNameProps) {
+  const t = useTranslations("Forms");
   const {
-    error,
-    isEditing,
-    formAction,
-    setIsEditing,
-    state: fullName,
-  } = useDetailsForm(
-    {
-      name: firstName,
-      surname: lastName,
-    },
-    id,
-  );
+    modal: [isOpen, setIsOpen],
+    form: [, formAction],
+  } = useUpdateUser<"name" | "surname">(id);
 
-  const hiddenName = hideDetails(JSON.stringify(fullName), "name");
   return (
     <Details>
       <Details.View
-        value={hiddenName}
-        title={t("fullname_title")}
-        onClick={() => setIsEditing(true)}
+        value={hideName({ name, surname })}
+        title={t("prefixed.name")}
+        onClick={() => setIsOpen(true)}
       >
         <Modal
-          isOpen={isEditing}
-          setIsOpen={setIsEditing}
-          title={t("fullname_overlay")}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title={t("overlay.fullname_overlay")}
         >
-          <form
-            className="grid gap-2"
-            action={async formData => {
-              formAction(formData);
-            }}
-          >
-            <Details.Input
-              name="name"
-              placeholder={t("name_placeholder")}
-              defaultValue={fullName.name}
+          <form className="grid gap-2" action={formAction}>
+            <Input
+              id="name"
+              defaultValue={name}
+              placeholder={t("placeholder.name")}
             />
-            <Details.Input
-              name="surname"
-              placeholder={t("surname_placeholder")}
-              defaultValue={fullName.surname}
+            <Input
+              id="surname"
+              defaultValue={surname}
+              placeholder={t("placeholder.surname")}
             />
-            {error?.fullName && (
-              <span className="text-red-500">{error.fullName}</span>
-            )}
-            <Details.Submit isEditable />
+            <FormButton isEditable />
           </form>
         </Modal>
       </Details.View>

@@ -1,6 +1,6 @@
 import { FeaturedCategory } from "@/layouts/Home";
 
-export const FeaturedCategories: FeaturedCategory[] = [
+export const FeaturedCategories = [
   {
     image: {
       src: "/featured/card-cozy.jpg",
@@ -25,4 +25,4 @@ export const FeaturedCategories: FeaturedCategory[] = [
       discount: 25,
     },
   },
-];
+] as const satisfies FeaturedCategory[];

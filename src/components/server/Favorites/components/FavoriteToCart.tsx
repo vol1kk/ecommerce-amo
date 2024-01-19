@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 
 import { SelectedItem } from "@/types";
 import Button from "@/components/common/Button";
-import toggleCartAction from "@/components/server/Shop/actions/toggleCartAction";
+import { toggleCartAction } from "@/components/server/Cart";
 
 type FavoriteToCartProps = {
   selectedItem: SelectedItem;

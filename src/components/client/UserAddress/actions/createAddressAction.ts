@@ -1,13 +1,13 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+import { UserSessionTag } from "@/services/UserService";
 import { AddressService } from "@/services/AddressService";
-import { FormAddressAction } from "@/components/client/UserAddress/types";
 
-export const createAddressAction: FormAddressAction = async function (
-  state,
-  formData,
-) {
-  const res = await AddressService.create(Object.fromEntries(formData));
+export async function createAddressAction(_: any, body: FormData) {
+  const createdAddress = await AddressService.create(Object.fromEntries(body));
 
-  return { ok: true, data: res };
-};
+  revalidateTag(UserSessionTag);
+
+  return createdAddress;
+}

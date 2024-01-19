@@ -17,7 +17,11 @@ export function HeaderBurger({ children }: { children: ReactNode }) {
         <span className="top-1/2 -translate-y-1/2" />
         <span className="bottom-0" />
       </div>
-      <OverlayPortal isOpen={isOpen} className="h-full w-full bg-white">
+      <OverlayPortal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        className="h-full w-full bg-white"
+      >
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {children}
         </div>

@@ -1,5 +1,5 @@
 import { TrashIcon } from "@/components/common/Icons";
-import toggleCartAction from "@/components/server/Shop/actions/toggleCartAction";
+import { toggleCartAction } from "@/components/server/Cart";
 
 type CartDeleteProps = {
   id: string;

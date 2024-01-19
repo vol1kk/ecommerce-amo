@@ -1,26 +1,25 @@
 import { useTranslations } from "next-intl";
 
 import cn from "@/utils/cn";
-import { DiscountedItem } from "@/layouts/Home";
 import Section from "@/components/common/Section";
 import { ArrowIcon } from "@/components/common/Icons";
 import { AbsoluteCard } from "@/components/common/AbsoluteCard";
+import { DiscountedBottom, DiscountedUpper } from "@/layouts/Home";
 
 type HomeDiscountsProps = {
-  triples: DiscountedItem[];
-  doubles: DiscountedItem[];
+  triples: (typeof DiscountedUpper)[number][];
+  doubles: (typeof DiscountedBottom)[number][];
 };
 
 export default function HomeDiscounts({
   doubles,
   triples,
 }: HomeDiscountsProps) {
-  const t = useTranslations("Home");
-
-  const shopNow = t("shop_now");
+  const t = useTranslations("Discounted");
+  const tg = useTranslations("General");
 
   return (
-    <Section name={t("saving_zone")}>
+    <Section name={tg("saving_zone")}>
       <div className="grid w-full grid-cols-3 gap-6 lg:grid-cols-1">
         {triples.map(discounted => (
           <AbsoluteCard key={discounted.image.src} className="max-h-[400px]">
@@ -36,13 +35,13 @@ export default function HomeDiscounts({
               )}
             >
               <h2 className="max-w-[140px] text-3xl sm-x:text-center">
-                {t("Discounted." + discounted.content.title)}
+                {t(discounted.content.title)}
               </h2>
               <div className="grid text-sm">
-                <h3>{t("Discounted." + discounted.content.subtitle)}</h3>
+                <h3>{t(discounted.content.subtitle)}</h3>
                 {discounted.content.discount && (
                   <span>
-                    {t("discount", { discount: discounted.content.discount })}
+                    {tg("discount", { discount: discounted.content.discount })}
                   </span>
                 )}
               </div>
@@ -50,7 +49,7 @@ export default function HomeDiscounts({
                 <ArrowIcon />
               </div>
               <button className="self-end rounded-md border-2 border-white px-4 py-2">
-                {shopNow}
+                {tg("shop_now")}
               </button>
             </AbsoluteCard.Content>
           </AbsoluteCard>
@@ -69,13 +68,13 @@ export default function HomeDiscounts({
               )}
             >
               <h2 className="max-w-[140px] text-3xl sm-x:text-center">
-                {t("Discounted." + discounted.content.title)}
+                {t(discounted.content.title)}
               </h2>
               <div className="text-sm">
-                <h3>{t("Discounted." + discounted.content.subtitle)}</h3>
+                <h3>{t(discounted.content.subtitle)}</h3>
                 {discounted.content.discount && (
                   <span>
-                    {t("discount", { discount: discounted.content.discount })}
+                    {tg("discount", { discount: discounted.content.discount })}
                   </span>
                 )}
               </div>
@@ -83,7 +82,7 @@ export default function HomeDiscounts({
                 <ArrowIcon className="[&>path]:stroke-black" />
               </div>
               <button className="self-end rounded-md border-2 border-black px-4 py-2">
-                {shopNow}
+                {tg("shop_now")}
               </button>
             </AbsoluteCard.Content>
           </AbsoluteCard>

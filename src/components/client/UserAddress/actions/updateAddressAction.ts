@@ -1,18 +1,18 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+
+import { UserSessionTag } from "@/services/UserService";
 import { AddressService } from "@/services/AddressService";
-import getFormDataStr from "@/components/client/UserDetails/utils/getFormDataStr";
 
-export async function updateAddressAction(state: any, formData: FormData) {
-  const id = getFormDataStr(formData, "id");
+export async function updateAddressAction(
+  id: string,
+  _: any,
+  formData: FormData,
+) {
+  const address = await AddressService.update(id, Object.fromEntries(formData));
 
-  // TODO: smh zod doesn't delete id in UpdateAddressDto
-  formData.delete("id");
+  revalidateTag(UserSessionTag);
 
-  const res = await AddressService.update(id, Object.fromEntries(formData));
-
-  return {
-    ok: true,
-    data: res,
-  };
+  return address;
 }

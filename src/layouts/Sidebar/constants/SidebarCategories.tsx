@@ -30,5 +30,3 @@ export const SidebarCategories = [
     href: `${ITEM_PAGE}?category=combos`,
   },
 ] as const;
-
-export type NavbarIcons = (typeof SidebarCategories)[number]["icon"];

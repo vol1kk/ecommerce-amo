@@ -10,6 +10,7 @@ import { getFormCredentials } from "@/components/client/Auth";
 export type AuthError = {
   email?: string;
   password?: string;
+  general?: string;
 } | null;
 
 export function useCredentialsLogin() {
@@ -31,9 +32,10 @@ export function useCredentialsLogin() {
       router.push(HOME_PAGE);
     } else {
       form.reset();
+      (form.querySelector(":focus") as HTMLInputElement).blur();
+
       setError({
-        email: "invalid_email",
-        password: "invalid_password",
+        general: "something_wrong",
       });
     }
   }

@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import cn from "@/utils/cn";
 import { authOptions } from "@/lib/authOptions";
 import { HeartIcon } from "@/components/common/Icons";
-import toggleWishlistAction from "@/components/server/Shop/actions/toggleWishlistAction";
+import { toggleWishlistAction } from "@/components/server/Favorites";
 
 type CardFavoriteProps = {
   id: string;

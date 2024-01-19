@@ -1,14 +1,14 @@
-import { Item, SelectedItem } from "@/types";
+import { useTranslations } from "next-intl";
+
+import { SelectedItem } from "@/types";
 import Link from "@/components/common/Link";
 import { ITEM_PAGE } from "@/constants/routes";
+import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDetail";
 import {
   FavoriteImage,
   FavoriteRemove,
   FavoriteToCart,
 } from "@/components/server/Favorites";
-import cn from "@/utils/cn";
-import FavoriteDetail from "@/components/server/Favorites/components/FavoriteDetail";
-import { useTranslations } from "next-intl";
 
 type WishlistItemProps = {
   selectedItem: SelectedItem;
@@ -16,7 +16,7 @@ type WishlistItemProps = {
 
 export default function FavoriteItem({ selectedItem }: WishlistItemProps) {
   const t = useTranslations("Item");
-  const item = selectedItem.item as Item;
+  const item = selectedItem.item;
 
   return (
     <div className="grid grid-cols-[auto,1fr,auto,auto] place-items-center gap-6 border-b-2 pb-4 sm:grid-cols-1 sm:gap-2">
