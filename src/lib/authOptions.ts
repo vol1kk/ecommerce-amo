@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { SIGN_IN_PAGE } from "@/constants/routes";
 import { AuthService } from "@/services/AuthService";
 import { UserService } from "@/services/UserService";
+import setCookiesAction from "@/utils/setCookiesAction";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -22,11 +23,12 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password", placeholder: "***" },
       },
       async authorize(credentials) {
-        if (!credentials) {
-          return null;
-        }
+        if (!credentials) return null;
 
-        return await AuthService.login(credentials);
+        const resp = await AuthService.login(credentials);
+        await setCookiesAction(resp.headers.getSetCookie());
+
+        return await resp.json();
       },
     }),
   ],

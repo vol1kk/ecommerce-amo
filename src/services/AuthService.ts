@@ -14,28 +14,43 @@ type OAuthBody = {
 };
 
 export class AuthService extends RequestService {
-  static serviceUrl =
-    typeof window === "undefined"
-      ? this.baseUrl + "/auth"
-      : this.baseUrl + "/users";
+  static async register(
+    body: AuthBody,
+    isServer = false,
+  ): Promise<Session["user"]> {
+    const resp = await this.post(this.getAuthUrl(isServer) + "/register", {
+      body,
+    });
 
-  static async register(body: AuthBody): Promise<Session["user"]> {
-    const resp = await this.post(`${this.serviceUrl}/register`, { body });
     return resp.json();
   }
 
-  static async login(body: AuthBody): Promise<Session["user"]> {
-    const resp = await this.post(`${this.serviceUrl}/login`, { body });
+  static async login(body: AuthBody, isServer = false): Promise<Response> {
+    const resp = await this.post(this.getAuthUrl(isServer) + "/login", {
+      body,
+    });
 
     if (!resp.ok) {
       throw new Error("Something went wrong during login");
     }
 
+    return resp;
+  }
+
+  static async oauthLogin(
+    body: OAuthBody,
+    isServer = false,
+  ): Promise<Session["user"]> {
+    const resp = await this.post(this.getAuthUrl(isServer) + `/oauth`, {
+      body,
+    });
+
     return resp.json();
   }
 
-  static async oauthLogin(body: OAuthBody): Promise<Session["user"]> {
-    const resp = await this.post(`${this.serviceUrl}/oauth`, { body });
-    return resp.json();
+  private static getAuthUrl(isServer = false) {
+    if (isServer) return "http://localhost:3001/auth";
+
+    return "http://localhost:3000/api/users";
   }
 }
