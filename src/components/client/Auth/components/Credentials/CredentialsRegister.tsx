@@ -2,12 +2,12 @@
 
 import { FormEvent } from "react";
 
-import getZodErrors from "@/utils/getZodErrors";
+import getErrors from "@/utils/getErrors";
 import { AuthService } from "@/services/AuthService";
 import CredentialsForm from "@/components/client/Auth/components/Credentials/CredentialsForm";
 import {
-  useCredentialsLogin,
   getFormCredentials,
+  useCredentialsLogin,
 } from "@/components/client/Auth";
 
 export function CredentialsRegister() {
@@ -30,13 +30,12 @@ export function CredentialsRegister() {
     }
 
     // If passed body was invalid
-    const errors = getZodErrors(res.errors);
-    if (errors) {
+    if ("errors" in res) {
+      const errors = getErrors(res.errors);
       setError(errors);
-      return;
+    } else {
+      await handleLogin(e);
     }
-
-    await handleLogin(e);
   }
 
   return (

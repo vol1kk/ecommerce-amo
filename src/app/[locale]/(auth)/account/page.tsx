@@ -8,13 +8,11 @@ import { Address, Addresses } from "@/components/client/UserAddress";
 
 export default async function Page() {
   const t = await getTranslations("General");
+
   const user = await UserService.findMe();
+  if (!user) redirect(SIGN_IN_PAGE);
 
-  if (!user) {
-    redirect(SIGN_IN_PAGE);
-  }
-
-  const canEdit = user.accounts.type === "oauth";
+  const canEdit = user.accounts.at(0)?.type === "oauth";
 
   return (
     <div>
@@ -36,9 +34,9 @@ export default async function Page() {
         <Details.Password id={user.id} canEdit={!canEdit} />
       </section>
       <Addresses title={t("address_details")} addresses={user.address}>
-        {user.address.length > 0 ? (
+        {user.address?.length > 0 ? (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-            {user.address?.map(address => (
+            {user.address.map(address => (
               <Address key={address.id}>
                 <h3 className="text-xl font-bold">
                   {address.name} {address.surname}

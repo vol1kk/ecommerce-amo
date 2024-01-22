@@ -8,7 +8,6 @@ import {
   DiscountedBottom,
   FeaturedCategories,
 } from "@/layouts/Home";
-import { useTranslations } from "next-intl";
 
 export default function Page() {
   return (

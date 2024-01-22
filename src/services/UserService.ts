@@ -1,5 +1,6 @@
-import { RequestService } from "@/services/RequestService";
 import { Session, User } from "next-auth";
+
+import { RequestService } from "@/services/RequestService";
 
 export const UserSessionTag = "UserSessionTag";
 export class UserService extends RequestService {
@@ -11,7 +12,7 @@ export class UserService extends RequestService {
   }
 
   static async findMe(): Promise<
-    Session["user"] & { accounts: { type: string } }
+    Session["user"] & { accounts: { type: string }[] }
   > {
     const resp = await this.get(`${this.serviceUrl}/me`, {
       next: { tags: [UserSessionTag] },
