@@ -5,8 +5,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 import { SIGN_IN_PAGE } from "@/constants/routes";
 import { AuthService } from "@/services/AuthService";
-import { TokenService } from "@/services/TokenService";
-import setCookiesAction from "@/utils/setCookiesAction";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -27,8 +25,6 @@ export const authOptions: NextAuthOptions = {
         if (!credentials) return null;
 
         const resp = await AuthService.login(credentials);
-        await setCookiesAction(resp.headers.getSetCookie());
-
         return await resp.json();
       },
     }),
@@ -42,10 +38,19 @@ export const authOptions: NextAuthOptions = {
 
       const UTCDate = Math.floor(new Date().getTime() / 1000);
       if (UTCDate >= (decodedJWT?.exp || 0)) {
-        const resp = await TokenService.refresh();
+        const resp = await fetch("http://localhost:3001/token/refresh", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: token.refreshToken }),
+        });
+        const res = await resp.json();
 
-        await setCookiesAction(resp.headers.getSetCookie());
-        token.accessToken = await resp.json();
+        // console.log(`OLD ACCESS - ${token.accessToken.slice(-4)}`);
+        token.accessToken = res.accessToken;
+        token.refreshToken = res.refreshToken;
+        // console.log(`NEW ACCESS - ${token.accessToken.slice(-4)}`);
       }
 
       if (account?.type === "credentials") {
