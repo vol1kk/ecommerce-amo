@@ -26,6 +26,7 @@ export default async function setCookiesAction(biscuits: string[]) {
 
     const [name, value] = rawCookie.split("=");
 
+    // console.log(name, value, optionsObject);
     cookies().set(name, value, optionsObject);
   });
 }

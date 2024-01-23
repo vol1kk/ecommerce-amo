@@ -41,8 +41,11 @@ export class RequestService {
       strippedOptions = rest;
     }
 
+    let cookies;
     let token: string | undefined;
     if (typeof window === "undefined") {
+      cookies = (await import("next/headers")).cookies().toString();
+
       const getServerSession = (await import("next-auth")).getServerSession;
       const data = await getServerSession(
         (await import("@/lib/authOptions")).authOptions,
@@ -55,9 +58,10 @@ export class RequestService {
     const reqOptions: RequestInit = {
       method,
       headers: {
+        ...options?.headers,
+        ...(cookies && { cookie: cookies }),
         ...(token && { authorization: `Bearer ${token}` }),
         ...(canHaveBody && { "Content-Type": "application/json" }),
-        ...options?.headers,
       },
       ...(canHaveBody && { body: JSON.stringify(options.body) }),
       ...strippedOptions,
